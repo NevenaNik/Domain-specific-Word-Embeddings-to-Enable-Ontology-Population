@@ -1,0 +1,16 @@
+{"lane_keep_assistance_system": {
+    "parking_assistance":[[1,4], [1,2]], 
+    "longitudinal_control":[[3,4], [2,2]], 
+    "safety_concept":[[2,4], [2,2]], 
+    "human_machine_interface":[[2,4], [2,2]], 
+    "active_lane_keep":[[4,4], [4,2]], 
+    "cooperative_cruise_control":[[3,4], [3,2]], 
+    "drive_assistance_system":[[3,4], [3,2]], 
+    "lane_departure_warn":[[3,4], [2,2]], 
+    "lane_keep":[[4,4], [4,2]], 
+    "assistance_system":[[3,4], [3,2]], 
+    "lane_keep_support":[[4,4], [4,2]], 
+    "lane_change_assistance":[[1,4], [1,2]], 
+    "assistance_function":[[3,4], [3,2]], 
+    "lane_keep_assistance":[[4,4], [4,2]], 
+    "active_safety_system":[[2,4], [2,2]]}}

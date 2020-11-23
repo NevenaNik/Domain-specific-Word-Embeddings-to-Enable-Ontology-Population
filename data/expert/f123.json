@@ -1,0 +1,16 @@
+{"clutch": {
+    "continuous_variable_transmission":[[2,4], [2,3], [1,2]], 
+    "automatic_transmission":[[2,4], [2,3], [2,2]], 
+    "clutch_slip":[[3,4], [2,3], [2,2]], 
+    "inertia_phase":[[1,4], [1,3], [1,2]], 
+    "clutch_torque":[[3,4], [2,3], [2,2]], 
+    "lock_unlocked":[[2,4], [2,3], [2,2]], 
+    "friction_clutch":[[4,4], [2,3], [2,2]], 
+    "return_spring_force":[[2,4], [2,3], [2,2]], 
+    "torque_tc":[[2,4], [2,3], [2,2]], 
+    "gear_shift":[[3,4], [3,3], [2,2]], 
+    "automate_manual_transmission":[[2,4], [2,3], [2,2]], 
+    "shift_process":[[3,4], [2,3], [2,2]], 
+    "torque_converter":[[2,4], [2,3], [2,2]], 
+    "throttle":[[2,4], [1,3], [1,2]], 
+    "traction_interruption":[[2,4], [2,3], [2,2]]}}

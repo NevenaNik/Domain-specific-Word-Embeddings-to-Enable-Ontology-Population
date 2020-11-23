@@ -1,0 +1,16 @@
+{"piston": {
+    "small_end_bore":[[1,4], [1,2]], 
+    "run_surface":[[3,4], [3,2]], 
+    "piston_cylinder":[[4,4], [4,2]], 
+    "cylinder_liner":[[2,4], [2,2]], 
+    "bore":[[1,4], [1,2]], 
+    "piston_crown":[[3,4], [2,2]], 
+    "shape_pin_bore":[[1,4], [1,2]], 
+    "piston_skirt":[[3,4], [2,2]], 
+    "conrod_bore":[[1,4], [1,2]], 
+    "floating_piston":[[3,4], [2,2]], 
+    "pin_bore":[[1,4], [1,2]], 
+    "autothermatik":[[1,4], [1,2]], 
+    "bearing":[[2,4], [2,2]], 
+    "piston_ring":[[3,4], [2,2]], 
+    "piston_pin":[[3,4], [2,2]]}}

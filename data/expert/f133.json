@@ -1,0 +1,16 @@
+{"detection": {
+    "object":[[1,4], [2,2]], 
+    "perception_task_obstacle_detection":[[4,4], [3,2]], 
+    "object_detection":[[4,4], [4,2]], 
+    "camera":[[2,4], [2,2]], 
+    "detect_object":[[4,4], [4,2]], 
+    "acoustical":[[2,4], [2,2]], 
+    "field_view":[[2,4], [2,2]], 
+    "detect":[[4,4], [4,2]], 
+    "detection_range":[[3,4], [3,2]], 
+    "visual":[[2,4], [1,2]], 
+    "radar_sensor":[[2,4], [1,2]], 
+    "sense":[[3,4], [3,2]], 
+    "radar_light_detection":[[4,4], [3,2]], 
+    "radar":[[2,4], [2,2]], 
+    "recognition":[[3,4], [3,2]]}}

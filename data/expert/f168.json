@@ -1,0 +1,16 @@
+{"internal_combustion_engine": {
+    "combustion_engine":[[4,4], [3,1]], 
+    "hybrid_electric_vehicle":[[2,4], [2,1]], 
+    "hybrid_vehicle":[[2,4], [2,1]], 
+    "fuel_cell":[[1,4], [1,1]], 
+    "fuel_cell_stack":[[1,4], [1,1]], 
+    "propulsion":[[2,4], [2,1]], 
+    "propulsion_system":[[3,4], [2,1]], 
+    "series_hybrid":[[2,4], [2,1]], 
+    "plugin_hybrid_electric":[[2,4], [2,1]], 
+    "hybrid_electric":[[2,4], [2,1]], 
+    "methanol_inject":[[2,4], [2,1]], 
+    "powertrain_topology":[[2,4], [2,1]], 
+    "powertrain":[[3,4], [2,1]], 
+    "electric_machine":[[1,4], [1,1]], 
+    "electric":[[1,4], [1,1]]}}

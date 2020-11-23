@@ -1,0 +1,16 @@
+{"torque_converter": {
+    "gearbox":[[2,4], [2,2], [4,2], [2,2]], 
+    "gear_ratio":[[3,4], [2,2], [4,2], [2,2]], 
+    "automatic_transmission":[[3,4], [2,2], [4,2], [2,2]], 
+    "clutch":[[3,4], [2,2], [4,2], [1,2]], 
+    "continuous_variable_transmission":[[3,4], [1,2], [4,2], [2,2]], 
+    "friction_clutch":[[1,4], [1,2], [4,2], [1,2]], 
+    "transmission_ratio":[[3,4], [2,2], [4,2], [2,2]], 
+    "hydrodynamic_clutch":[[4,4], [1,2], [4,2], [1,2]], 
+    "gear_box":[[2,4], [2,2], [4,2], [2,2]], 
+    "inertia_moment":[[2,4], [1,2], [1,2]], 
+    "driveline":[[2,4], [1,2], [1,2]], 
+    "pump_turbine":[[2,4], [1,2], [1,2]], 
+    "electric_motor":[[1,4], [1,2], [1,2]], 
+    "electric_machine":[[1,4], [1,2], [1,2]], 
+    "planetary_gear":[[2,4], [2,2], [2,2]]}}

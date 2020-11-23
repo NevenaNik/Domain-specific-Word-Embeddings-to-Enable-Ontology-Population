@@ -1,0 +1,16 @@
+{"sensor": {
+    "measure_variable":[[2,4], [3,2], [3,1]], 
+    "light_detection_range":[[1,4], [1,2], [2,1]], 
+    "ultrasonic_sensor":[[2,4], [3,2], [3,1]], 
+    "surface_micromechanical":[[1,4], [2,1]], 
+    "piezoelectric_knock_sensor":[[2,4], [3,2], [3,1]], 
+    "radar_camera":[[2,4], [3,2], [3,1]], 
+    "anisotropic_magnetoresistive_sensor":[[2,4], [3,2], [3,1]], 
+    "piezoelectric_sensor":[[2,4], [3,2], [3,1]], 
+    "passive_sensor":[[2,4], [3,2], [3,1]], 
+    "accelerometer":[[1,4], [2,2], [3,1]], 
+    "radar_sensor":[[2,4], [3,2], [3,1]], 
+    "optical":[[1,4], [2,2], [2,1]], 
+    "speed_rpm_sensor":[[2,4], [3,2], [3,1]], 
+    "sensor_measure_principle":[[2,4], [3,2], [2,1]], 
+    "micromechanical_sensor":[[2,4], [4,2], [3,1]]}}

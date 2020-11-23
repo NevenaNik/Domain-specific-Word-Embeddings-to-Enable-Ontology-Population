@@ -1,0 +1,16 @@
+{"axle": {
+    "front_rear_axle":[[2,4], [3,2], [2,2], [4,2], [4,2]], 
+    "vertical_force":[[1,2], [2,2]], 
+    "steer_mechanism":[[1,2], [2,2], [1,2]], 
+    "rear_wheel":[[2,4], [1,2], [2,2], [2,2]], 
+    "independent_suspension":[[1,2], [3,2], [2,2]], 
+    "longitudinal":[[1,2], [2,2]], 
+    "front_axle":[[2,4], [3,2], [2,2], [3,2], [4,3], [4,2]], 
+    "difference_front_rear":[[1,2], [2,2], [2,2]], 
+    "front_wheel":[[2,4], [1,2], [2,2], [2,2]], 
+    "transversal":[[1,2]], 
+    "trailer":[[1,2], [1,2]], 
+    "rear_axle":[[2,4], [3,2], [2,2], [2,2], [4,2]], 
+    "rigid_axle":[[2,4], [2,2], [2,2], [1,2]], 
+    "differential_gear":[[1,2], [2,2], [1,2]], 
+    "rear_suspension":[[1,2], [2,2]]}}

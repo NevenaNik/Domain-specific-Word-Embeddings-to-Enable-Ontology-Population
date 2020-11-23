@@ -1,0 +1,16 @@
+{"transmission": {
+    "gear_box":[[1,4], [3,4], [3,2], [2,2]], 
+    "transversal_differential":[[3,4], [3,4], [3,2]], 
+    "transfer":[[2,4], [3,4], [2,2]], 
+    "gearbox":[[1,4],[3,4], [3,2], [2,2]], 
+    "drivetrain":[[2,4], [2,2], [2,2]], 
+    "rotary_movement":[[3,4], [3,4], [3,2], [2,2]], 
+    "gearshift":[[2,4], [3,4], [3,2], [2,2]], 
+    "electric_motor":[[3,4], [2,4], [2,2], [1,2]], 
+    "synchronization":[[1,4], [1,2], [2,2]], 
+    "continuous_variable_transmission":[[4,4], [2,4], [2,2], [4,2]], 
+    "wakeup_signal":[[1,4], [1,4], [1,2]], 
+    "planetary_gear":[[1,4], [2,4], [2,2], [2,2]], 
+    "reduction_gear":[[1,4], [2,4], [3,2], [2,2]], 
+    "automatic_transmission":[[4,4], [3,4], [3,2], [4,2]], 
+    "friction_clutch":[[1,4], [2,4], [3,2], [3,2]]}}

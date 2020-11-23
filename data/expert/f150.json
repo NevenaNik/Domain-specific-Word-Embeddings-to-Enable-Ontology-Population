@@ -1,0 +1,16 @@
+{"front_wheel": {
+    "rear_wheel":[[3,2], [1,2]], 
+    "side_slip":[[1,2], [2,2]], 
+    "traction_slip":[[1,2], [2,2]], 
+    "yaw_moment":[[1,2], [2,2]], 
+    "corner":[[2,2], [2,2]], 
+    "left_front_wheel":[[4,2], [3,2]], 
+    "axle":[[2,2], [2,2]], 
+    "rear_wheel_driven_car":[[1,2], [1,2]], 
+    "brake_slip":[[1,2]], 
+    "rear_wheel_steer":[[1,2]], 
+    "driven_wheel":[[2,2], [2,2]], 
+    "differential_gear":[[1,2]], 
+    "spin":[[2,2]], 
+    "front_axle":[[2,2], [2,2]], 
+    "steer_movement":[[2,2]]}}

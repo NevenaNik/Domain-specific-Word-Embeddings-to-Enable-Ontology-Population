@@ -1,0 +1,16 @@
+{"rear_axle": {
+    "rear_wheel_steer":[[3,1], [2,2]], 
+    "front_rear_axle":[[2,1], [2,2]], 
+    "trailer":[[1,1], [1,2]], 
+    "front_axle":[[2,1], [2,2]], 
+    "axle":[[4,1], [2,2]],  
+    "panhard_bar":[[3,4]], 
+    "brake_slip":[[2,1], [1,2]], 
+    "front_wheel":[[1,1], [1,2]], 
+    "load_transfer":[[2,1], [2,2]], 
+    "side_slip_angle":[[2,1], [1,2]], 
+    "spin":[[2,1], [2,2]], 
+    "roll_stabilization":[[2,1], [1,2]], 
+    "rear":[[3,1], [1,2]], 
+    "longitudinal":[[1,2]], 
+    "rear_wheel":[[3,1], [2,2]]}}

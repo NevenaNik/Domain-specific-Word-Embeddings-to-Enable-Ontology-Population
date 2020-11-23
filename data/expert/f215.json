@@ -1,0 +1,16 @@
+{"switch": {
+    "toggle":[[1,3], [4,2]], 
+    "servomotor":[[1,3], [1,2]], 
+    "ignition_key":[[1,3], [3,2]], 
+    "ignition_switch":[[2,3], [3,2]], 
+    "starter":[[3,3], [1,2]], 
+    "regulator":[[2,3], [1,2]], 
+    "control_polytopic":[[2,3]], 
+    "interrupt":[[2,3]], 
+    "standby_mode":[[2,3], [1,2]], 
+    "activate":[[2,3], [1,2]], 
+    "power_supply":[[2,3], [2,2]], 
+    "battery_master":[[2,3], [2,2]], 
+    "activation":[[3,3], [2,2]], 
+    "relay":[[2,3], [2,2]], 
+    "positioner":[[2,3]]}}

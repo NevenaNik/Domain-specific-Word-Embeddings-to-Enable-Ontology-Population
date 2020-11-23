@@ -1,0 +1,16 @@
+{"adaptive_cruise_control": {
+    "emergency_brake":[[4,3], [2,2], [2,2], [2,2], [3,2], [2,2]], 
+    "lane_departure_warn":[[2,3], [1,2], [1,2], [2,2], [1,2], [1,2]], 
+    "longitudinal_control":[[3,3], [3,2], [3,2], [2,2], [1,2], [4,2]], 
+    "assistance_function":[[3,3], [3,2], [3,2], [3,2], [4,2], [3,2]], 
+    "electronic_stability_program":[[2,3], [1,2], [1,2], [2,2], [1,2], [1,2]], 
+    "lane_change_assistance":[[2,3], [1,2], [1,2], [2,2], [1,2], [1,2]], 
+    "collision_warn":[[4,3], [3,2], [2,2], [2,2], [3,2], [2,2]], 
+    "cooperative_adaptive_cruise_control":[[4,3], [2,3], [3,2], [3,2], [4,2], [4,2]], 
+    "lane_keep_assistance":[[2,3], [1,2], [1,2], [2,2], [1,2], [1,2]], 
+    "collision_avoidance":[[4,3], [2,2], [3,2], [2,2], [3,2], [2,2]], 
+    "radar_sensor":[[2,3], [3,2], [2,2], [2,2], [1,2], [2,2]], 
+    "electronic_stability_control":[[2,3], [1,2], [1,2], [2,2], [1,2], [1,2]], 
+    "conventional_cruise_control":[[3,3], [2,2], [2,2], [2,2], [1,2], [1,2]], 
+    "cruise_control":[[4,3], [2,2], [2,2], [2,2], [3,2], [2,2]], 
+    "automatic":[[2,3], [2,2], [1,2], [2,2], [3,2]]}}

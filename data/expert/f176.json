@@ -1,0 +1,16 @@
+{"load": {
+    "resistive_force":[[1,2], [2,2]], 
+    "hitch_load":[[2,4], [2,2], [4,2]], 
+    "load_capacity":[[2,4], [2,2], [2,2], [3,2]], 
+    "vibration":[[1,2], [2,2]], 
+    "coefficient_friction":[[1,2]], 
+    "transversal_load":[[2,4], [2,2], [3,2]], 
+    "auxiliary_unit":[[1,2]], 
+    "slide_velocity":[[1,2], [1,2]], 
+    "condition":[[1,2], [1,2]], 
+    "mass_moment_inertia":[[1,2], [2,2]], 
+    "excitation":[[1,2]], 
+    "uneven_road":[[1,2], [2,2]], 
+    "gas_inertia_force":[[1,2], [1,2]], 
+    "friction_loss":[[1,2], [1,2]], 
+    "full_load":[[2,4], [3,2], [3,2]]}}

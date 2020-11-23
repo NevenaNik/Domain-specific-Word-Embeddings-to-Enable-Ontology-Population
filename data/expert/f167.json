@@ -1,0 +1,16 @@
+{"interface": {
+    "physical_layer":[[2,4], [1,2], [2,2]], 
+    "hardware":[[2,4], [1,2], [1,2]], 
+    "host_processor":[[1,4], [1,2], [1,2]], 
+    "subsystem":[[1,4], [1,4], [1,2]], 
+    "controller":[[4,4], [1,2], [4,2], [1,2]], 
+    "functional":[[3,4], [1,2], [2,2]], 
+    "basic_software":[[2,4], [2,2], [1,2]], 
+    "microprocessor":[[2,4], [2,2], [1,2]], 
+    "microcontroller":[[4,4], [2,2], [1,2]], 
+    "module":[[2,4], [2,2], [4,2], [2,2]], 
+    "software_component":[[4,4], [2,2], [4,2], [2,2]], 
+    "central_lock":[[1,4], [1,2], [1,2]], 
+    "application_layer":[[4,4], [2,2], [4,2], [2,2]], 
+    "software_module":[[4,4], [2,2], [4,2], [2,2]], 
+    "central_processing_unit":[[1,4], [1,2], [1,2]]}}

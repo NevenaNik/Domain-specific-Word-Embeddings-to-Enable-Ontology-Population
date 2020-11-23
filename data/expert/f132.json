@@ -1,0 +1,16 @@
+{"cylinder": {
+    "inlet":[[3,4], [2,2]], 
+    "intake_manifold":[[2,4], [1,2]], 
+    "top_dead_center":[[3,4], [2,2]], 
+    "fuel_injector":[[3,4], [2,2]], 
+    "outlet":[[2,4], [2,2]], 
+    "intake_valve":[[3,4], [2,2]], 
+    "pressure_bar":[[1,4], [1,2]], 
+    "peak_cylinder":[[4,4], [3,2]], 
+    "stroke":[[3,4], [2,2]], 
+    "injector":[[2,4], [2,2]], 
+    "exhaust_valve":[[3,4], [2,2]], 
+    "chamber":[[2,4]], 
+    "delivery_stroke":[[3,4], [2,2]], 
+    "compression":[[2,4], [2,2]], 
+    "optical_access":[[1,4], [1,2]]}}

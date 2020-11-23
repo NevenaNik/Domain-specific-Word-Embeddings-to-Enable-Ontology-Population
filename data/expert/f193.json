@@ -1,0 +1,16 @@
+{"requirement": {
+    "technical":[[2,4], [2,2], [1,2]], 
+    "technical_requirement":[[4,4], [2,2], [4,2], [3,2]], 
+    "operational_safety":[[3,4], [1,2], [4,2], [1,2]], 
+    "essential":[[2,4], [3,2], [1,2]], 
+    "functionality":[[2,4], [3,2], [2,2]], 
+    "convenience":[[1,4], [1,2], [1,2]], 
+    "safety_requirement":[[4,4], [3,2], [4,2], [2,2]], 
+    "specification":[[4,4], [2,2], [2,2]], 
+    "functional_requirement":[[4,4], [3,2], [4,2], [3,2]], 
+    "demand":[[4,4], [1,2], [3,2]], 
+    "reliability":[[2,4], [1,2], [1,2]], 
+    "nonfunctional_requirement":[[4,4], [3,2], [3,2]], 
+    "compliance":[[3,4], [2,2], [1,2]], 
+    "functional":[[2,4], [2,2], [1,2]], 
+    "specifications":[[4,4], [2,2], [4,2], [1,2]]}}

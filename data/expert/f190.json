@@ -1,0 +1,16 @@
+{"rear": {
+    "laterally":[[1,1]], 
+    "front":[[2,1]], 
+    "rear_axle":[[2,1]], 
+    "right_left":[[1,1]], 
+    "four_wheel":[[1,1]], 
+    "panhard_bar":[[1,1]], 
+    "outboard":[[1,1]], 
+    "behind":[[1,1]], 
+    "rear_wheel":[[2,1]], 
+    "front_wheel":[[1,1]], 
+    "rear_wheel_driven_car":[[2,1]], 
+    "trailer":[[1,1]], 
+    "side":[[1,1]], 
+    "rear_wheel_steer":[[2,1]], 
+    "front_axle":[[1,1]]}}

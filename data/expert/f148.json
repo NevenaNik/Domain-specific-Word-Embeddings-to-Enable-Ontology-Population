@@ -1,0 +1,16 @@
+{"exhaust_gas_recirculation": {
+    "exhaust":[[2,4], [2,2], [1,2]], 
+    "turbocharger":[[3,4], [3,2], [2,2]], 
+    "injection_pressure":[[2,4], [2,2], [2,2]], 
+    "exhaust_gas_recirculation_rate":[[4,4], [3,2], [2,2]], 
+    "direct_injection":[[1,4], [1,2]], 
+    "catalytic_converter":[[3,4], [1,2]], 
+    "injection_timing":[[1,4], [1,2], [1,2]], 
+    "intake_air":[[2,4], [2,2], [2,2]], 
+    "compression_ratio":[[1,4], [1,2]], 
+    "cool_exhaust_gas":[[3,4], [2,2]], 
+    "recirculation":[[3,4], [2,2], [3,2]], 
+    "gasoline_engine":[[2,4], [2,2]], 
+    "manifold_injection":[[1,4], [1,2]], 
+    "variable_valve_timing":[[2,4], [2,2]], 
+    "compression_ignition":[[1,4], [1,2]]}}

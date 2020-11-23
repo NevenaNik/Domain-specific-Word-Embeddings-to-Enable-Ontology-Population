@@ -1,0 +1,16 @@
+{"drive_assistance_system": {
+    "drive_assistance":[[3,2], [4,2], [4,2]], 
+    "lane_departure_warn":[[2,2], [4,2], [2,2]], 
+    "advanced_drive_assistance_system":[[3,2], [4,2], [4,2]], 
+    "copilot":[[2,2], [2,2], [2,2]], 
+    "vehicle_guidance":[[2,2], [1,2], [1,2]], 
+    "machine_perception":[[2,2], [4,2], [1,2]], 
+    "collision_avoidance":[[2,2], [4,2], [2,2]], 
+    "lane_keep_assistance_system":[[2,2], [4,2], [2,2]], 
+    "human_machine_interface":[[1,2], [4,2], [2,2]], 
+    "active_safety":[[2,2], [2,2], [2,2]], 
+    "lane_keep_assistance":[[2,2], [4,2], [2,2]], 
+    "active_safety_system":[[2,2], [2,2], [2,2]], 
+    "use_naturalistic_drive":[[1,2], [2,2], [1,2]], 
+    "environment_perception":[[1,2], [4,2], [2,2]], 
+    "assistance_system":[[4,4], [4,4], [3,2]]}}

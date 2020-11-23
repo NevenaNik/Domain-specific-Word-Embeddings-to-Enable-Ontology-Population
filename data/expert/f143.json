@@ -1,0 +1,16 @@
+{"electronic_stability_program": {
+    "antilock_brake_system":[[3,4], [3,3], [3,2], [2,1]], 
+    "traction_control_system":[[3,4], [3,2], [2,3], [2,2], [3,1]], 
+    "control_loop":[[2,4], [2,3], [2,2], [2,1]], 
+    "chassis_suspension":[[1,4], [2,3], [2,2], [1,1]], 
+    "traction_control":[[3,4], [2,3], [4,2], [3,1]], 
+    "hydraulic_brake":[[2,4], [2,3], [2,2], [2,1]], 
+    "electronic_stability_control":[[4,4], [4,3], [4,2], [4,1]], 
+    "antilock_brake":[[2,4], [2,3], [3,2], [2,1]], 
+    "cruise_control":[[1,4], [1,3], [2,2], [1,1]], 
+    "parking_brake":[[1,4], [1,3], [1,2], [1,1]], 
+    "sensotronic_brake_control":[[2,4], [2,3], [2,2]], 
+    "intervenes":[[2,4], [1,3], [1,2]], 
+    "anti_spin_regulator":[[3,4], [1,3], [3,2], [3,1]], 
+    "assistance_function":[[3,4], [2,3], [2,2], [4,1]], 
+    "hill_hold_control":[[1,4], [1,3], [1,3], [1,2], [2,1]]}}

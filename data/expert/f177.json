@@ -1,0 +1,16 @@
+{"longitudinal": {
+    "longitudinal_direction":[[4,4], [2,1]], 
+    "rear_axle":[[1,4], [1,1]], 
+    "side_slip":[[2,4], [1,1]], 
+    "front_axle":[[1,4], [1,1]], 
+    "vertical":[[1,4], [1,1]], 
+    "side_slip_angle":[[2,4], [1,1]], 
+    "wheelbase":[[1,4], [1,1]], 
+    "center_gravity":[[2,4], [1,1]], 
+    "center_mass":[[2,4], [1,1]], 
+    "front_rear_axle":[[3,4], [1,1]], 
+    "slip_angle":[[2,4], [1,1]], 
+    "inclination":[[2,4], [1,1]], 
+    "lateral":[[3,4], [1,1]], 
+    "yaw":[[2,4], [1,1]], 
+    "axle":[[2,4], [1,1]]}}

@@ -1,0 +1,16 @@
+{"acceleration": {
+    "relative_speed":[[2,4], [2,4], [4,2], [2,2]], 
+    "roll_angle":[[1,4], [1,4], [3,2]], 
+    "yaw":[[2,4], [1,4], [2,2]], 
+    "yaw_rate":[[2,4], [1,4], [2,2]], 
+    "yaw_velocity":[[2,4], [2,4], [3,2]], 
+    "acceleration_deceleration":[[4,4], [3,4], [4,2], [4,2]], 
+    "steer_wheel_angle":[[2,4], [1,4], [2,2], [2,2]], 
+    "wheel_slip":[[1,4], [2,4], [2,2], [2,2]], 
+    "steer_angle":[[2,4], [1,4], [2,2]], 
+    "longitudinal_acceleration":[[4,4], [2,4], [3,2]], 
+    "traction_force":[[2,4], [2,4]], 
+    "brake_slip":[[1,4], [2,4], [2,2]], 
+    "lateral_acceleration":[[4,4], [2,4], [2,2]], 
+    "yaw_moment":[[2,4], [2,4], [2,2]], 
+    "velocity":[[3,4], [3,4], [4,2], [2,2]]}}

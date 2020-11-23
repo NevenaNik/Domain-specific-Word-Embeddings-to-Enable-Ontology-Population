@@ -1,0 +1,16 @@
+{"gasoline_engine": {
+    "gasoline":[[2,2], [4,2], [2,2]], 
+    "spark_ignition_engine":[[2,2], [4,2], [1,2]], 
+    "combustion_process":[[2,2], [4,2], [3,2]], 
+    "diesel_engine":[[3,2], [1,2], [3,2]], 
+    "compression_ignition":[[2,2], [1,2], [2,2]], 
+    "fuel_delivery":[[1,2], [4,2], [1,2]], 
+    "port_fuel_injection":[[1,2], [1,2], [2,2]], 
+    "gasoline_compression_ignition":[[2,2], [1,2], [3,2]], 
+    "gasoline_direct_injection":[[2,2], [4,2], [3,2]], 
+    "compression_ignition_engine":[[3,2], [2,2], [2,2]], 
+    "cold_start":[[1,2], [4,2], [1,2]], 
+    "carburetor":[[1,2], [2,2], [2,2]], 
+    "turbocharger":[[2,2], [4,2], [1,2]], 
+    "direct_injection":[[1,2], [4,2], [2,2]], 
+    "exhaust_gas_recirculation":[[1,2], [4,2], [1,2]]}}

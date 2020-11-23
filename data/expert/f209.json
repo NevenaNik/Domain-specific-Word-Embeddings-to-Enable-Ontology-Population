@@ -1,0 +1,16 @@
+{"steer": {
+    "front_axle":[[3,4], [2,2], [4,1]], 
+    "electric_power_steer":[[4,4], [4,2], [4,1]], 
+    "steer_wheel_torque":[[3,4], [2,2], [4,1]], 
+    "power_steer":[[4,4], [3,2], [4,1]], 
+    "steer_column":[[3,4], [3,2], [3,1]], 
+    "active_steer":[[4,4], [2,2], [4,1]], 
+    "hydraulic_power_steer":[[4,4], [3,2], [4,1]], 
+    "servo":[[3,4], [1,2], [3,1]], 
+    "steer_ratio":[[3,4], [2,2], [3,1]], 
+    "superimpose_steer_system":[[3,4], [2,2], [3,1]], 
+    "steer_feel":[[2,4], [1,2], [2,1]], 
+    "steer_wheel":[[4,4], [2,2], [4,1]], 
+    "axle_kinematics":[[2,4], [1,2], [2,1]], 
+    "front_wheel":[[3,4], [1,2], [2,1]], 
+    "rear_wheel_steer":[[3,4], [2,2], [2,1]]}}

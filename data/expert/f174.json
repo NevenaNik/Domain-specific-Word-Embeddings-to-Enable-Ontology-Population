@@ -1,0 +1,16 @@
+{"lateral_acceleration": {
+    "steer_wheel_angle":[[3,2], [1,2]], 
+    "longitudinal_acceleration":[[2,2], [1,2]], 
+    "steer_angle":[[3,2], [1,2]], 
+    "yaw_moment":[[3,2], [1,2]], 
+    "traction_coefficient":[[2,2], [2,2]], 
+    "yaw_rate":[[3,2], [2,2]], 
+    "yaw":[[3,2], [2,2]], 
+    "yaw_velocity":[[2,2], [2,2]], 
+    "steer_wheel_torque":[[2,2], [2,2]], 
+    "curvature":[[2,2]], 
+    "relative_speed":[[3,2], [2,2]], 
+    "traction_force":[[2,2]], 
+    "roll_angle":[[1,2], [1,2]], 
+    "acceleration":[[2,2], [3,2]], 
+    "side_slip_angle":[[1,2]]}}

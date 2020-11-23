@@ -1,0 +1,16 @@
+{"combustion": {
+    "exhaust_gas_recirculation":[[3,2], [2,1]], 
+    "mixture_homogeneity":[[2,2], [4,1]], 
+    "port_fuel_injection":[[2,2], [4,1]], 
+    "advanced_compression_ignition":[[2,2], [3,1]], 
+    "direct_injection":[[4,1]], 
+    "combustion_process":[[4,2], [4,1]], 
+    "cold_start":[[1,2], [4,1]], 
+    "compression_ignition":[[3,2], [4,1]], 
+    "injection":[[4,1]], 
+    "ignition_delay":[[4,1]], 
+    "gasoline_direct_injection":[[4,1]], 
+    "homogeneous_charge_compression_ignition":[[3,1]], 
+    "stoichiometric":[[2,2]], 
+    "gasoline_engine":[[3,2], [4,1]], 
+    "injection_pressure":[[4,1]]}}

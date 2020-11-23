@@ -1,0 +1,16 @@
+{"brake_force": {
+    "deceleration":[[3,4],[2,1]], 
+    "front_wheel":[[1,4],[1,1]], 
+    "wheel_slip":[[2,4],[2,1]], 
+    "rear_wheel":[[1,4],[1,1]], 
+    "clamp_force":[[3,4],[2,1]], 
+    "yaw_torque":[[2,4],[1,1]], 
+    "lateral_force":[[1,4],[1,1]], 
+    "yaw_moment":[[1,4],[1,1]], 
+    "brake_pedal":[[4,4],[2,1]], 
+    "traction":[[2,4],[1,1]], 
+    "brake_slip":[[3,4],[2,1]], 
+    "brake":[[4,4],[2,1]], 
+    "slippage":[[2,4],[2,1]], 
+    "longitudinal_force":[[2,4],[2,1]], 
+    "pedal_force":[[3,4],[2,1]]}}

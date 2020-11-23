@@ -1,0 +1,16 @@
+{"signal": {
+    "pulse":[[4,4], [4,2], [3,3], [2,2]], 
+    "measure_variable":[[3,4], [4,2], [3,3], [4,2]], 
+    "output_signal":[[4,4], [4,2], [4,3], [4,2]], 
+    "receiver":[[3,4], [4,2], [3,3]], 
+    "receive_signal":[[4,4], [4,2], [4,3], [3,2]], 
+    "sinusoidal_voltage":[[3,4], [4,2], [3,3], [1,2]], 
+    "transmit":[[2,4], [2,2], [2,3], [1,2]], 
+    "control_unit_evaluates_signal":[[2,4], [2,3], [2,2]], 
+    "electrical_signal":[[4,4], [3,3], [3,2]], 
+    "input_signal":[[4,4], [3,3], [4,2]], 
+    "register":[[1,4], [1,3], [1,2]], 
+    "reception":[[2,4], [2,3], [1,2]], 
+    "record":[[2,4], [2,3], [3,2]], 
+    "modulation":[[2,4], [2,3], [2,2]], 
+    "modulate_signal":[[3,4], [3,3], [2,2]]}}

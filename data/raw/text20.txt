@@ -1,0 +1,7071 @@
+Introduction and Problem Formulation
+
+The presented approach was developed by members of EU FP 7 project IMPROVE
+consortium. IMPROVE is focused on commercial electric light duty vehicles,
+which are operated in urban surroundings (either within a ﬂeet or as single-operated
+vehicle). The project aims at improvement of a daily duty range, using realistic
+range assessment and following adaptive optimization. Limited range of electric
+vehicles is a main obstacle for their wide-spread use. The current progress of
+information and communication technologies (ICT) can extend the achievable
+range using the best energy management, even if it is still limited by physics of
+driving resistances [1, 2].
+
+Current electric vehicles are complex mechatronic devices. The pickup vehicles
+of small sizes are currently used in transport considerably. They often operate
+within a repeating scheme of a limited variety of tracks and larger ﬂeets. Thanks to
+mechatronic design of vehicles and their components, and availability of high
+capacity data connection with computational centers (clouds) and the data storage
+capacity in them, there are many means how to optimize their performance, both by
+planning the trip and recalculations during the route. The data capacity may be used
+in both directions—as a source of vehicle-to-infrastructure communication, V2I, or
+as storage capacity for vehicle history.
+Comprehensive energy management for electric vehicles has to take into account
+extended map-based route conditions (especially legal speed limit, safety speed
+limit due to local curvature of turns, slope, horizontal direction, basic adhesion
+factor typical for road surface, location of charging stations, trafﬁc conditions from
+infrastructure information system, trafﬁc density deﬁned, e.g., by achieved average
+speed, waiting time for charging at different charging stations, weather conditions,
+especially temperature, rain or snow, wind speed and its direction) and operation
+conditions (target locations—more targets are typical, e.g., for commercial delivery
+vehicles with loads (changing typically along the route).
+
+Optimum trip driving schedule for achieving pre-deﬁned operation conditions
+[the target(s) with delivery of the load(s)] is usually deﬁned by the lowest energy
+consumption schedule while maintaining pre-deﬁned constraints (time of reaching
+targets below the limit, temperature inside a vehicle kept between suitable mini-
+mum and maximum, safety factor of using adhesion limit (skid safety factor) below
+the limit, temperature of a motor and other electric equipment below the limit,
+battery state-of-charge (SOC) above the limit.
+
+The important feature of optimum trip design is not only its predictive phase but
+its adaptiveness, i.e., the re-optimization during a trip if circumstances (e.g., trafﬁc
+density, weather, etc.) change. The on-board diagnostics tools (e.g., for more
+accurate load determination) may be used as inputs, as well. In this phase, the
+computational power of the cloud can be used as well, but properly calibrated,
+on-board simpler simulation tools may be used independent on availability of cloud
+services with advantage. This is why the model hierarchy should be deﬁned. The
+simple models may be calibrated in advance using data from previous operation
+history of the same vehicle or by optimizing the parameters of the simple model by
+comparison to the results of full-size vehicle model during pre-trip optimization.
+The simpler model may use simpliﬁed optimization based on generalized set of
+limited number of optimization parameters, as well. The future progress of electric
+vehicle operation economy can be done by using the battery durability management
+and on-line battery and vehicle diagnostics, based on evaluation of vehicle history
+data.
+
+for use with a vehicle model
+
+The following description of the problem solver is divided into route description
+suitable
+simulation of driving and
+heating/air-conditioning (HVAC) energy consumption. Algorithms for full pre-trip
+optimization will be described together with their on-board implementation, and
+closed-loop control design will close the current section.
+
+for
+
+Although many aspects of this opportunity were already addressed [1, 2], this
+article shows an approach developed to further increase the range of e-vehicle
+operation. It is based on prior information about the route proﬁle, trafﬁc density,
+road conditions, past behaviour, mathematical models of the route, vehicle and
+dynamic optimization. The most important part of the procedure is performed in the
+cloud, using both computational power and rich information resources. Suitable
+route discretization into sections is the most important part of the algorithm. The
+various information resources are used. The accumulated experience coming from
+ﬂeet operation is also very important. Methods for automation of this procedure are
+
+1 Aspects for Velocity Profile Optimization …
+
+3
+
+presented. Subsequently, feasible initial values of section parameters are found
+using heuristic rules devised from good driver’s practice and backward calculation
+based on dynamic programming principles. Designed velocity proﬁle is further
+optimized based on simpliﬁed, but very fast energy consumption models, veriﬁed
+and ﬁne-tuned on detailed simulation model of the vehicle. The velocity proﬁle is
+updated when requested and ﬁnally loaded into on-board control unit. A model
+based predictive controller (MPC) is used to keep the vehicle with its driver efﬁ-
+ciently on deﬁned track. The proposed strategy is veriﬁed in a simulation envi-
+ronment and prepared to be implemented on the test vehicle and the cloud system.
+
+1.2 IT Architecture and Overall Algorithm
+
+The system consists of several main components. The basic control strategy is
+deﬁned and optimized before the journey of the vehicle starts using computational
+power and information resources in the cloud (Fig. 1.1).
+
+The route deﬁnition is obtained from navigation algorithm and map data (HERE
+—an open location platform currently developed and maintained by consortium of
+mainly European automotive manufactures [3]), complemented with altitude
+information and tuned by history data about previous experience with given route.
+The output of this optimization is the optimal velocity route proﬁle (OVRP), which
+complements current classical navigation data sets. This route description is based
+on natural discretization of the route into sections and setting velocity parameters
+for each section. These OVRP data are transferred into EVCU (Electric Vehicle
+Control Unit) and used as forward controller component. On-board sensor infor-
+mation (mainly forward distance, state of charge, torque, battery temperature etc.)
+
+Fig. 1.1 Software architecture
+
+4
+
+P. Steinbauer et al.
+
+are used in closed loop control component based on a predictive and adaptive
+control algorithm (PACA). In case of substantial difference between pre-optimized
+velocity proﬁle and actual trafﬁc situation, the high level OVRP calculation is
+repeated in the cloud. The required velocity is displayed as assistance to the driver
+via LCD display and used for recommendation of torque limit for the torque
+manager component of the vehicle.
+
+The information about vehicle behavior during the ride is stored and transferred
+into cloud data storage for future planning. The velocity route planning is thus
+improved gradually as the system is used.
+
+1.3 Route Segmentation Techniques
+
+The route description, which is obtained from route planning algorithm [3], is
+processed for future calculations into sections. The section is deﬁned as part of the
+route, which has constant or only slightly changing properties, especially route
+slope and maximum velocity. The maximum velocity is obtained as minimum from
+legal limit (which is part of route description) and maximum velocity (physically
+achievable and acceptable for passengers). The latter is calculated from route
+curvature, adhesion limit and comfort coefﬁcient based on force equilibrium
+(Fig. 1.2).
+
+X
+
+X
+
+Fx ¼ N (cid:3) sin h þ l
+Fy ¼ 0 ¼ N (cid:3) cos h (cid:4) l
+
+s
+
+(cid:3) N (cid:3) cos h
+
+(cid:3) N (cid:3) sin h (cid:4) m (cid:3) g
+
+s
+
+The maximum velocity in the curve is given by the maximum radial acceleration
+derived from adhesion limit, which is adjusted by passenger comfort coefﬁcient
+kcomfort
+
+vcomfort ¼
+
+p
+
+ﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+(cid:3) kcomfort
+r (cid:3) g (cid:3) l
+
+s
+
+The reason is both security and comfort
+
+level of the passengers who are
+
+exhibited to lateral forces.
+
+ð1:1Þ
+
+ð1:2Þ
+
+Fig. 1.2 Forces acting on the vehicle riding through curve
+
+1 Aspects for Velocity Profile Optimization …
+
+5
+
+The radius r of each route point is determined by circular regression through several
+neighboring points (Fig. 1.3b). The number of neighboring points determines ﬁltering
+level, which covers point coordinates uncertainty. Also, unlike the usual digital ﬁlters,
+such ﬁltering takes into account non-equidistant character of the positional data.
+
+The slope is determined in similar manner (Fig. 1.3c), using regression by
+straight line through several neighboring points. The proper non-equidistant point
+distance ﬁltering is ensured again.
+
+The new section boundary is deﬁned as follows:
+
+1. whenever the legal speed changes to another speed limit or
+2. whenever the speed is reduced or increased over the legal limits due to road
+proﬁle or trafﬁc or obstacles. The section speed is calculated for each route
+section as the average speed over the section.
+
+3. Whenever the slope of the route changes more then deﬁned tolerance.
+
+Fig. 1.3 Route from navigation (a), curvature (b) and slope determination (c)
+
+6
+
+P. Steinbauer et al.
+
+Fig. 1.4 Route section deﬁnition
+
+The process results into sequence of sections with constant main properties
+
+(Fig. 1.4).
+
+To learn from accumulated ﬂeet experience, various track records have to be
+combined. The various data sources blending must be carefully carried out, as there
+is different number of positional points from different records.
+
+The consistency check is done ﬁrst to exclude false measurements (it is based on
+maximum velocity between points). Next step is sorting out points by checking the
+direction of the vectors between subsequent points (Fig. 1.5a).
+
+For optimization of optimal velocity proﬁle, in each section four phases of
+vehicle driving mode are deﬁned (Fig. 1.5b): the phase of acceleration, the phase
+with constant velocity of the vehicle, the phase of coasting and the phase of
+deceleration. The order of phases cannot be changed, but some of them are skipped
+in particular cases, i.e. they have zero length. E.g. the coasting and deceleration will
+not occur if consecutive section has higher constant velocity.
+
+Each section is deﬁned by a set of parameters that describe a given section. This
+set of parameters should be composed only by mutually independent parameters.
+Otherwise, the number of parameters can be reduced and parametrization completed
+with appropriate number of constraints.
+
+The section velocity proﬁle is fully described by set of ﬁve parameters
+v1; aa; sa; sd; ad
+(cid:5), their meaning can be seen in the Fig. 1.5b. The terminal velocity
+½
+of deceleration v4 is not included in the set of parameters of the section as a separate
+parameter as is v1 of next section. The total trajectory of the vehicle is composed of
+successively connected sections. Two successive trajectory sections are intercon-
+i of ﬁrst section i is also
+nected in a connection point, where the terminal velocity v4
+the input velocity v1
+
+i+1 in the next section i + 1.
+The set of parameters creates the velocity proﬁle as follows
+
+q
+
+v2 ¼
+ð
+scoa ¼ f v2; v3
+
+ﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+2aasa þ v2
+1
+scon ¼ s (cid:4) sa (cid:4) sd (cid:4) scoa x; u; t
+Þ;
+
+ﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+2adsd þ v2
+4
+
+v3 ¼
+
+q
+
+ð
+
+;
+
+Þ
+
+ð1:3Þ
+
+The main advantage of such parametrization is that it allows the zero length of
+
+section phases without getting into numerical and mathematical problems.
+
+1 Aspects for Velocity Profile Optimization …
+
+7
+
+(a)
+
+(b)
+
+v
+
+y
+t
+i
+c
+o
+e
+V
+
+l
+
+1
+V
+
+2
+V
+
+aa
+
+n
+o
+i
+t
+a
+r
+e
+e
+c
+c
+A
+
+l
+
+sa
+
+e
+s
+a
+h
+p
+
+l
+
+y
+t
+i
+c
+o
+e
+v
+t
+n
+a
+t
+s
+n
+o
+C
+
+e
+s
+a
+h
+p
+
+sc
+
+section
+
+4
+V
+
+3
+V
+
+n
+o
+i
+t
+a
+r
+e
+e
+c
+e
+D
+
+l
+
+ad
+
+e
+s
+a
+h
+p
+
+sd
+
+g
+n
+i
+t
+s
+a
+o
+C
+
+e
+s
+a
+h
+p
+
+scoa
+
+Length of
+the trajectory
+
+Fig. 1.5 History data blending strategy (a), four-phases section description (b)
+
+1.4 Model Design and Calibration
+
+Optimal velocity route proﬁle, controller design and results veriﬁcation are based
+on mathematical models. Several models of different complexity are used.
+The LMS software was used to develop a full, complex vehicle model for range
+estimation. However, such complex model
+is computationally demanding and
+cannot be used for repeated calculation in optimization algorithms. So a simpliﬁed
+energy consumption model, mostly based on algebraic relations, was developed for
+this purpose. Finally, control design was based on a grid of linearized models.
+
+The Vehicle Energy Management (VEM) simulator is a LMS.IMAGINE.Lab
+Amesim 1D virtual model of the Fiat Doblo electric vehicle (Fig. 1.6a, b). This
+simulation platform is well suited to carry on global vehicle energy consumption
+evaluation [2, 4]. It is a range prediction model, containing the main subsystems:
+vehicle dynamics 1D model with front and rear axles, model of an electric machine
+and DC converter using real measurement data-ﬁles, which deﬁne the losses,
+
+8
+
+P. Steinbauer et al.
+
+the minimum and the maximum torques, high voltage battery, modelled as a
+quasi-static equivalent electric circuit model, deﬁned with the datasheet measure
+information, taking into account the OCV and resistance dependence as a function
+of SOC and temperature and simpliﬁed aging model. HVAC system is deﬁned as a
+simpliﬁed reduced model, the vehicle auxiliary consumers i.e. all
+the vehicle
+electric equipment that belongs to the low voltage on board network of the vehicle
+(12 V) and ﬁnally a vehicle control unit (VCU), which computes the motor torque
+demand according to the vehicle state, the pedal position, battery SOC, inverter
+power limitation (high frequency control dynamics such as ESP have been
+neglected).
+
+The LMS model has been modiﬁed to be integrated into the MATLAB/Simulink
+environment. A coupling block is added to deﬁne the quantities to be exchanged
+between LMS-Amesim and Simulink.
+
+However,
+
+the real vehicle as well as its mathematical model are highly
+non-linear, especially with respect to velocity and state of charge of the battery
+pack. Therefore, a linear controller resulting from MPC (model predictive control)
+design procedure at one set point of the model does not work well at remote state
+space positions. Thus, a set of linear models is created for a grid of set-points.
+
+The new Doblo simulation model has to be speciﬁcally modiﬁed in order to
+perform the linear analysis. The vehicle speed and battery SOC (state of charge) are
+chosen to deﬁne the linearization grid of the system (Fig. 1.7). The driver model is
+removed and replaced by the torque request.
+
+The simulation model is integrated during 0.1 s in order to reach the steady state
+deﬁned by this set point. In order to check the validity of this approach, each
+linearized model has been compared to the original non-linear model. Based on this
+veriﬁcation, the linearization grid density has been adapted to ensure sufﬁciently
+accurate results.
+
+The fast vehicle model used for optimization is based on the analysis of energy
+ﬂow and losses. The simple algebraic equations must be derived to achieve rapid
+evaluation. So, it is necessary to include analysis of vehicle components into the
+calculations and optimization of control strategy. In principle, the most important
+losses are depicted in Fig. 1.8. The cost function is based on sum of used energies,
+mainly
+
+(cid:129) rolling resistance—Ef
+(cid:129) slope resistance—Es
+(cid:129) acceleration resistance—Ea
+(cid:129) air resistance—Ev
+(cid:129) additional unit of vehicle (trailor)—Et
+(cid:129) heating/air conditioning as electric power input to a heat pump—Eh
+
+All differential equations of motion or of thermal energy conservation are
+integrated with constant parameters for a single route section. In the case of HVAC
+systems, the most general case with heat pumps for heating or cooling is imple-
+mented together with a simple heat balance model of a car body (driver’s room
+
+1 Aspects for Velocity Profile Optimization …
+
+9
+
+Fig. 1.6 LMS-amesim vehicle energy management model (a), SIMULINK coupling (b)
+
+10
+
+P. Steinbauer et al.
+
+Fig. 1.7 Linear model form (a), linearization in the grid (b)
+
+Fig. 1.8 Vehicle architecture and external forces acting to a vehicle for energy management
+optimization
+
+temperature) and a windshield (defrosting or de-fogging). The heat pumps are
+simulated by Carnot efﬁciency corrected by a constant multiplier to real heat or
+cooling factor. The possibility of extracting thermal energy from the cooling circuit
+for electric parts of powertrain is envisaged. In this way, both constraints of electric
+components maximum temperature and as suitable driver’s compartment temper-
+ature may be taken into account.
+
+Payload consisting of cargo and crew may vary during the trip. It is thus rea-
+sonable to on-line monitor vehicle payload state. Necessary additional sensors
+should be inexpensive, easy to install, or even completely avoided.
+
+1 Aspects for Velocity Profile Optimization …
+
+11
+
+Two methods were developed. The ﬁrst one is based on well-known equations of
+motion for longitudinal dynamics for acceleration with constant internal motor
+torque MM and deceleration for coast-down.
+
+Unknown rolling resistance and rather uncertain measurement of local slope of a
+
+road can be excluded. Then for unknown payload mass yields
+
+(cid:3)
+
+ig
+rw
+
+mL ¼
+
+(cid:4)
+
+MM (cid:4) MF þ M0
+F
+ad þ aa
+
+þ cdSvq
+
+2 w02 (cid:4) w2
+
+ð
+
+Þ
+
+ð
+(cid:4) mv 1 þ d
+
+Þ
+
+ð1:4Þ
+
+The mv and mL are masses of the vehicle and the payload respectively, cr is
+coefﬁcient of rolling resistance, cd is drag coefﬁcient, a is road slope, d is reduction
+of rotating masses to empty vehicle mass, aa is acceleration, ad is deceleration, w is
+mean velocity during acceleration phase, w′ is mean velocity during coast-down,
+MF is friction torque of electric motor+ transmission if motor active, resp. MF, if
+motor is inactive during coast down, ig stands for transmission ratio.
+
+Another approach is based on the fact that change of sprung mass will change
+eigen frequency of vertical mode. The eigen frequency can be determined from
+analyses of vertical vibration motion measurement. This can be accomplished by
+suitable acceleration transducer, DAQ hardware and computer post-processing. As
+the computational power of current signal processors is quite high, even complex
+calculations, including Fast Fouriér Transform algorithms (FFT), can be done
+easily.
+
+The eigen frequency of vertical motion mode (typically up to 4 Hz) changes,
+however, moderately due to high stiffness of springs and tires, not more than 0.3 Hz
+with mass change. So the measured signal contains non-negligible frequency
+components in the range of 0–1000 Hz. Signal conditioning must be adjusted to it.
+Also, the level of acceleration of sprung mass (chassis) is usually up to 2 g. Quite
+high resolution of frequency determination Df is necessary, based on performed
+analysis at least 0.01 Hz. However, sufﬁciently long time window T ¼ 1=Df can be
+easily measured during the ride.
+
+The rolling resistance is often found from coast-down deceleration, which can be
+measured similarly to active motor acceleration. The typical values for the current
+commercial vehicles are between 0.3 and 0.6 m s−2 (according to the load and
+vehicle speed—drag). Unlike vehicle mass, the procedure is not robust, as follows
+from Eq. (1.7) written here for a horizontal plane movement
+
+cR ¼
+
+(cid:4) ig
+rw
+
+M0
+
+½
+
+Þ þ mL
+ð
+F1 þ mv 1 þ d
+Þ
+ð
+g mv þ mL
+
+(cid:5)ad1 (cid:4) cdSvq w02
+
+1
+2
+
+ð1:5Þ
+
+The vehicle mass, with all uncertainties described above, and the drag are inputs
+into the equation. The friction torque may be added to the rolling resistance
+coefﬁcient due to small dependence on driveline speed.
+
+12
+
+P. Steinbauer et al.
+
+The large issue is caused by generally unknown slope. In laboratory tests it is
+avoided using two opposite directions of coast-down at the same vertex of a road,
+which is not suitable for daily diagnostics.
+
+The possibility is to check the horizontal plane by leaving a vehicle with released
+brakes for a few seconds staying on a test plane and checking whether some
+movement occurs. If it is not the case, procedure of both active acceleration test and
+coast-down deceleration measurement may be started. The active acceleration may
+be used with known motor torque for checking the coast-down results, but this
+check cannot avoid the slope inﬂuence (both accelerations will be shifted by the
+same slope acceleration component g.sina). The longitudinal axis angle measure-
+ment would be of advantage if calibrated by horizontal plane position.
+
+1.5 Algorithms for Full Pre-trip Optimization
+
+The optimal velocity route proﬁle is developed by a 3-phase algorithm. The ﬁrst
+phase determines a feasible, fastest velocity proﬁle, based on available motor power
+and braking capabilities of the vehicle. Then velocity proﬁle, based on heuristic
+rules which follow from good driver practice, is calculated. Finally, dynamic
+optimization takes place and ﬁne tuning of velocity proﬁle based on fast vehicle
+model.
+
+Backward-Forward Heuristic Calculation
+The search for maximum velocities starts from the end of the route. It enables to
+determine maximum velocities, at which the vehicle can slowdown into following
+section velocity limit.
+
+The procedure with examples of possible series of sections is demonstrated in
+Fig. 1.9. The predictor of maximum outlet velocity from the current section
+guarantees the successful braking to inlet velocity of all further sections.
+
+The corrector ﬁnds real wout,i (cid:6) wout,max,I taking velocity limit and possible
+positive acceleration, using opposite direction (Fig. 1.10). If optimum velocity is
+greater than inlet and outlet velocities (it must not be less than those because of
+predictor step), acceleration to the limit is considered.
+
+The same backward approach can be used for optimizing charging points during
+
+a long trip.
+
+Heuristic optimization can be done with very limited number of independent
+variables, based on generally valid dimensionless multipliers (e.g., reduction ratio
+for section speed—except for very low speed limit, which is used fully, reduction
+ratio for maximum motor power, maximum acceleration or deceleration reduced
+against adhesion limit, normalized power available for acceleration, etc.). The time
+constraint may be fulﬁlled explicitly using more complicated logical block for a
+speed governor. These features accelerate optimization procedure, which is
+important especially for adaptive re-optimization.
+
+1 Aspects for Velocity Profile Optimization …
+
+13
+
+Fig. 1.9 Backward step: search to ﬁnd maximum velocity which enable to slow down to limit of
+following section
+
+Fig. 1.10 Forward step: maximum achievable velocity based on max. torque and acceleration
+
+14
+
+P. Steinbauer et al.
+
+Dynamic optimization
+Dynamic process optimization is based on path and vehicle model discretization.
+It is a full pre-trip optimization. All parameters of velocity proﬁle are tuned
+respecting the constraints (e.g. maximum velocity in the section or continuity
+between subsequent sections and mainly maximum time of travel). Starting set is
+provided by previous heuristic (backward-forward) algorithm.
+
+The following approach is used: The initial velocity proﬁle is obtained by using
+a-priory knowledge about the system. It is optimized by dynamic system opti-
+mization methods, which were developed for optimization of complex and non-
+linear dynamic processes. They are based on discretization of the state trajectory
+and replacement of highly non-linear dynamic model by algebraic functions.
+
+The optimization criterion (cost function) is the overall consumed energy for
+whole route. It is calculated by simpliﬁed energy consumption model (mainly
+algebraic) for each section.
+
+The objective function is a function of constant parameters of vehicle and road
+and optimization parameters, whose number is the product of the number of sec-
+tions along the selected trajectory and the number of optimization parameters used
+to describe the individual phases of the section. For such deﬁned optimization
+problem and the objective function, the interval of values of the objective function
+is limited by local and global validity conditions, named “optimization conditions”.
+The local optimization conditions are deﬁned for individual sections of the selected
+trajectory. They limit the mutual relation of optimization parameters in each section
+and prescribed ﬁxed length of each section. Global optimization conditions deﬁne
+the maximum and minimum values of optimization parameters, deﬁne the conti-
+nuity of the velocity proﬁle at the endpoint of all sections of the trajectory and the
+total time of travel of the vehicle along the selected trajectory. All of these con-
+ditions form constraint parameter space to be searched.
+
+Dynamic optimization of the given problem is based on optimization technique
+called “Trust-Region Methods for Nonlinear Minimization” [5]. This method is
+based on the principle of replacing the objective function f in a neighborhood of an
+initial estimate by approximation functions. For this approximation function must
+hold the local and global optimization conditions. Optimization problem approxi-
+mating function and optimization conditions are deﬁned:
+(cid:6)
+
+(cid:5)
+
+min
+
+1
+2 sT Hs þ sT g; Dsk
+
+k (cid:6) D
+
+ð1:6Þ
+
+where g is the gradient of f at the current point x, H is the Hessian matrix (the
+symmetric matrix of second derivatives), D is a diagonal scaling matrix, D is a
+positive scalar, and ∥. ∥ is the 2-norm and T stands for vector transposition.
+
+By ﬁnding the minima of this function in the vicinity of the initial estimate the
+ﬁrst iteration of the optimization process is found. This iteration is used as the initial
+estimate for second iteration. When the difference between values of objective
+function in two consecutive iterations is less than the speciﬁed value, the last
+iteration is considered local minimum. All points of potential minima of the
+
+1 Aspects for Velocity Profile Optimization …
+
+15
+
+objective function are found initially. The smallest element of this group is the
+global minimum of the objective function in a prescribed area under consideration.
+The solution is based on MATLAB implementation of a modiﬁed method
+“Trust-Region Methods for Nonlinear Minimization”.
+
+In Fig. 1.11 is shown sample velocity proﬁle, optimized for two time constraints
+on reference route. The results indicate that the time limit is the most important
+parameter of optimization.
+
+Fig. 1.11 Optimal velocity proﬁle for ref. route with maximum time 1300 s (a) and 1500 s (b)
+
+16
+
+P. Steinbauer et al.
+
+1.6 Close Loop Control Design
+
+The real drive always differs from pre-optimized proﬁle due to the surrounding
+trafﬁc and vehicle model differences. That’s why the on-board real-time controller
+must be used to adapt the actual torque to achieve optimal behavior. It is based on
+gain scheduled, model based predictive controller, respecting constraints [6]. The
+linearized models around selected operating points in the grid
+
+D_x ¼ ADx þ BDu
+Dy ¼ CDx þ DDu
+
+ð1:7Þ
+
+with inputs: cabin external temperature difference request [°C], vehicle load [kg],
+wind speed [m s−1], normalized torque [−], road slope [%] and outputs: vehicle
+acceleration [m/s2], HV battery voltage [V], HV battery current [A], derivative of
+SOC [s−1], velocity [m s−1] were used. The linearization of the full simulation model
+provides relatively high order linear system with many states. Thus the model
+reduction is used to obtain control design model of acceptable size. Unfortunately,
+the resulting linear model has generally non-zero D matrix, which is not suitable for
+a standard MPC formulation. Thus integral methods [6] based on fast artiﬁcial states
+
+_Y ¼
+
+1
+
+T
+
+ð(cid:4)Y þ C:X þ D:UÞ;
+
+T (cid:7)
+
+ð1:8Þ
+
+1
+ReðkmaxÞ
+j
+j
+
+have been used. For each operating point the linear model was derived and used for
+control design.
+
+The MPC design algorithm ﬁnds optimal controller with respect to quadratic
+criteria. However, there are additional design parameters, like sampling period,
+length of prediction horizon, maximum controlled variable rate etc.
+
+The ultimate objective of this control design is to reduce energy consumption.
+Pre-optimization of the vehicle proﬁle [7] has shown that maximum time of travel
+affects maximum energy consumption considerably. That’s why multi-objective
+criteria optimization based on genetic algorithms was used with two conﬂicting
+criteria to determine best feedback controller settings
+
+ð1:9Þ
+
+J2 ¼ EMPC ¼
+
+Pmot dt ¼
+
+xmot (cid:1) Mmot dt
+
+ð1:10Þ
+
+The individual (controller) was tested on shortened route (500 m) for acceptable
+optimization time. The genetic algorithms used 150 individuals in 5 generations.
+
+J1 ¼
+
+1 dt
+
+Z t
+
+0
+
+Z t
+
+0
+
+Z t
+
+0
+
+1 Aspects for Velocity Profile Optimization …
+
+17
+
+Fig. 1.12 Pareto set for
+conﬂicting criteria
+
+The result of the optimization is organized into Pareto set (Fig. 1.12), which
+
+shows possible suitable region of combinations J1 and J2 criteria.
+
+1.7 Conclusions
+
+The combined control strategy for electric vehicle has been demonstrated, together
+with preliminary results. The comparison has shown that control design based on
+accurate model predictive control provides signiﬁcant improvements of control
+behaviour over traditional techniques. The non-linear control based on MPC gain
+scheduling and MPC Pareto optimization are demonstrated to be effective tools for
+control approach for energy savings. The ﬁnal decision is left to a driver, who sets
+optimization constraints and may override of them during a trip.
+Electric vehicles (EVs) are becoming more and more a viable alternative to con-
+ventional internal combustion engine vehicles (ICEVs). Recent advances in battery
+capacity and cost made EVs more popular than ever. Next to their higher energy
+efﬁciency and lower emissions, EVs have some other remarkable advantages
+compared with ICEVs, such as their faster driving/braking torque response, and the
+possibility to have multiple motors enabling individual wheel control. Research to
+exploit these advantages is being actively conducted [1, 2].
+
+Despite the recent advances in battery technology, the range of an EV per charge
+is still shorter than that of a conventional ICEV. One way to increase the driving
+range is by improving the efﬁciency of the drivetrain and energy storage. Another
+approach is to modify the driving performance by considering and taking advantage
+information resulting in more efﬁcient driving.
+of all possible environmental
+A suitable way to reduce energy consumption can be devised by calculating an
+energy optimal speed proﬁle for the chosen route by considering road and vehicle
+characteristics and real-time trafﬁc and weather information [3, 4]. Such a system
+could operate in two modes: advisory mode, in which the energy optimal speed
+proﬁle is displayed to the driver as a suggestion, and speed control mode, in which a
+longitudinal control system is employed such that the car automatically follows the
+optimal speed proﬁle. This chapter will focus on the design and implementation
+aspects of the speed control mode. This mode is an extension of Adaptive Cruise
+Control (ACC) that is already available in many production vehicles. The history of
+ACC can be traced back to the 1960s [5] but it was ﬁrst patented by General Motors
+in 1991 [6]. The interested reader is referred to the review paper of Xiao et al. [7]
+which provides an excellent overview of the development of ACC. While ACC is
+designed for tracking a constant driver-set speed and distance keeping, the speed
+control mode can enhance driving efﬁciency by tracking an energy optimal speed
+proﬁle. It is interesting to note that this added ability does not come at the cost of
+major changes in the existing control system structure.
+
+In general, the ACC implementation is done in an hierarchical manner with an
+upper and a lower level controller [8]. The upper level controller determines the
+required torque for tracking the speed proﬁle and the lower level controls the
+actuators. The upper level controller is usually developed as a cascade control
+system consisting of two control loops; The inner-loop controller is the speed
+tracking controller. It modulates the torque demand in order to track the reference
+speed. The outer-loop controller is the distance tracking controller. It calculates the
+reference speed in order to keep a desired distance from a leading vehicle and
+introduces this new reference speed into the inner-loop. This chapter will focus on
+the design of the inner-loop controller; on enhancing it to track a highly dynamic
+optimal speed proﬁle, as required for the speed control mode. The design of the
+outer-loop controller is not the topic of this chapter but it has been shown that
+conventional
+proportional-integral-derivative
+such
+(PID) control and its modiﬁcations work very well for the outer-loop [9–11].
+
+techniques
+
+control
+
+as
+
+For the speed control mode, the inner-loop or speed tracking controller plays a
+vital role in optimal driving as its performance directly inﬂuences how well the
+vehicle tracks the optimal speed proﬁle. For its performance speciﬁcations, it is
+necessary to specify that the steady state tracking error should be zero. Furthermore,
+it should provide the desired acceleration/jerk behavior to ensure the occupants
+comfort. In literature many control approaches have already been proposed to meet
+these objectives; In [12] the performance of a conventional PI controller is com-
+pared with that of a fuzzy and neuro-fuzzy controller for low speed applications.
+A controller based on a sliding mode technique is proposed in [13]. In [9, 10, 14]
+gain scheduling PI(D) control is proposed. In [14] the authors also propose an
+adaptive control scheme. A nonlinear control strategy based on a direct Lyapunov
+design is proposed in [15] and [16]. More advanced approaches based on optimal
+control theory are proposed in [9, 10]. As far as the commercially available ACC is
+concerned, their control system design is closely guarded by the individual com-
+panies for competitive advantage. Hence it is not possible to gain a lot of insight
+into the implementation details of the state-of-practice. However, some of the
+patents ﬁled in the current century show that none of them combine the approach
+taken in the current research of precomputing an optimal speed proﬁle and using
+this as reference for the upper controller.
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+21
+
+The controllers presented in the literature review from the preceding paragraph
+have in common that they have been developed mainly with the aim of tracking a
+quasi-constant speed proﬁle. Furthermore, they are typically difﬁcult to tune for the
+desired acceleration/jerk behavior for good ride comfort, which is very important
+when tracking a highly dynamic speed proﬁle. To overcome these shortcomings,
+this chapter presents the design and hardware implementation of two model-based
+control approaches for the inner-loop that directly incorporate these design objec-
+tives in their control design: a novel exponentially stabilizing gain scheduling
+proportional integral controller (gs-PI), and a state-of-the-art offset-free explicit
+model predictive controller with preview (e-MPC). To the knowledge of the
+authors, these control approaches have not yet been applied for longitudinal control
+of EVs.
+
+The proposed gs-PI controller follows a nonlinear Lyapunov-based control
+design that ensures exponential convergence stability. It has been designed to have
+the desired convergence rate as its design parameter. Given this value, an ofﬂine
+optimization-based procedure ﬁnds the scheduled gains that realize exponential
+convergence of the vehicle speed to the reference speed with the desired conver-
+gence rate. The exponential convergence behavior results in smooth speed tran-
+sients with low jerk and thus good ride comfort. The e-MPC controller is based on
+optimal control theory in which the control action is obtained by solving, at each
+sampling instant, a ﬁnite-horizon open-loop optimal control problem, using the
+current state of the system as the initial state [17, 18]. This control approach can use
+the predeﬁned optimal speed proﬁle as preview data, and allows to directly specify
+the desired trade-off between tracking accuracy and ride comfort in the control
+problem formulation. In this work the explicit-MPC formulation is employed to
+shift the online optimization of MPC to an ofﬂine optimization problem.
+
+The remainder of this chapter is structured as follows. Section 2.2 gives a brief
+overview of how to calculate an energy optimal speed proﬁle for a given route.
+Section 2.3 discusses the control design for the gs-PI and e-MPC controller. Sec-
+tion 2.4 presents the results of an experimental validation on a 4 wheel drive rolling
+road with an EV test vehicle. Finally, Sect. 2.5 presents some concluding remarks.
+
+2.2 Energy Optimal Speed Profile
+
+The driving range of an EV can be increased by considering and taking advantage of
+all possible environmental information resulting in more efﬁcient driving. This can
+be achieved by calculating an energy optimal speed proﬁle and employing a lon-
+gitudinal control system to automatically follow this speed proﬁle. This speed proﬁle
+is the solution of an optimization problem over the entire route chosen by the driver
+at the beginning of the journey. For the current research the optimization considers
+
+22
+
+S. van Aalst et al.
+
+road and vehicle characteristics and cloud information such as route, weather, and
+trafﬁc information. To solve this optimization problem and respect the speed limits
+the dynamic programming algorithm DPM [19] provided by the Swiss Federal
+Institute of Technology Zürich was used. It generates a grid containing all possible
+solution states resolved over distance and the desired resolution of the state space.
+Caused by a very large grid, the computation of the optimal speed proﬁle requires
+high processing power, which is not available on the test vehicle of this research
+(equipped with an Inﬁneon AURIX™ platform [20]). To overcome this problem, it
+was decided to deploy a high-performance computing platform to calculate the speed
+proﬁle, namely a state-of-the-art equipped personal computer. As a consequence, the
+reference speed is provided by an off-board system, see Fig. 2.1.
+
+The speed limits are obtained by fusing the speed constraints given by gov-
+ernment, weather information, trafﬁc ﬂow information and road curvature. As a
+result, the general optimization problem can be written as:
+
+Minimize
+lðsÞ
+Subject to:
+
+Þ;
+
+JðlðsÞÞ
+_xðsÞ ¼ F xðsÞ; lðsÞ; s
+ð
+xð0Þ ¼ x0;
+(cid:1)
+xðseÞ 2 xmin
+; xmax
+e
+e
+xðsÞ 2 XðsÞ (cid:3) <n;
+lðsÞ 2 MðsÞ (cid:3) <n
+
+(cid:3)
+
+;
+
+ð2:1Þ
+
+where Fð(cid:1)Þ represents the longitudinal dynamic vehicle model. This model accounts
+for the effect of rolling resistance, aerodynamic drag and road grade, and also
+includes simple models for the transmission, electric motor/generator, battery and
+supercapacitors (if implemented) to describe their induced power losses. When
+applying the DPM, a quasi-static vehicle model is expected [21]. It assumes that the
+velocity for a very small distance is constant. For that, the track is resolved over
+distance and not over time. The function Jð(cid:1)Þ represents the optimization goal. It
+contains the power demand, which is expected to be minimized. The speed limits
+are implemented as soft constraints in Jð(cid:1)Þ. For a detailed explanation of the DPM
+the interested reader is referred to Chap. 3 of this book.
+
+Fig. 2.1 Block scheme of the off-board system for calculating the energy optimal speed proﬁle
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+23
+
+2.3 Controller Design
+
+The longitudinal control system architecture for the EV is designed to be hierar-
+chical, with an upper and lower level controller, as shown in Fig. 2.2. The
+upper-level controller determines the desired torque for tracking the speed proﬁle
+and the lower-level controls the actuators. In the performance speciﬁcations for the
+upper-level controller, it is necessary to specify that the steady state tracking error
+should be zero. Other performance speciﬁcations concern the occupants comfort
+and are related to the acceleration/jerk proﬁle. As far as the lower-level is con-
+cerned, it is assumed that its dynamics are much faster than that requested by the
+upper-level controller. This is a valid assumption as the electric motors that provide
+the desired torque (positive and negative) have a very fast torque response. Because
+of this, the lower-level control does not need to be considered in the control design
+of the upper-level, i.e. it is assumed that the torque requested by the upper-level
+controller can be delivered instantaneously.
+
+The upper-level controller is developed as a cascade control system consisting of
+two control loops, as shown in Fig. 2.3; The inner-loop controller is the speed
+tracking controller. It modulates the torque demand in order to track the reference
+speed. This torque demand is input to the lower-level control. The outer-loop
+controller is the distance tracking controller. If a leading vehicle is detected, it
+modiﬁes the reference speed in order to keep a desired distance from the leading
+vehicle and introduces this new reference speed into the inner-loop controller.
+
+Fig. 2.2 Architecture of the longitudinal control system
+
+Fig. 2.3 Architecture of the longitudinal control system. Upper controller in detail
+
+24
+
+S. van Aalst et al.
+
+Several policies exist for the desired distance between two vehicles, such as a
+constant distance or constant-time headway [7]. The design of the outer-loop
+controller is not the topic of this chapter but it has been shown that conventional
+control techniques such as PID control and its modiﬁcations work very well for the
+outer-loop [9–11].
+
+This section focuses on the control design for the inner-loop which can be made
+independently from the outer-loop. For its performance speciﬁcations, it is neces-
+sary to specify that the steady state tracking error should be zero. Furthermore, it
+should be easily tunable to obtain the desired acceleration/jerk proﬁle to ensure the
+occupants comfort. To this end, this section presents two model-based control
+approaches for the inner-loop that directly incorporate these design objectives in
+their control design:
+
+(cid:129) Exponentially stabilizing gain scheduling proportional-integral control (gs-PI)
+(cid:129) Offset-free explicit model predictive control with preview (e-MPC).
+
+2.3.1 Gain Scheduling Proportional-Integral Control
+
+The gain scheduling proportional-integral-derivative (gs-PID) controller can be
+considered as the industry standard for control automation [22]. Its main advantage
+is that linear control design techniques can be applied to design a set of local linear
+controllers, whose control signals will be interpolated based on the current oper-
+ating point of the system. The downside of this approach is that stability and
+performance are only guaranteed locally and global stability is not guaranteed for
+fast variations of the operating condition [23]. In order to address these issues, a
+nonlinear Lyapunov-based control design method has been applied to design a
+gain-scheduling PI controller for the inner-loop that ensures exponential stability.
+The general control architecture is shown in Fig. 2.4. The developed controller has
+the desired convergence rate as its design parameter. Given this value, it provides
+the scheduled gains that realize exponential convergence of the vehicle speed to the
+reference speed with the desired convergence rate. The exponential convergence
+leads to smooth speed transients with low jerk and thus good ride comfort.
+
+PK
+
++
+
+−
+
+IK
+
++
+
+Fig. 2.4 Block scheme of the proposed gain scheduling PI controller
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+25
+
+The speed tracking controller is based on the following reduced longitudinal
+
+dynamics model of the vehicle:
+
+(cid:4)
+
+(cid:5)
+
+_vx ¼ 1
+m
+
+T
+rwh
+
+(cid:4) 1
+2
+
+qCdAfrv2
+x
+
+ð2:2Þ
+
+ð2:3Þ
+
+ð2:4Þ
+
+ð2:5Þ
+
+in which vx is the vehicle speed, T the vehicle-level torque demand, m the vehicle
+mass including the apparent mass associated with the drivetrain components, rwh
+the wheel radius, q the density of air, Cd the aerodynamic drag coefﬁcient, and Afr
+the frontal surface area of the vehicle. Notice that the rolling resistance is not
+included in this model. As it is almost a constant, its effect will be compensated for
+by the integral action of the controller. The same assumption is made for the other
+unknown external disturbances, e.g. due to road slope and wind speed.
+
+Let us deﬁne x ¼ vx as state, u ¼ T as control input, y ¼ vx as measured output,
+
+and c xð Þ ¼ vx as scheduling variable with following upper and lower bound:
+
+(cid:6)
+:¼ c vmin
+
+(cid:7)
+
+x
+
+c
+
+lb
+
+(cid:5) c xð Þ (cid:5) c
+
+ub
+
+(cid:6)
+:¼ c vmax
+
+(cid:7)
+
+x
+
+As a result, the longitudinal dynamics model can be expressed in quasi linear
+parameter-varying (LPV) form as follows:
+
+(cid:8)
+
+_x ¼ h1A1 þ h2A2
+ð
+y ¼ Cx
+
+Þx þ Bu
+
+Þ, A cð Þ ¼ (cid:4)1=ð2mÞqCdAfrc xð Þ,
+ð
+Þ and A2 ¼ A c
+ð
+with constant modes A1 ¼ A c
+B ¼ 1=ðmrwhÞ and C ¼ 1. The time varying parameters h1 and h2 are given by:
+
+ub
+
+lb
+
+(cid:4)c xð Þ
+(cid:4)c
+
+h1 ¼ c
+where h1 þ h2 ¼ 1 and h1 (cid:6) 0; h2 (cid:6) 0
+
+and h2 ¼ c xð Þ(cid:4)c
+
+ub
+c
+
+(cid:4)c
+
+ub
+
+ub
+
+c
+
+lb
+
+lb
+
+lb
+
+The tracking problem is treated by means of the following gain scheduled
+
+control law:
+
+u ¼ KP hð Þy þ KI hð Þ
+
+ð
+
+yref (cid:4) y
+
+Þdt
+
+ð2:6Þ
+
+Z t
+
+0
+
+þ h2K2
+
+2 <1(cid:7)1 and Ki
+I
+
+P and KI hð Þ ¼ h1K1
+
+þ h2K2
+where KP hð Þ ¼ h1K1
+the interpolating gains,
+I
+P
+2 <1(cid:7)1 for i ¼ 1; 2, and yref the reference vehicle speed.
+with Ki
+P
+Under this control law, the system can be equivalently represented by the following
+(cid:8)T where
+augmented closed-loop system associated to the
+z ¼
+
+state n ¼ x z½
+
+Þdt:
+
+R
+
+I
+
+t
+
+ð
+0 yref (cid:4) y
+
+26
+
+S. van Aalst et al.
+
+(cid:9)
+
+_n ¼ A hð Þ þ BKP hð Þ KI hð Þ
+(cid:4)C
+(cid:10)
+(cid:9)
+n 0ð Þ ¼ x 0ð Þ
+0
+
+0
+
+(cid:10)
+
+(cid:10)
+
+(cid:9)
+n þ 0
+yref
+
+ð2:7Þ
+
+The following theorem shows the sufﬁcient linear matrix inequality (LMI) condi-
+tions for the existence of the gains KP hð Þ and KI hð Þ that ensure exponential stability
+of the previous closed-loop system.
+
+Theorem 1 There exists a stabilizing PI-type control such that the augmented
+closed-loop system (2.7) is exponentially stable with a prescribed constant con-
+vergence rate r [ 0 (that is, limt! þ 1 ertx ¼ 0); if there exist a symmetric matrix
+2 <1(cid:7)1
+P 2 <2(cid:7)2, and constant matrices GP 2 <1(cid:7)1, GI 2 <1(cid:7)1, Y 1
+P
+2 <1(cid:7)1, such that the following condition holds true (involving
+and Y 1
+I
+the prescribed scalar s [ 0 as parameter design):
+
+2 <1(cid:7)1, Y 2
+P
+
+2 <1(cid:7)1, Y 2
+I
+
+(cid:9)
+
+(cid:4)2sP
+ð
+Mi þ P þ r (cid:4) s
+
+ÞG
+
+MT
+i
+
+ð
+þ P þ r (cid:4) s
+G þ GT
+
+ÞGT
+
+(cid:10)
+
+\0
+
+ð2:8Þ
+
+where G ¼ diag GP; GI
+
+ð
+
+Þ and
+(cid:9)
+
+Mi ¼ AiGP þ BY i
+(cid:4)CGP
+
+PC Y i
+I
+0
+
+(cid:10)
+
+for i ¼ 1; 2
+
+ð2:9Þ
+
+If this LMI condition is feasible, then the gains Ki
+
+P and Ki
+
+I can be computed as:
+
+Ki
+P
+
+¼ Y i
+
+PG(cid:4)1
+
+P and Ki
+
+I
+
+¼ Y i
+
+I G(cid:4)1
+
+I
+
+;
+
+i ¼ 1; 2
+
+ð2:10Þ
+
+Proof The exponential stability of the closed-loop system can be proved by con-
+sidering a quadratic Lyapunov function V ¼ nT Pn where P satisﬁes the above LMI
+condition. With some mathematical manipulations it can be shown that V satisﬁes
+_V tð Þ\ (cid:4) 2rV tð Þ. Then
+_V tð Þ\ _V 0ð Þe(cid:4)2rt,
+by Grönwalls
+that
+is
+nT Pn\nT 0ð ÞPn 0ð Þe(cid:4)2rt which implies kmin Pð ÞnT n\nT 0ð ÞPn 0ð Þe(cid:4)2rt
+(where
+kmin Pð Þ is the smallest eigenvalue of P). This in turn implies nT n\ nT 0ð ÞPn 0ð Þ
+kmin Pð Þ e(cid:4)2rt if
+kmin Pð Þ [ 0 or equivalently P is a positive deﬁnite matrix. The fact that P [ 0
+results from s [ 0 and the fact that (cid:4)2sP is the upper diagonal block of the negative
+deﬁnite matrix in the LMI condition. Hence, from these facts it can be concluded
+that the trajectory of the closed-loop system will exponentially converge to the
+reference with the prescribed constant convergence rate r [ 0.
+
+lemma
+
+To ensure the exponential stability of the closed-loop system, the derivative of
+the quadratic Lyapunov function V ¼ nT Pn should satisfy _V tð Þ\ (cid:4) 2rV tð Þ which
+is equivalent to:
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+(cid:6)
+
+(cid:2)AT
+
+i
+
+(cid:7)
+
+þ rI þ sI
+
+P þ P (cid:2)Ai þ rI þ sI
+
+ð
+
+Þ (cid:4) 2sP\0
+
+for i ¼ 1; 2
+
+27
+
+ð2:11Þ
+
+where (cid:2)Ai is the transition matrix of closed-loop system (2.7) and given by:
+
+(cid:9)
+(cid:2)Ai ¼ Ai þ BKi
+(cid:4)C
+
+PC Ki
+I
+0
+
+(cid:10)
+
+for i ¼ 1; 2
+
+ð2:12Þ
+
+From [24] the previous relation can be expressed as:
+
+(cid:9)
+
+(cid:6)
+G (cid:2)AT
+
+i
+
+(cid:4)2sP
+ð
+þ r þ s
+
+(cid:7)
+
+ÞI
+
+þ P
+
+(cid:6)
+
+(cid:2)AT
+
+i
+
+ð
+ÞI
+þ r þ s
+G þ GT
+
+(cid:7)
+
+GT þ P
+
+(cid:10)
+\0
+
+ð2:13Þ
+
+To retrieve the LMIs in the theorem, it sufﬁces to take Y i
+P
+Þ. This ends the proof.
+i ¼ 1; 2, where G ¼ diag GP; GI
+
+ð
+
+¼ Ki
+
+PGP and Y i
+I
+
+¼ Ki
+
+IGI,
+
+The controller gains can be obtained by solving the LMI conditions (2.8)–(2.10).
+
+The SDPT3-4.0 solver from Yalmip toolbox [25] can be used for this.
+
+The proposed control approach has some major beneﬁts compared to conven-
+
+tional (gain scheduling) PI(D) control. They can be summarized as follows:
+
+(cid:129) The gains are obtained from an off-line model-based procedure.
+(cid:129) Exponential stability of the closed-loop system is ensured.
+(cid:129) The controlled output converges exponentially to the desired reference. This
+results in smooth speed transients with low jerk and thus good ride comfort.
+(cid:129) Easily extendable to include model parameter uncertainties in the controller
+
+design as well as disturbance rejection.
+
+2.3.2 Model Predictive Control with Preview
+
+The second type of control that is utilized for the inner-loop is model predictive
+control. This is a form of control in which the current control action is obtained by
+solving, at each sampling instant, a ﬁnite-horizon open-loop optimal control
+problem, using the current state of the system as the initial state [18]. The opti-
+mization yields the optimal control sequence and the ﬁrst control in this sequence is
+applied to the system. Figure 2.5 shows a schematic representation of
+this
+closed-loop process.
+
+For the current use-case, MPC has some important advantages over traditional
+
+PID-type control approaches:
+
+(cid:129) The control objective, that is, the desired trade-off between tracking accuracy
+and ride comfort, can be directly speciﬁed in the control problem formulation.
+
+(cid:129) MPC can explicitly handle constraints, such as the actuator constraints.
+
+28
+
+S. van Aalst et al.
+
+Fig. 2.5 Block scheme of a Model Predictive Controller (MPC) [30]
+
+(cid:129) The inherent predictive nature of MPC allows it to anticipate known future
+events. This is particularly useful for the current use-case as the optimal speed
+reference is known in advance.
+
+The MPC controller for speed tracking is based on a point-mass model of the
+vehicle. The model only considers the driving and braking torque of the vehicle, T.
+All other effects, such as aerodynamic drag, rolling resistance, road slope, etc. are
+treated as unknown disturbances. In order to obtain offset-free control in the
+presence of these disturbances, two common approaches exist; The ﬁrst approach
+augments the system with an integrator state that integrates the error between
+predicted output and reference trajectory. Penalizing this integrator state in the
+objective function drives the offset to zero. The second approach augments the
+_Fd ¼ 0) to capture the mismatch between
+system with a disturbance model (e.g.
+measured and predicted outputs [26]. An observer designed for the augmented
+system is used to simultaneously estimate this disturbance and the system state. The
+estimates are then used to initialize the MPC control problem at each sampling
+instant. In this work the second approach is applied due to the availability of the
+observer and previous experiences of the authors with this formulation. The
+resulting discrete-time model for the controller is shown in Eq. (2.14). An input
+increment formulation is used so that the optimization routine can reduce jerk by
+moderating the rate of change of torque input.
+
+3
+
+5 ¼
+
+2
+
+4
+
+vxðk þ 1Þ
+Fdðk þ 1Þ
+Tðk þ 1Þ
+
+3
+
+2
+
+xðk þ 1Þ ¼ AxðkÞ þ BDuðkÞ
+3
+2
+Dt
+1
+mrwh
+0
+0
+1
+0
+
+vxðkÞ
+FdðkÞ
+TðkÞ
+
+Dt
+m
+1
+0
+
+4
+
+5
+
+4
+
+2
+
+5 þ
+
+4
+
+Dt
+mrwh
+0
+1
+
+3
+5DTðkÞ
+
+ð2:14Þ
+
+where xðkÞ 2 <nx and DuðkÞ 2 <nu with nx ¼ 3 and nu ¼ 1. Dt is the time step size,
+and subscript k þ i refers to time sample k þ i.
+
+To achieve good reference tracking performance with smooth control input, the
+objective function shown below is used for the MPC optimization routine. As
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+29
+
+evident from the equation, this function computes the objective cost of tracking
+error over prediction horizon ðHpÞ and input increment over control horizon ðHcÞ.
+
+Jðx; DuÞ ¼
+
+(cid:11)
+(cid:11)
+xðk þ iÞ (cid:4) xrefðk þ iÞ
+
+(cid:11)
+(cid:11)2
+Q
+
+þ
+
+XHp
+
+i¼0
+
+XHc(cid:4)1
+
+i¼0
+
+(cid:11)
+(cid:11)
+Duðk þ iÞ
+
+(cid:11)
+(cid:11)2
+R
+
+ð2:15Þ
+
+This objective function in conjunction with the system model (2.14) and subject to
+constraints on states and inputs forms a quadratic programming (QP) problem
+expressed in a standard format below:
+
+Minimize
+w
+Subject to
+
+1
+
+2 wT Hw þ f T w
+Gw (cid:5) b;
+Geqw ¼ beq;
+wmin (cid:5) w (cid:5) wmax
+
+ð2:16Þ
+
+where
+
+w ¼ ½xð0Þ; Duð0Þ; . . .xðHc(cid:4)1Þ; DuðHc(cid:4)1Þ; xðHcÞ; . . .xðHpÞ(cid:8)T ;
+f ¼ (cid:4)1 wT
+
+(cid:6)
+
+(cid:7)
+
+T
+
+refH
+
+in which w is the optimization vector, wref is the stacked vector containing state and
+input reference trajectory over the prediction horizon, H the symmetric and positive
+semi-deﬁnite Hessian matrix, and f
+the gradient vector. G and b deﬁne the
+inequality constraints, Geq and beq the equality constraints, and wmin and wmax the
+lower and upper bounds respectively.
+
+The MPC algorithm solves this optimization problem at every sampling instant.
+This requires fast hardware and reliable software solutions which can be a major
+challenge for real-time implementation on the vehicle. To circumvent this problem,
+the online QP problem is converted into a multi-parametric QP (mpQP) problem
+using the YALMIP and MPT3 toolbox in MATLAB to develop an explicit-MPC
+(e-MPC) controller [25, 27]. This toolbox requires that the parameters to the mpQP
+problem are passed as a single input argument. To this end, the initial state, initial
+input and reference trajectory are combined into a single parametric variable xp:
+(cid:9)
+xp ¼ xðk þ 0Þ
+wref
+
+ð2:17Þ
+
+(cid:10)
+
+The cost function and constraints are then written in terms of the parameter xp as:
+
+1
+
+Minimize
+w
+Subject to Gw (cid:5) b;
+
+2 wT Hw (cid:4) xT
+
+pðnx þ 1:endÞHw
+
+Geqw ¼ beq;
+wmin (cid:5) w (cid:5) wmax;
+wmin (cid:5) xpðnx þ 1:endÞ (cid:5) wmax
+
+ð2:18Þ
+
+3000
+
+2500
+
+i
+
+2000
+
+1500
+
+1000
+
+500
+
+P
+
+i
+
+ 
+,
+s
+n
+o
+g
+e
+r
+ 
+f
+o
+ 
+r
+e
+b
+m
+u
+N
+
+30
+
+S. van Aalst et al.
+
+ = 12
+H
+p
+
+59774 kB
+
+14801 kB
+
+111 kB
+
+624 kB
+
+3237 kB
+
+0
+
+0
+
+1
+
+2
+3
+Control Horizon, H
+c
+
+4
+
+5
+
+6
+
+Fig. 2.6 Visual representation of the number of regions ðPiÞ and size of lookup table as a
+function of control horizon ðHcÞ. The area of the circle represents the relative size of the lookup
+table on memory (Values generated for the current use-case.)
+
+The mpQP optimization (2.18) is performed ofﬂine and the solution to this
+
+problem gives rise to a piece-wise afﬁne control law:
+
+u ¼ Fixp þ Gi; if xp 2 Pi
+(cid:13)
+
+(cid:12)
+
+Pi : ¼ xp 2 <njEixp (cid:5) ki
+where, n ¼ ðHp þ 2Þ (cid:1) nx þ Hc (cid:1) nu
+
+ð2:19Þ
+
+Thus, the solution to the mpQP problem converts the MPC control to a linear state
+feedback law (2.19) where Pi are the various polytopic regions, Fi and Gi are linear
+gains, and Ei and ki deﬁne the vertices and edges of the polytopic regions. The bulk
+of computation is now performed ofﬂine and the solution can be implemented on
+real-time hardware in the form of a lookup table. The complexity of the mpQP
+problem and of the polytopic solution depends in decreasing order on the number of
+constraints, control horizon ðHcÞ and number of parameters, i.e. prediction horizon
+ðHpÞ and state dimension ðnxÞ [28]. The number of regions ðPiÞ increases expo-
+nentially with an increase in control horizon ðHcÞ and consequently this increases
+the computational requirements of parsing the lookup table. The evolution of
+number of regions and size of lookup table as a function of control horizon ðHcÞ can
+be observed in Fig. 2.6. Thus, for successful implementation on a hardware setup a
+balance between size of lookup table, computational requirements and control
+horizon must be achieved.
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+31
+
+2.4 Experimental Validation
+
+This section discusses the experimental validation. First, the test vehicle is intro-
+duced. Next, the experimental results are presented and discussed.
+
+2.4.1 Test Vehicle
+
+The test vehicle is the electric vehicle demonstrator of the European Union-funded
+projects E-VECTOORC [1] and iCOMPOSE [2], Fig. 2.7. This vehicle has four
+individual electric drivetrains with switched reluctance on-board motors, connected
+to the wheels through single-speed gearboxes, constant velocity joints and
+half-shafts. The vehicle has a traction battery (600 V, 9 kWh) designed to handle
+high current peaks in both traction and regenerative mode. Figure 2.8 shows the
+hardware architecture of the vehicle. The vehicle is equipped with a dSPACE
+AutoBox platform to control the electric drives and friction brakes. The presented
+controllers for longitudinal control are implemented on this platform. The torque set
+points for the electric drives are transmitted via controller area network (CAN) bus
+1. The set points for the friction brakes are transmitted via CAN bus 2. The energy
+optimal speed proﬁle is stored on an Inﬁneon AURIXTM [20] multi-core platform
+and communicated via CAN bus 4 to the dSPACE vehicle controller. This infor-
+mation is also transmitted to the human-machine interface (HMI) such that the
+speed proﬁle can also be displayed to the driver (advisory mode). The AURIX
+to access real-time trafﬁc and weather
+platform is connected to the internet
+information.
+
+Fig. 2.7 The 4 wheel drive electric vehicle demonstrator during a test on the rolling road at
+Flanders Make
+
+32
+
+S. van Aalst et al.
+
+Fig. 2.8 The hardware architecture of the 4 wheel drive electric vehicle demonstrator (CAN
+Controller Area Network, HCU Hydraulic Control Unit, HMI Human-Machine Interface, V2I
+Vehicle-to-Infrastructure)
+
+2.4.2 Experimental Results
+
+The presented controllers were validated on a 4 wheel drive rolling road, Fig. 2.7.
+The rolling road was conﬁgured at road load simulation such that it emulates the
+inertial load of the vehicle and the aerodynamic drag and rolling resistance forces
+(based on a coast down test). The reference speed proﬁle was chosen to contain
+various target speeds and accelerations corresponding to normal driving. For each
+controller two tests were performed with a different tuning:
+
+(cid:129) gs-PI: The tuning implies choosing the value of the convergence rate parameter
+r. The higher this value, the faster the convergence but also the higher the jerk.
+For this test the following values were used:
+
+– Controller 1: r ¼ 1:5, for which following scheduled gains are obtained:
+
+K1
+P
+
+¼ 2:3652 (cid:7) 103; K2
+P
+
+¼ 2:3747 (cid:7) 103
+
+K1
+I
+
+¼ 1:7816 (cid:7) 103; K2
+I
+
+¼ 1:7816 (cid:7) 103
+
+– Controller 2: r ¼ 2:0, for which following scheduled gains are obtained:
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+33
+
+Table 2.1 Number of
+regions and occupied memory
+for implemented e-MPC
+controller
+
+Hp
+8
+15
+
+Hc
+1
+1
+
+6
+6
+
+Number of regions
+
+Size (kB)
+
+61
+157
+
+K1
+P
+
+¼ 3:1566 (cid:7) 103; K2
+P
+
+¼ 3:1662 (cid:7) 103
+
+K1
+I
+
+¼ 3:1670 (cid:7) 103; K2
+I
+
+¼ 3:1670 (cid:7) 103
+
+Consequently, controller 2 should convergence more quickly than controller 1.
+
+(cid:129) e-MPC: The tuning implies choosing the length of the prediction and control
+horizon and setting the cost function weightings that deﬁne the desired trade-off
+between tracking accuracy and torque demand smoothness. For this test the
+following values were used:
+
+– Controller 1: Hp ¼ 15 and Hc ¼ 1, with following cost function weightings:
+
+– Controller 2: Hp ¼ 8 and Hc ¼ 1, with following cost function weightings:
+
+Qvx
+
+¼ 1 (cid:7) 106; QFd
+
+¼ QT ¼ 0
+
+R ¼ 1 (cid:7) 10(cid:4)5
+
+Qvx
+
+¼ 2:5 (cid:7) 106; QFd
+
+¼ QT ¼ 0
+
+R ¼ 1 (cid:7) 10(cid:4)5
+
+Additional information about the number of regions and occupied memory is given
+in Table 2.1. Because of the higher penalty on speed error and an aggressive
+controller due to the shorter prediction horizon, one can expect controller 2 to
+provide better tracking performance than controller 1.
+
+Note that the control horizon Hc is kept equal to one for both e-MPC controllers.
+A simulation study showed that increasing Hc allows for more aggressive control
+with better tracking performance. Too aggressive control, however, is not desired
+for the current use-case as this negatively impacts the ride comfort. Furthermore,
+increasing Hc strongly increases the complexity of the control problem and the size
+of the lookup table, as was explained in Sect. 2.3.2. The choice of Hc thus depends
+
+34
+
+100
+
+80
+
+60
+
+]
+h
+/
+m
+k
+[
+ 
+
+v
+
+x
+
+40
+
+20
+
+0
+
+0
+
+100
+
+80
+
+60
+
+]
+h
+/
+m
+k
+[
+ 
+
+v
+
+x
+
+40
+
+20
+
+0
+
+0
+
+S. van Aalst et al.
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+Reference
+r = 1.5
+r = 2.0
+
+Reference
+Hp = 15
+Hp = 8
+
+]
+h
+/
+m
+k
+[
+ 
+r
+o
+r
+r
+e
+ 
+
+v
+
+x
+
+8
+
+4
+
+0
+
+−4
+
+−8
+
+]
+
+m
+N
+
+[
+ 
+
+T
+
+1200
+
+600
+
+0
+
+−600
+
+−1200
+
+2
+
+1
+
+0
+
+]
+h
+/
+m
+k
+[
+ 
+r
+o
+r
+r
+e
+ 
+
+v
+
+−1
+
+−2
+
+x
+
+]
+
+m
+N
+
+[
+ 
+
+T
+
+1200
+
+600
+
+0
+
+−600
+
+−1200
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+0
+
+20
+
+40
+
+100
+
+120
+
+140
+
+60
+80
+Time [s]
+
+Time [s]
+
+Fig. 2.9 Experimental result: exponentially stabilizing PI control for r = 1.5 and r = 2.0. Left
+reference speed versus actual speed, top right speed tracking error, bottom right torque demand
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+20
+
+40
+
+100
+
+120
+
+140
+
+0
+
+20
+
+40
+
+100
+
+120
+
+140
+
+60
+80
+Time [s]
+
+60
+
+80
+Time [s]
+
+Fig. 2.10 Experimental result: explicit model predictive control for Hp ¼ 15, Hc ¼ 1, and
+Hp ¼ 8, Hc ¼ 1. Left reference speed versus actual speed, top right speed tracking error, bottom
+right torque demand
+
+on a compromise between complexity and computational requirements, tracking
+performance, and ride comfort. For the current use-case a control horizon of one
+turned out to be sufﬁcient; it results in relatively small lookup-tables, and allows to
+obtain the desired trade-off between tracking performance and ride comfort.
+
+Figures 2.9 and 2.10 show the results for the gs-PI and e-MPC controller,
+respectively. The left ﬁgure depicts the vehicle’s speed with respect to the target
+speed. The top right ﬁgure shows the speed error and the bottom right ﬁgure the
+torque demand. Figure 2.11 is a zoom of Figs. 2.9 and 2.10. The results show very
+promising behavior: both controllers provide a smooth speed response and torque
+demand without oscillations. Both controllers also realize offset-free tracking in the
+presence of unmodeled disturbances (coming from the rolling road). The gs-PI
+controller achieves this through its integral action, the e-MPC controller through the
+disturbance model and observer. The control performance is further evaluated by
+means of two performance indicators; the root mean square (RMS) of vehicle speed
+tracking error to evaluate tracking performance, and the inﬁnity norm of jerk
+
+60
+
+50
+
+]
+
+/
+
+h
+m
+k
+[
+ 
+
+v
+
+x
+
+40
+
+30
+
+28
+8
+4
+0
+−4
+−8
+
+28
+
+]
+
+/
+
+h
+m
+k
+[
+ 
+r
+o
+r
+r
+e
+ 
+
+v
+
+x
+
+60
+
+50
+
+]
+
+/
+
+h
+m
+k
+[
+ 
+
+v
+
+x
+
+40
+
+30
+
+28
+2
+1
+0
+−1
+−2
+
+28
+
+]
+
+/
+
+h
+m
+k
+[
+ 
+r
+o
+r
+r
+e
+ 
+
+v
+
+2 Semi-autonomous Driving Based on Optimized Speed Profile
+
+35
+
+gs−PI
+
+eMPC
+
+Reference
+r = 1.5
+r = 2.0
+
+Reference
+Hp = 15
+Hp = 8
+
+30
+
+32
+
+34
+
+36
+
+38
+
+40
+
+42
+
+30
+
+32
+
+34
+
+36
+
+38
+
+40
+
+42
+
+30
+
+32
+
+38
+
+40
+
+42
+
+x
+
+30
+
+32
+
+38
+
+40
+
+42
+
+34
+36
+Time [s]
+
+34
+36
+Time [s]
+
+Fig. 2.11 Zoomed view, left gs-PI, right eMPC. Top reference speed versus actual speed, bottom
+speed tracking error
+
+Table 2.2 Performance indicators for the gs-PI and e-MPC controller
+
+RMS of tracking error [km/h]
+Inﬁnity norm of jerk [g/s]
+
+gs-PI
+r ¼ 1:5
+2.81
+0.094
+
+r ¼ 2:0
+2.17
+0.096
+
+e-MPC
+HP ¼ 15
+0.40
+0.093
+
+HP ¼ 8
+0.18
+0.104
+
+(second derivative of vehicle speed) to evaluate ride comfort. For the latter, a limit
+of 0.3 g/s should typically be respected for ride comfort [29]. The results of this
+analysis are presented in Table 2.2. A third common performance indicator con-
+cerns the amount of acceleration overshoot. The presented controllers, however, did
+not show any acceleration overshoot and therefore this indicator is not added to the
+table.
+
+The performance indicators show that the gs-PI and e-MPC controller combine
+accurate speed tracking with good ride comfort. Performance-wise, the e-MPC
+controller outperforms the gs-PI, mainly because it has the added beneﬁt of pre-
+view. This allows it to anticipate future changes in reference speed by accelerating
+(decelerating) the vehicle ahead of time, see Fig. 2.11. In this way, the tracking
+error for speed transients is further reduced while maintaining good ride comfort.
+This comes at the cost of a more complex control with several tuning parameters.
+The gs-PI controller, on the other hand, is a more simple controller that allows for
+easy implementation and tuning and yet provides very good control performance.
+Its main beneﬁt is that the Lyapunov-based design ensures exponential convergence
+stability, and results in only one tuning parameter; the convergence rate parameter
+r. Its exponential convergence behavior represents an excellent trade-off between
+tracking accuracy and ride comfort. This is a major beneﬁt
+for practical
+implementation.
+
+36
+
+2.5 Conclusion
+
+S. van Aalst et al.
+
+This chapter presented the design and hardware implementation of two model-based
+control approaches for longitudinal control of an electric vehicle: a novel expo-
+nentially stabilizing gain scheduling proportional-integral controller (gs-PI), and a
+state-of-the-art offset-free explicit model predictive controller with preview
+(e-MPC). These controllers directly incorporate the most important design objec-
+tives in their control design: tracking performance and ride comfort. The gs-PI
+controller follows a nonlinear Lyapunov-based control design that ensures expo-
+nential convergence stability. Given the desired convergence rate, the scheduled
+gains are obtained from an ofﬂine optimization-based procedure. The e-MPC con-
+troller is based on optimal control theory. The desired trade-off between tracking
+accuracy and ride comfort can be directly speciﬁed in the control problem formu-
+lation. The explicit MPC formulation was employed to successfully implement an
+optimal controller in the form of lookup-tables on a real-time hardware setup.
+
+The proposed controllers were validated experimentally with an electric vehicle
+demonstrator on a 4 wheel drive rolling road for a realistic driving scenario. The test
+results and performance indicators show the effectiveness of both control approa-
+ches; they provide accurate speed tracking with good ride comfort and realize
+offset-free tracking in the presence of unmodeled disturbances. Performance-wise,
+the e-MPC controller outperforms the gs-PI, mainly due to the added beneﬁt of
+preview. This comes at the cost of a more complex control with several tuning
+parameters. The gs-PI controller, on the other hand, is a more simple controller that
+allows for easy implementation and tuning and yet provides very good control
+performance. Its exponential convergence behavior represents an excellent trade-off
+between tracking accuracy and ride comfort.
+The algorithm recommends optimal levels of throttle pedal, brake pedal and gear
+shift. This is based on a several factors. The decisive part is focused on the driving
+horizon rather than maximizing speed in the next route section. In this horizon the
+key point is selected (decisive point) which presents the largest decrease of speed.
+Given this point we optimize the change of speed in the closest time frame. The
+algorithm decides whether it is necessary to change parameters from the previous
+step based on the change of speed in that previous step. If it is necessary the
+algorithm makes a decision with respect to the current driving mode.
+
+Before initiating braking or accelerating, the algorithm veriﬁes the track proﬁle
+between the current location and the key point. It modiﬁes parameters of the
+braking distance and optimal speed based on the inclination. The following action is
+decided after this modiﬁcation. The action ﬂow diagram is shown in Fig. 3.1 and
+described later in Sect. 3.1.3.
+Achieving the optimal speed in one step of the algorithm would not be effective and
+it could cause repeated corrections of the vehicle dynamics. As a basic preposition
+the algorithm takes respect to the part of the track in the distance H (hundreds of
+meters). This enables the assignment of milestone to points on the track with respect
+to the discretization step of the road for example 20 m. The current location is then
+marked as 1. Variables are then indexed by these milestones, i.e., optimal speed
+vopt
+i
+
+, distance xi, etc.
+The point which represents the largest decrease of speed in the discretization step
+is selected as the key point with respect to the trafﬁc density and changed legal
+limit. The key point is based on the topology of the road and road features. In case
+all points have assigned a larger speed than the actual vehicle’s speed v then the
+maximum decrease can be interpreted as the minimum increase. The mathematical
+representation follows:
+
+ri ¼ v (cid:3) vopt
+i
+xi (cid:3) x
+
+;
+
+ð3:1Þ
+
+41
+
+ð3:2Þ
+
+ð3:3Þ
+
+ð3:4Þ
+
+ð3:5Þ
+
+3 The Design of Vehicle Speed Profile for …
+
+k ¼ argmaxi2H
+
+ðriÞ:
+
+The goal of the algorithm is to achieve the speed vopt
+k
+
+in the following path of the
+vehicle. With respect to the theoretical discretization of vehicle’s movement, e.g.
+Dt ¼ 0:2 [s], we can determine the traveled distance as Ds ¼ Dt (cid:4) v=3:6 [m].
+Given the ratio between this distance and the distance to the key point the algorithm
+modiﬁes the target speed change:
+
+DvNEXT ¼ ðv (cid:3) vopt
+k
+
+Þ
+
+Ds
+xk (cid:3) x
+
+:
+
+3.1.3 Vehicle’s Movement Dynamic Correction
+
+The algorithm works iteratively. It modiﬁes value of speed v, throttle p and brake
+b from the previous step (vLAST ; bLAST ; pLAST ) in every time step instead of com-
+puting new values again every time. The change of speed in the last step is given by
+
+DvLAST ¼ v (cid:3) vLAST :
+
+The planned speed change (3.3) and the last speed change (3.4) are compared to
+decide the necessity of intervention. For this comparison coefﬁcient C was deﬁned
+which is basically the size of hysteresis.
+
+DvKOR ¼ DvNEXT (cid:3) DvLAST :
+
+j
+
+If DvKOR
+
+j < C, it is not necessary to intervene. Brake b and throttle p remains
+unchanged: b ¼ bLAST and throttle p ¼ pLAST . The next step of the algorithm is
+based on the current driving mode—brake, throttle and coasting.
+
+(a) Brake:
+
+In this mode the vehicle deceleration is controlled. If DvKOR (cid:5) (cid:3) C, it is necessary
+to apply more deceleration than the vehicle is currently doing. In opposite if
+DvKOR [ C, it is necessary to apply less deceleration. The correction of braking
+force is in both cases based on the following formula:
+
+b ¼ bLAST (cid:3) bDvKOR:
+
+ð3:6Þ
+
+The coefﬁcient b modiﬁes the magnitude of the braking force change with
+respect to the natural change of speed in the comfort driving. When the value of
+b decreases below a certain level bmin (based on the adhesion limit and vehicle
+assistant system activation) the process of braking is terminated (b ¼ 0).
+
+42
+
+(b) Throttle:
+
+Z. Herda et al.
+
+In this mode the acceleration of the vehicle is controlled. The principle is similar to
+brake mode. If the value of DvKOR (cid:5) (cid:3) C, it is necessary to accelerate more than
+the current acceleration is. In opposite if DvKOR > C, the required acceleration is
+lower. The correction of throttle is in both cases based on the following formula:
+
+p ¼ pLAST (cid:3) cDvKOR:
+
+ð3:7Þ
+
+The coefﬁcient c modiﬁes the magnitude of the throttle position change with
+respect to the comfort driving. When the value of p decreases below a certain level
+pmin the acceleration process is terminated (p ¼ 0).
+
+(c) Coasting:
+
+During coasting mode the algorithm predicts vehicle velocity in coasting mode and
+considers if the predicted velocity ﬁts into the deﬁned limits like maximal deviation
+form speed limit and safety limit in curves. If the velocity ﬁts the coasting mode
+remains unchanged. If not the coasting is canceled and algorithm switches the state
+into the throttle or brake based on need for acceleration or deceleration.
+
+3.1.4 Shifting Gears
+
+The most important fact for gear shifting is engine revolutions and load, but also the
+inclination of the road had to be considered. The need for shifting with electric
+motor is based on engine efﬁciency which depends on revolutions and load. The
+efﬁciency map will be presented later in Sect. 3.2.3. The recommended area of
+revolutions for each gear can be deﬁned by 4 key points (see Fig. 3.2): minimal
+acceptable revolutions A, minimal revolutions for shifting down B, minimal rev-
+olutions for shifting up C, maximal acceptable revolutions D.
+
+This approach breaks down the need for gear shifting into ﬁve basic intervals.
+
+Þ—Algorithm considers downshift. This is done only if one of the fol-
+
+The behavior for all intervals follows:
+
+0; Ah
+(1)
+(2) B; Ch
+(3) D; D þ
+h
+(4) A; Bð
+
+i—Downshift.
+i—No shifting required.
+
+i—Upshift.
+
+lowing conditions occurs:
+
+Fig. 3.2 Key points for gear shifting
+
+3 The Design of Vehicle Speed Profile for …
+
+43
+
+(cid:129) The gas pedal is pressed further than in the previous step (pLAST < p). In
+
+this case the gear remains the same.
+
+(cid:129) Large uphill climbing is not expected and simultaneously the acceleration
+removed
+is not active (p = 0).
+coasting-down is active. It is canceled in the moment when (p > 0). In this
+moment the previous shift is reengaged.
+
+In this case the current
+
+shift
+
+is
+
+(5)
+
+(C, D)—Algorithm considers upshift. It occurs when the gas pedal is partially
+released (pLAST > p).
+
+The iterative system of changing action inputs of gas and brakes introduces the
+feeling of real driving into the model. It considers wider conditions such as incli-
+nation and rolling resistance. It allows choosing the system reaction more precisely
+and thus reduces the amount of corrections. Also, by setting the toleration area, it is
+possible to modify the amount of interventions and thus regulate the ﬂuency of
+driving. The system of changing gears includes the possibility of coasting-down,
+when the vehicle uses the declining road or redundant speed to shift to the neutral
+gear. This leads to energy savings. The transition between the state where brakes
+are active and the state where the gas pedal is active is done by values b = p = 0,
+which prevents from pressing both pedals at once.
+
+The proposed algorithm does not allow exceeding the maximum allowed speed
+which leads to the safe driving. Simulated energy consumption with and without
+shifting will be shown later on Table 3.2.
+
+3.1.5 Model Approach
+
+In the next procedure was for experimental veriﬁcation used the optimal speed
+proﬁle algorithm modelled by the Bayes approach described by the equation:
+
+ð
+P Y X1j X2. . .Xn
+
+Þ ¼ P X1X2. . .Xn Yj
+ð
+ð
+P X1X2. . .Xn
+
+Þ
+Þ P Yð Þ
+
+ð3:8Þ
+
+The probability occurrence of dependent quantity Y in a speciﬁc category is the
+same as the joint probability distributions of these quantities evaluated for this
+category and multiplied by the probability of this category. Consider that X1X2. . .Xn
+are measured quantities and Y is the probability occurrence of quantities X1X2. . .Xn.
+Y is normalised by the joint distribution of measured quantities. The shape of the
+distribution function is not limited, its selection should respect the empirical dis-
+tribution of measured data and the nature of estimated quantities.
+
+The joint distribution P X1X2. . .Xn Yj
+
+Þ for each category of velocity and energy
+consumption priority may be extracted from the driving test measurements together
+with the distributions of each marginal distribution. This enables the evaluation of
+probability distribution of estimated quantity in a given category and either select
+
+ð
+
+44
+
+Z. Herda et al.
+
+the most likely category in a given time or focus on the probability of appearance in
+one of the risky categories.
+
+For better illustration the progress of described algorithm is shown on Figs. 3.4,
+3.5, 3.6 and 3.7 where the priority coefﬁcient alpha represents gain function as a
+weighted sum of two contradicting criteria—travel time and energy consumption.
+Higher value means higher average velocity (shorter travel time) and lower value
+means lower energy consumption.
+
+3.1.6 Outputs from the Vehicle Speed Profile Model
+
+This chapter is concerned with the optimal speed package tool. This tool is created
+to ﬁnd optimal driving proﬁles for a car driving along a known path from point A to
+point B with a certain gain function. This function can take various forms and in our
+case it provides weighted optimisation of two contradicting criteria: time con-
+sumption and energy consumption. The goal is to provide an optimal leading speed
+and acceleration/deceleration signals to maximise the gain (i.e. minimise the loss in
+terms of travelling time):
+
+(cid:1)
+
+(cid:3)
+
+con ¼ t (cid:4) cp0 (cid:4) k
+
+ð3:9Þ
+
+where k is a control input ([1,10] accelerating, [−1, −10] decelerating), t is time
+spent driving with such control input and cp0 is parameter. This parameter is ﬁtted
+form data and applies according to the quality of the ﬁt. Please note that even with
+no control input there is some consumption present.
+
+The approach to achieve the above stated goal lies in the use of Bayesian
+Networks in the form of decision graphs. We proﬁt from the decomposability
+property of this type of graph and Bellman’s principle leading to the possibility of
+local solutions. The path is traversed backwards obtaining optimal proﬁles leading
+to the next point in each step. When the algorithm reaches the start of the track, the
+forward pass constructs the optimal solution proﬁle.
+
+The model was learned to be able to work with a different drive type (electric)
+and the use of the neutral gear was heavily revised. Herein is present the overview
+of the current status with two different drives at the end.
+
+The most important aspects of the model are functions modelling the vehicle and
+its consumption. So far we are using functions which were ﬁtted from observed
+experimental data. It is necessary to point out that these data are of small volume.
+Due to a previous discretisation step some intervals of values were not treated
+properly. This behaviour led to varied results for different discretisation steps while
+all remaining variables stayed the same. The most apparent problem was in the
+discretisation of the acceleration. This behaviour was removed by the ﬁx. For a
+better illustration of the algorithm progress we present a comparison with its dif-
+ferent versions in the form of plots.
+
+Circuit around Mlada Boleslav around 38 km in length, consisting of highway,
+
+primary roads and local roads.
+
+3 The Design of Vehicle Speed Profile for …
+
+45
+
+Fig. 3.3 Test course near Mlada Boleslav
+
+The circuit was measured repeatedly, after veriﬁcation and regularisation of
+metrics, correlations of the road surface parameters and dynamic features were
+assessed from the vehicle demonstrator Skoda eRapid FEV, see Fig. 3.3.
+
+Results from testing the vehicle demonstrator Skoda eRapid on two testing
+
+tracks in the proximity of Mlada Boleslav, see Figs. 3.4, 3.5, 3.6 and 3.7.
+
+The output from the ﬁnal version of the algorithm without the coasting-down
+mode for different coefﬁcient alpha shows Fig. 3.8. Theoretical average speed and
+energy consumption for these speed proﬁles are in Table 3.1.
+
+3.2 Efficiency Driving Using Optimal Speed Profile
+
+and Coasting-Down
+
+3.2.1 Coasting Mode Strategy
+
+Consider the optimal speed proﬁle with a balanced average speed and energy
+consumption due to selected coefﬁcient alpha described in the previous text. It
+seems that the energy consumption cannot be further reduced, but there is still
+
+46
+
+Z. Herda et al.
+
+Fig. 3.4 Model outputs, energy consumption 10.854 kWh, travel time 28.16 min, alpha 0.6,
+38 km long track, without using coasting-down strategy
+
+Fig. 3.5 Model outputs, energy consumption 10.011 kWh, travel time 29.54 min, alpha 0.6,
+38 km long track, with using coasting-down strategy
+
+another option known as coasting. The original idea was to apply this mode directly
+to the optimal speed proﬁle algorithm, but it was not suitable for a driver option to
+deactivate this mode during driving because the coasting behaviour affects the
+shape of the speed proﬁle so it cannot be simply deactivated. In this case a different
+
+3 The Design of Vehicle Speed Profile for …
+
+47
+
+Fig. 3.6 Model outputs, energy consumption 10.234 kWh, travel time 29.6 min, alpha 0.4,
+38 km long track, without using coasting-down strategy
+
+Fig. 3.7 Model outputs, energy consumption 9.282 kWh, travel time 31.54 min, alpha 0.4,
+38 km long track, with using coasting-down strategy
+
+algorithm had to be designed only for this mode which can be applied on-line
+during driving.
+
+Coasting can be applied to any car by using the neutral position of the gearbox.
+For our car demonstrator with an asynchronous electric engine it is possible to do in
+
+48
+
+Z. Herda et al.
+
+Fig. 3.8 Model outputs for different coefﬁcients alpha = 0.6, 0.7, 0.8
+
+Table 3.1 Theoretical energy consumption/regeneration and average speed of designed proﬁles
+
+Alpha
+
+0.6
+0.7
+0.8
+
+Energy per track [kWh]
+Consumed
+
+Regenerated
+
+8.3964
+8.6789
+8.9555
+
+0.4434
+0.5088
+0.5765
+
+Total
+
+7.953
+8.1702
+8.3789
+
+80.6228
+83.1274
+85.294
+
+Average speed [kph]
+
+the electric way instead of using the neutral position. And how does it work? The
+principle is very simple. Accumulated kinetic energy of the car is used to continue
+driving with small deceleration which is more effective than keeping a higher
+velocity and then decelerating with recuperation. Of course coasting should only be
+applied at a suitable position on the track like highway exits, deceleration before
+curves and speed limits. The suitable areas are identiﬁed on-line using the model
+based prediction of the car velocity. The model structure is described in Sect. 3.2.3.
+An example of coasting is shown on the speed proﬁle calculated for coefﬁcient
+alpha = 0.7 (see Fig. 3.9). The red line shows the speed proﬁle without coasting
+and the blue line shows deceleration with coasting at suitable parts of the track.
+A detailed description of deceleration with coasting is shown on the highway exit
+(see Fig. 3.10). For a better comparison both pictures also show total consumed and
+regenerated energy (integration of actual energy consumption).
+
+For the coasting algorithm must be deﬁned some allowed offset from the original
+speed and minimal length of track during coasting. The exempliﬁed coasting was
+calculated with the offset from the original velocity +1, −15 kph and minimal
+length 50 m. The coasting strategy in the example follows:
+
+3 The Design of Vehicle Speed Profile for …
+
+49
+
+Higway exit
+
+Fig. 3.9 Optimal speed proﬁle calculated for alpha = 0.7, red—speed proﬁle without coasting,
+blue—deceleration using coasting
+
+Coasting
+
+Standard deceleration
+
+Coasting
+
+Coasting 1
+
+Regen 1 Coasting 2
+
+Regen 2
+
+Fig. 3.10 Detailed deceleration on highway exit using coasting
+
+(cid:129) Coasting 1—Apply coasting when described conditions are accomplished.
+(cid:129) Regen 1—Coasting deceleration is not enough, regeneration breaking must be
+
+used.
+
+(cid:129) Coasting 2—Conditions are accomplished again.
+(cid:129) Regen 2—Final regeneration breaking.
+
+Coasting calculated for different offsets from the original speed (+1, −10, −15
+and −20 kph) is a little different due to the original speed proﬁle because not all
+
+50
+
+Z. Herda et al.
+
+Fig. 3.11 Coasting calculated for a different offset: −10, −15, −20 kph
+
+decelerations are possible to use for the example maximal offset −20 kph. This
+example is also shown on highway exit (Fig. 3.11). The ﬁrst deceleration using
+coasting is possible to make with all three deﬁned offsets, but the last coasting
+deceleration no because of speed proﬁle shape. It only allows one chance for
+coasting and all three calculated coastings are in cover so it looks like only one
+design.
+
+It is obvious that coasting makes the average speed lower and it is necessary to
+ﬁnd a good compromise between the average speed and saved energy during
+coasting. In the shown example the original speed proﬁle average speed is
+83.13 kph and with coasting 81.58 kph.
+
+Simulated energy consumption for different speed proﬁles and different limits for
+coasting algorithm is shown on Table 3.2. The beneﬁt of coasting in comparison
+with the same speed proﬁle without coasting is almost 6%. An interesting com-
+parison is also between the speed proﬁle for alpha = 0.6 without coasting and
+alpha = 0.7 with coasting using tolerance +1, −15 kph. The average speed of
+proﬁle 0.6 is 80.62 kph and the average speed of proﬁle 0.7 is 81.58 kph. Although
+the average speed of proﬁle 0.7 is higher the total consumed energy is 7.69 kWh
+which is less than 7.95 kWh for proﬁle 0.6. This is the proof of higher efﬁciency of
+coasting in comparison with regeneration breaking.
+
+3.2.2 Real Road Measurement Using Semiautonomous
+Driving with and Without Coasting Mode
+
+As was already mentioned Semiautonomous driving could run in two different
+modes. The ﬁrst is without coasting and second with coasting. The Optimal speed
+
+3 The Design of Vehicle Speed Profile for …
+
+51
+
+t
+
+ﬁ
+e
+n
+e
+b
+
+g
+n
+i
+t
+s
+a
+o
+C
+
+t
+
+ﬁ
+e
+n
+e
+b
+
+g
+n
+i
+t
+f
+i
+h
+S
+
+d
+e
+e
+p
+s
+
+e
+g
+a
+r
+e
+v
+A
+
+d
+e
+t
+a
+r
+e
+n
+e
+g
+e
+R
+
+d
+e
+m
+u
+s
+n
+o
+C
+
+e
+c
+n
+a
+r
+e
+l
+o
+T
+
+g
+n
+i
+t
+s
+a
+o
+C
+
+g
+n
+i
+t
+f
+i
+h
+S
+
+a
+h
+p
+l
+A
+
+]
+h
+W
+k
+[
+
+k
+c
+a
+r
+t
+
+r
+e
+p
+
+y
+g
+r
+e
+n
+E
+
+e
+d
+o
+m
+g
+n
+i
+v
+i
+r
+
+D
+
+s
+e
+d
+o
+m
+g
+n
+i
+v
+i
+r
+d
+
+d
+n
+a
+
+s
+e
+l
+ﬁ
+o
+r
+p
+
+d
+e
+e
+p
+s
+
+t
+n
+e
+r
+e
+f
+f
+i
+d
+
+r
+o
+f
+
+s
+t
+l
+u
+s
+e
+r
+
+d
+e
+t
+a
+l
+u
+m
+S
+
+i
+
+2
+3
+
+.
+
+e
+l
+b
+a
+T
+
+6
+1
+2
+5
+.
+4
+
+4
+2
+2
+7
+.
+5
+
+6
+0
+8
+2
+.
+6
+
+]
+
+%
+
+[
+
+–
+
+5
+3
+2
+5
+.
+4
+
+4
+3
+5
+7
+.
+5
+
+8
+7
+4
+3
+.
+6
+
+8
+1
+4
+4
+.
+4
+
+4
+4
+0
+9
+.
+5
+
+4
+2
+0
+7
+.
+6
+
+6
+3
+4
+4
+.
+4
+
+0
+3
+5
+9
+.
+5
+
+5
+2
+8
+7
+.
+6
+
+8
+2
+2
+3
+.
+4
+
+2
+7
+1
+9
+.
+5
+
+9
+9
+4
+0
+.
+7
+
+3
+4
+3
+3
+.
+4
+
+2
+2
+6
+9
+.
+5
+
+6
+8
+3
+1
+.
+7
+
+–
+
+–
+
+–
+
+–
+
+–
+
+8
+1
+0
+3
+1
+
+.
+
+8
+9
+9
+2
+
+.
+
+1
+
+4
+9
+6
+2
+
+.
+
+1
+
+1
+1
+3
+2
+
+.
+
+1
+
+]
+
+%
+
+[
+
+2
+5
+4
+3
+1
+
+.
+
+3
+3
+4
+3
+
+.
+
+1
+
+2
+4
+9
+2
+
+.
+
+1
+
+4
+0
+6
+2
+
+.
+
+1
+
+0
+3
+3
+2
+1
+
+.
+
+1
+1
+2
+2
+
+.
+
+1
+
+8
+5
+8
+1
+
+.
+
+1
+
+6
+8
+3
+1
+
+.
+
+1
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+–
+
+8
+2
+2
+6
+
+.
+
+0
+8
+
+2
+7
+0
+7
+
+.
+
+9
+7
+
+1
+8
+1
+
+.
+
+9
+7
+
+1
+9
+8
+
+.
+
+8
+7
+
+8
+2
+2
+6
+0
+8
+
+.
+
+2
+7
+0
+7
+9
+7
+
+.
+
+1
+8
+1
+
+.
+
+9
+7
+
+1
+9
+8
+
+.
+
+8
+7
+
+4
+7
+2
+1
+
+.
+
+3
+8
+
+7
+5
+3
+2
+
+.
+
+2
+8
+
+8
+0
+8
+5
+
+.
+
+1
+8
+
+1
+8
+7
+1
+
+.
+
+1
+8
+
+4
+7
+2
+1
+3
+8
+
+.
+
+7
+5
+3
+2
+2
+8
+
+.
+
+8
+0
+8
+5
+
+.
+
+1
+8
+
+1
+8
+7
+1
+
+.
+
+1
+8
+
+4
+9
+2
+
+.
+
+5
+8
+
+5
+8
+4
+4
+
+.
+
+4
+8
+
+6
+3
+5
+7
+
+.
+
+3
+8
+
+5
+8
+5
+1
+
+.
+
+3
+8
+
+4
+9
+2
+5
+8
+
+.
+
+5
+8
+4
+4
+4
+8
+
+.
+
+6
+3
+5
+7
+
+.
+
+3
+8
+
+5
+8
+5
+1
+
+.
+
+3
+8
+
+]
+h
+p
+k
+[
+
+l
+a
+t
+o
+T
+
+3
+5
+9
+7
+
+.
+
+4
+3
+9
+5
+7
+
+.
+
+9
+7
+9
+4
+7
+
+.
+
+5
+3
+5
+4
+7
+
+.
+
+9
+7
+5
+0
+
+.
+
+8
+
+4
+3
+9
+6
+
+.
+
+7
+
+3
+4
+9
+5
+7
+
+.
+
+4
+6
+4
+5
+7
+
+.
+
+2
+0
+7
+1
+8
+
+.
+
+3
+7
+0
+8
+7
+
+.
+
+8
+7
+8
+6
+7
+
+.
+
+6
+2
+2
+6
+7
+
+.
+
+6
+1
+8
+2
+
+.
+
+8
+
+6
+3
+1
+9
+
+.
+
+7
+
+6
+8
+8
+7
+7
+
+.
+
+9
+9
+1
+7
+7
+
+.
+
+9
+8
+7
+3
+8
+
+.
+
+7
+6
+1
+0
+8
+
+.
+
+1
+3
+8
+8
+7
+
+.
+
+2
+8
+8
+7
+7
+
+.
+
+5
+3
+8
+4
+
+.
+
+8
+
+8
+5
+1
+1
+
+.
+
+8
+
+7
+7
+7
+9
+7
+
+.
+
+9
+7
+7
+8
+7
+
+.
+
+4
+3
+4
+4
+
+.
+
+0
+
+1
+3
+4
+1
+
+.
+
+0
+
+9
+8
+7
+0
+
+.
+
+0
+
+8
+8
+4
+0
+
+.
+
+0
+
+9
+2
+3
+4
+0
+
+.
+
+5
+3
+1
+0
+
+.
+
+2
+3
+7
+0
+
+.
+
+0
+
+5
+5
+4
+0
+
+.
+
+0
+
+8
+8
+0
+5
+
+.
+
+0
+
+2
+9
+1
+
+.
+
+0
+
+8
+0
+1
+
+.
+
+0
+
+9
+3
+6
+0
+
+.
+
+0
+
+6
+6
+9
+4
+0
+
+.
+
+1
+8
+1
+0
+
+.
+
+8
+0
+0
+1
+
+.
+
+0
+
+1
+9
+5
+0
+
+.
+
+0
+
+5
+6
+7
+5
+
+.
+
+0
+
+3
+5
+4
+2
+
+.
+
+0
+
+5
+7
+4
+1
+
+.
+
+0
+
+4
+3
+8
+0
+
+.
+
+0
+
+7
+2
+6
+5
+0
+
+.
+
+9
+1
+3
+2
+0
+
+.
+
+3
+7
+3
+1
+0
+
+.
+
+5
+6
+7
+0
+
+.
+
+0
+
+4
+6
+9
+3
+.
+8
+
+4
+6
+3
+7
+.
+7
+
+8
+6
+7
+5
+.
+7
+
+3
+2
+0
+5
+.
+7
+
+8
+0
+9
+4
+.
+8
+
+3
+8
+2
+8
+.
+7
+
+4
+7
+6
+6
+.
+7
+
+9
+1
+9
+5
+.
+7
+
+9
+8
+7
+6
+.
+8
+
+3
+9
+9
+9
+.
+7
+
+8
+5
+9
+7
+.
+7
+
+5
+6
+8
+6
+.
+7
+
+3
+8
+7
+7
+.
+8
+
+6
+4
+9
+0
+.
+8
+
+4
+9
+8
+8
+.
+7
+
+5
+5
+5
+9
+.
+8
+
+9
+7
+7
+.
+7
+
+2
+6
+2
+.
+8
+
+6
+0
+3
+0
+.
+8
+
+6
+1
+7
+8
+.
+7
+
+2
+6
+4
+0
+.
+9
+
+8
+7
+4
+3
+.
+8
+
+1
+5
+1
+1
+.
+8
+
+4
+4
+5
+9
+.
+7
+
+0
+1
+−
+
+5
+1
+−
+
+0
+2
+−
+
+0
+1
+−
+
+5
+1
+−
+
+0
+2
+−
+
+0
+1
+−
+
+5
+1
+−
+
+0
+2
+−
+
+0
+1
+−
+
+5
+1
+−
+
+0
+2
+−
+
+0
+1
+−
+
+5
+1
+−
+
+0
+2
+−
+
+0
+1
+−
+
+5
+1
+−
+
+0
+2
+−
+
+1
++
+
+1
++
+
+1
++
+
+–
+
+1
++
+
+1
++
+
+1
++
+
+–
+
+1
++
+
+1
++
+
+1
++
+
+–
+
+1
++
+
+1
++
+
+1
++
+
+–
+
+1
++
+
+1
++
+
+1
++
+
+–
+
+1
++
+
+1
++
+
+1
++
+
+–
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+f
+f
+o
+
+f
+f
+o
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+f
+f
+o
+
+f
+f
+o
+
+f
+f
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+n
+o
+
+f
+f
+o
+
+f
+f
+o
+
+f
+f
+o
+
+f
+f
+o
+
+6
+0
+
+.
+
+7
+0
+
+.
+
+8
+0
+
+.
+
+52
+
+Z. Herda et al.
+
+Fig. 3.12 Semiautonomous driving with and without coasting
+
+proﬁle, which is an input to the system, is always designed without coasting and
+coasting algorithm is a part of the car speed controller so it can be simply activated
+or deactivated. This was done to see different energy consumption on the track in
+both modes. The coasting mode makes the average speed of the vehicle a little
+lower than the mode without coasting but it has the signiﬁcant beneﬁt of lower
+energy consumption. This beneﬁt
+is higher than using regenerative breaking,
+because energy regeneration is not as effective as driving and due to two energy
+conversions.
+
+The ﬁrst conversion is from battery to kinetic and potential energy (driving) and
+the second conversion from kinetic and potential energy into battery (regeneration).
+Both conversions have some efﬁciency which means two energy losses. Coasting
+has in a principle much better efﬁciency, because there is only one energy con-
+version from battery to kinetic and potential energy.
+
+The second conversion from kinetic and potential energy to battery is missing
+and accumulated kinetic and potential energy is used only to overcome car driving
+resistance. Comparison of both driving modes is shown in Fig. 3.12 and measured
+results like real average speed and energy consumption are listed in Table 3.3.
+
+3.2.3 Simple Vehicle Energy Consumption Model
+
+The goal was to ﬁnd a simple vehicle model which describes energy consumption
+of the car and is suitable for on-line calculations in automotive control units. This
+model
+is based on the balance of forces in longitudinal direction of driving
+(Fig. 3.13) and torque balance in the centre of the front wheel (Fig. 3.14).
+
+3 The Design of Vehicle Speed Profile for …
+
+53
+
+Table 3.3 Results of semiautonomous driving with and without coasting
+
+Measured energy consumption for driving mode with and without coasting
+Driving
+mode
+
+Energy per track [kWh]
+Consumed
+
+Average
+speed [km/h]
+
+Regenerated
+
+Total
+
+77.31
+
+Without
+coasting
+With
+coasting
+Beneﬁt of coasting [%]
+
+75.54
+
+7.9962
+
+0.5815
+
+7.4146
+
+20.39
+
+6.5263
+
+0.2482
+
+6.5263
+
+17.94
+
+Energy
+consumption
+[kWh/100 km]
+
+12.02
+
+Fig. 3.13 Balance of forces in longitudinal direction
+
+Fig. 3.14 Torque balance in the center of the front wheel
+
+Fh ¼ Fs þ Fvz þ Fv þ Gx þ Fk
+
+ð3:10Þ
+
+where
+
+Fh
+Fs
+Fvz
+Fv
+Gx
+Fk
+
+driving power
+inertia force
+air resistance
+rolling resistance
+part of gravity force
+wheel resistance during cornering
+
+54
+
+Z. Herda et al.
+
+Mh ¼ Mo þ Ms
+
+Mh ¼ Fs þ Fvz þ Fv þ Gx þ Fk
+
+ð
+
+Þ (cid:4) R þ Ms
+
+(cid:4) v2 (cid:4) q (cid:4) CwA þ m (cid:4) g (cid:4) cos a (cid:4) n þ m (cid:4) g (cid:4) sin a þ Fk
+
+ð3:11Þ
+
+ð3:12Þ
+(cid:5)
+(cid:4)
+
+ð3:13Þ
+
+(cid:4)
+Mh ¼ m (cid:4) v0 þ 1
+2
+(cid:4) R þ Jp (cid:4) x0
+
+k
+
+where
+
+driving torque
+resistance torque
+powertrain inertia torque
+wheel radius
+vehicle mass
+air density
+
+Mh
+Mo
+Ms
+R
+m
+q
+CwA product of drag coefﬁcient Cx and front surface of the car
+g
+n
+a
+Jp
+xk
+v
+
+gravity acceleration
+rolling resistance coefﬁcient (speed dependent)
+slope angle
+powertrain moment of inertia
+wheel angular velocity
+vehicle speed
+
+Differential Eq. (3.13) is our basis for the vehicle energy consumption model.
+The last step is to calculate engine torque and power using gear ratio and powertrain
+efﬁciency (3.14) and ﬁnally to consider engine efﬁciency (3.15) (Fig. 3.15). With
+this model it is possible to calculate the energy consumption of the vehicle from
+inertial data and the actual vehicle state (speed, acceleration, slope angle, etc.) and
+with a small modiﬁcation of the equation it is also possible to predict the speed of
+the car which was used in the coasting detection algorithm.
+
+Mmot ¼
+
+þ Ms mot
+
+Mh
+ic
+gp
+
+P ¼ Mmot
+gmot
+
+(cid:4) xmot
+
+ð3:14Þ
+
+ð3:15Þ
+
+where
+
+Mmot
+Mh
+Ms mot
+
+engine torque
+driving torque
+engine inertia torque
+
+3 The Design of Vehicle Speed Profile for …
+
+55
+
+xmot
+P
+ic
+gp
+gmot
+
+engine angular velocity
+input power (energy consumption)
+gear ratio
+powertrain efﬁciency (gearbox, joints, etc.)
+engine efﬁciency
+
+The model coefﬁcients were identiﬁed on the same amount of measured data as
+for the optimal speed proﬁle algorithm. The identiﬁcation process was based on a
+deceleration test in three different modes:
+
+(1) Free wheel mode—identiﬁcation of rolling resistance and rotational inertia
+
+mass without engine (disconnected cutch).
+
+(2) Free wheel mode with cornering—wheel resistance during cornering.
+(3) Different shifted gears—engine inertia identiﬁcation.
+
+Example identiﬁcation results are shown in Fig. 3.16. This simple model
+structure could be identiﬁed on-line in the vehicle during suitable maneuvers
+(coasting) for the adaptation to change some parameters during the life of the
+vehicle like increasing resistance in bearings etc.
+
+3.2.4 Optimal Gearbox Shifting Map Design
+
+In a real vehicle the automatic gearbox shifting is controlled by a shifting map. This
+map should be designed considering the vehicle dynamics and fuel/energy con-
+sumption. For a combustion engine it is possible to say when we need low fuel
+consumption the engine should make as low revolutions as possible. On the
+opposite side when we need a dynamic this engine should work at high revolutions
+because the power is increasing with the engine speed.
+
+For an electric engine it is not so clear because of its behaviour. Consider the
+efﬁciency map for our asynchronous engine (see Fig. 3.15). This motor has the best
+efﬁciency between 3500 and 4500 rev/min and from 2200 rev/min has almost constant
+power—torque is decreasing with increasing revolutions. Due to this fact it is not
+possible to design a shifting map as same as for a combustion engine, but it is necessary
+to consider engine efﬁciency and power for various engine speeds and loads.
+
+Consider the engine load only affected by a throttle position (driver command)
+and the engine speed as a function of the vehicle speed and selected gear ratio. With
+these conditions it is possible to calculate the shifting points to keep a higher engine
+efﬁciency or vehicle dynamics. Table 3.4 shows one example of shifting map where
+till 50% of throttle the shifting points are designed to keep higher efﬁciency and up
+to 50% to keep better vehicle dynamics. Numbers in Table 3.4 means the vehicle
+speed in kph. The green shifting points were designed for efﬁciency, blue points for
+dynamics, orange points were manually tuned for a smooth connection between
+efﬁciency and dynamics, red points are the speed limits of the map and black points
+are hysteresis for shift down.
+
+56
+
+Z. Herda et al.
+
+Fig. 3.15 Powertrain efﬁciency map
+
+Fig. 3.16 Example identiﬁcation results
+
+For a better description we show two shifting point calculations from 3rd to 4th
+(a) for throttle = 38% and (b) for 63%. For shifting point (a) the engine efﬁciency
+for 3rd gear is better up to vehicle speed 84 kph and from this speed it is a more
+effective 4th gear (Fig. 3.17). When the max engine revolution or torque limit is
+reached the efﬁciency and torque on wheel is shown with its last value. The torque
+on wheels (affects vehicle dynamics) is always higher for 3rd gear up to maximal
+revolution so this point is designed for efﬁciency.
+
+The shifting point (b) it is better to design for dynamics considering the torque
+on wheels. The dynamics for the 3rd gear is better up to 82 kph and from this speed
+is better to use the 4th gear (Fig. 3.18).
+
+3 The Design of Vehicle Speed Profile for …
+
+57
+
+Table 3.4 Example shifting map for 7 speed automatic gearbox
+
+Shifting
+1 -> 1
+1 -> 2
+2 -> 1
+2 -> 3
+3 -> 2
+3 -> 4
+4 -> 3
+4 -> 5
+5 -> 4
+5 -> 6
+6 -> 5
+6 -> 7
+7 -> 6
+7 -> 7
+
+6
+0
+0
+0
+20
+20
+12
+12
+36
+36
+28
+28
+49
+49
+41
+41
+84
+84
+76
+76
+112 112
+104 104
+140 141
+132 133
+255 255
+
+13
+0
+23
+15
+38
+30
+50
+42
+87
+79
+112
+104
+143
+135
+255
+
+19
+0
+23
+15
+45
+37
+62
+54
+91
+83
+113
+105
+145
+137
+255
+
+25
+0
+24
+16
+45
+37
+64
+56
+93
+85
+117
+109
+147
+139
+255
+
+31
+0
+27
+19
+59
+51
+68
+60
+128
+120
+126
+118
+148
+140
+255
+
+Throttle position
+50
+0
+35
+27
+58
+50
+92
+84
+128
+120
+164
+156
+202
+194
+255
+
+44
+38
+0
+0
+29
+28
+21
+20
+58
+59
+50
+51
+87
+84
+79
+76
+135
+131
+123
+127
+157 160
+149
+152
+180 213
+205
+172
+255
+255
+
+56
+0
+35
+27
+58
+50
+88
+80
+122
+114
+154
+146
+190
+182
+255
+
+63
+0
+34
+26
+55
+47
+82
+74
+114
+106
+147
+139
+180
+172
+255
+
+69
+0
+33
+25
+53
+45
+79
+71
+110
+102
+144
+136
+172
+164
+255
+
+75
+0
+31
+23
+51
+43
+77
+69
+106
+98
+135
+127
+165
+157
+255
+
+81
+0
+30
+22
+49
+41
+77
+69
+106
+98
+135
+127
+165
+157
+255
+
+88
+0
+30
+22
+49
+41
+77
+69
+106
+98
+135
+127
+165
+157
+255
+
+94
+0
+30
+22
+49
+41
+77
+69
+106
+98
+135
+127
+165
+157
+255
+
+100
+0
+30
+22
+49
+41
+77
+69
+106
+98
+135
+127
+165
+157
+255
+
+Shifting point legend: efficiency, dynamics, manually adjusted for smooth connection of different 
+designs, hysteresis,  limits
+
+Fig. 3.17 Shifting point from 3rd to 4th gear for throttle 38%
+
+In this way it is possible to design the whole shifting map which is shown in
+Table 3.4. This shifting map was uploaded to a real gearbox and tested in deﬁned
+cycles NEDC (Table 3.5) and WLTP (Table 3.6) in comparison with the constant
+gear realised with the same gearbox, but with a constantly shifted 4th gear.
+Tables 3.5 and 3.6 shows energy consumption for both cycles using shifting and
+without shifting.
+
+58
+
+Z. Herda et al.
+
+Fig. 3.18 Shifting point from 3rd to 4th gear for throttle 63%
+
+Table 3.5 Results of NEDC cycle
+
+NEDC
+Mode
+
+WLTP
+Mode
+
+Average speed [kph]
+
+Energy pre cycle [kWh]
+Consumed
+
+Regenerated
+
+Constant gear 4.
+Shifting (1–6)
+Beneﬁt of gearbox [%]
+
+34.62
+34.33
+
+1.96
+1.81
+7.43
+
+0.14
+0.15
+12.89
+
+Table 3.6 Results of WLTP cycle
+
+Average speed [km/h]
+
+Energy pre cycle [kWh]
+Consumed
+
+Regenerated
+
+Constant gear 4.
+Shifting (1–6)
+Beneﬁt of gearbox [%]
+
+46.81
+46.88
+
+4.28
+4.14
+3.16
+
+0.32
+0.37
+15.29
+
+Whole
+
+1.82
+1.66
+8.94
+
+Whole
+
+3.96
+3.78
+4.63
+
+3.3 Conclusion
+
+During this work an algorithm for Optimal speed proﬁle was designed and veriﬁed.
+This algorithm is independent to the type of vehicle, is optimal for a selected
+priority between energy consumption and average speed, considers safety limits and
+is applicable for advanced driver assistance systems and also for autonomous
+driving.
+
+3 The Design of Vehicle Speed Profile for …
+
+59
+
+The demonstrated principle of coasting was also veriﬁed with a real car where
+the beneﬁt of coasting for energy saving could be up to 12%, which of course it
+depends on the track.
+
+The disadvantage of this principle is a very high sensitivity to track/map data
+quality because inputs to the Optimal speed proﬁle design and model for speed
+predictions are track curvature, slopes and speed limits. In this case similar kinds of
+driver assistant systems should be connected with a well updated source of data and
+online information about trafﬁc situations which could cause a speed limitation like
+road works.
+
+For our goals, it was also necessary to design a new shifting map to consider an
+electric motor’s behaviour because the Optimal speed design algorithm is not
+applicable on-line now and pre-designed shifting only cannot be used for real
+driving due to other unpredictable interruptions of driving like avoiding manoeu-
+vers, breaking, etc. The beneﬁt of shifting in comparison with a constantly selected
+gear in deﬁned cycles NEDC (8.94%) and WLTP (4.63%) was also evaluated. The
+beneﬁt for the real track near Mlada Boleslav was only simulated and it is approx.
+1.3%. It is not so big a beneﬁt because engine efﬁciency in 4th gear with an average
+speed over 80 kph is very high. Beneﬁts also depend on driving cycles and the
+biggest beneﬁt of shifting is expected in the cities where the FEVs make sense.
+
+Increasing environmental awareness, strict regulations on greenhouse gas emissions
+and constant desire to increase the range of electric vehicles as well as the big
+economic beneﬁts drive a lot of research in the ﬁeld of energy efﬁcient driving. As a
+result, there are many different approaches addressing this topic. Some approaches
+are related to the vehicle design optimization, some to using alternative propulsion
+systems and some to the driving behavior optimization. In [1] the authors present a
+study which shows that the driving behavior has a rather big inﬂuence on energy
+consumption. It is shown that energy consumption may vary in a range of approx.
+30% depending on moderate or aggressive driving behavior. Driving behavior
+related approaches for improving energy efﬁciency can be grouped into: “eco
+routing”, “using road slope information”, “trafﬁc light assist”, “platooning” and
+“overtaking” as shown in Fig. 4.1.
+
+Eco routing is based on determining the most energy-efﬁcient route for the trip,
+which may differ from the shortest or fastest one. E.g. [2] shows an example using
+historical data to determine an eco-route.
+Knowledge about the upcoming driving route, the road conditions and the ability
+to control the vehicle’s propulsion enables the optimization of the speed trajectory
+of the vehicle with respect to the energy consumption. This problem has been
+extensively studied. Discrete dynamic programming (DP) for energy efﬁcient
+driving has been used for over a decade now e.g. in research focused on heavy duty
+[3, 4]. A comparison between different optimization methods
+vehicles
+(Euler-Lagrange, Pontryagin’s Maximum Principle, DP, and Direct Multiple
+Shooting) was presented in [5]. The reader will ﬁnd there an analysis on the DP grid
+choice, tips on backward and forward dynamic programming, and on how to
+incorporate trafﬁc lights. By using model predictive control (MPC) to drive vehicles
+on free roads with up and down slopes notable fuel savings are shown in [6]. MPC
+was also used to control a hybrid vehicle driving over a hill and performing vehicle
+following in [7]. In [8] an overview of the existing approaches and current state of
+the art can be found. Optimized speed trajectories are usually proposed to advice a
+human driver via an appropriate human-machine-interface (HMI). Rarely optimized
+speed trajectories are used to directly provide a reference value for underlying
+low-level controllers such as cruise control. Increasing vehicle automation is
+expected to change this in the near future.
+
+The integration of time varying constraints such as trafﬁc lights has also been
+studied intensively. Incomplete knowledge about upcoming trafﬁc lights’ timing
+was studied in [9], complete knowledge of the upcoming trafﬁc lights’ timing
+together with Dijkstra’s algorithm was studied in [10] and an MPC based controller
+was developed with additional constraints imposed from a vehicle in front in [11].
+MPC based controller proposed in [11] only considers vehicle following but not
+overtaking.
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+63
+
+A lot of research on a topic of platooning was done within the SATRE project
+
+generating beneﬁts for heavy duty vehicles [12].
+
+In [13] a possible solution for a vehicle following problem is presented showing
+different concepts for safe vehicle following, deﬁning helpful concepts such as the
+safe distance, time-inter-vehicular and time-to-collision. In [14] a possible solution
+for comfort oriented vehicle following with leading vehicle movement prediction
+treated as disturbance in MPC controller is presented. In publications dealing with
+the execution of optimal overtaking [15–18], speed trajectory planning is done in a
+way, that modifying an optimal speed trajectory leads to the smallest deviation from
+the desired speed while the vehicle is overtaking. These approaches are treating the
+problem locally and partially and don’t give an energy consumption based decision
+if a vehicle should overtake or not and where the best location is for overtaking. Up
+to now not enough attention is paid on considering other participants in trafﬁc
+especially leading vehicles.
+
+If leading vehicles are neglected in the optimization, the unconstrained planning
+will not be fully achievable in real driving conditions, and may in some situations
+lead to drawbacks in energy consumption and very likely to bad driver acceptance.
+This work focuses on the integration of constraints imposed by leading vehicles and
+a global approach to optimize energy consumption.
+
+4.2 Problem Definition
+
+This chapter shortly states the problem deﬁnition from a mathematical point of view
+as an optimal control problem. The aim is to determine a vehicle speed trajectory
+(necessary motor torque) which results in optimal energy consumption for the given
+transportation task while taking into account additional constraints. First, a widely
+used, rather generic model of a vehicles longitudinal motion is deﬁned. Then an
+appropriate cost function and relevant constraints are outlined. Finally, incorpora-
+tion of time and/or space varying constraints (e.g. leading trafﬁc) is discussed.
+
+4.2.1 System Model
+
+Since low model complexity is crucial for efﬁcient optimization, the vehicle is
+modelled as particle-mass. This approach suits most applications and is the standard
+choice. The vehicle model (which we shortly call the system) is represented by two
+states: s—the longitudinal distance travelled by the vehicle and v—the longitudinal
+velocity of the vehicle. The system input is the motor torque Tm. The mathematical
+model is described by
+
+_s ¼ v;
+
+ð4:1Þ
+
+64
+
+_v ¼ Fm tð Þ
+m
+
+(cid:3) Fr
+m
+
+;
+
+Z. Ajanović et al.
+
+ð4:2Þ
+
+Fr ¼
+
+1
+2 qacdAf v tð Þ2 þ crmgcos a s tð Þ
+
+ð
+
+ð
+
+Þ
+
+Þ þ mgsin a s tð Þ
+
+ð
+
+ð
+
+Þ
+
+Þ:
+
+ð4:3Þ
+
+The upper Eq. (4.1) originates from kinematics. Equation (4.2) is derived from
+Newton’s second law with Fm being the force produced by the propulsion motor, m
+denoting the vehicle mass and Fr being the resistive force. This resistive force is
+deﬁned in (4.3), with air density qa, aerodynamic drag coefﬁcient cd; the vehicle’s
+frontal area Af , rolling resistance coefﬁcient cr, gravity acceleration g and the road
+slope angle a. The propulsion element (which is here considered to be an electric
+motor with inner torque Tm) is modelled statically by:
+
+using an efﬁciency coefﬁcient g scheduled by a map, a combined transmission ratio
+of the powertrain k and the radius of the wheels rw. The ratio between rotational
+speed x of the motor and vehicle speed is deﬁned by
+
+Fm tð Þ ¼ kTmgsignðTm tð ÞÞ
+
+;
+
+rw
+
+x tð Þ ¼ kvðtÞ
+2rwp
+
+:
+
+ð4:4Þ
+
+ð4:5Þ
+
+4.2.2 Cost Function
+
+Based on the system, in a next step a cost function is deﬁned. In this contribution
+the main focus is on energy efﬁciency, so the cost function will be designed to
+represent the overall energy consumption of the vehicle.
+
+If only energy used by the propulsion system of the vehicle is considered, the
+optimal solution generally speaking will most likely lead to rather slow movement.
+To avoid this, some authors additionally introduced a term to the cost function
+weighting travelling time [8, 13]. The weighting coefﬁcient is then tuned such that
+the travel time is comparable to times achieved by human drivers. Although such an
+approach avoids slow movement, it results in a suboptimal solution from an energy
+efﬁciency point of view.
+
+In the following, instead of introducing weighted travelling time we include
+power consumption from the auxiliary devices such as air conditioning system,
+infotainment system, thermal management system, etc. leading to straight forward
+energy related cost function. These auxiliary consumptions are assumed to be a
+constant load Pbn. The total power consumption of the vehicle is then the sum of
+boardnet power consumption and power consumption of the motor, which is cal-
+culated from the product of the rotational speed of the motor x and motor torque
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+65
+
+Tm. Consequently, the used energy is the integral of the power over time of the trip
+represented by
+
+Emin ¼ min
+Tm
+
+ZT
+
+0
+
+ð
+x tð ÞTm tð Þ þ Paux
+
+Þ dt:
+
+ð4:6Þ
+
+Instead of using time for integration, the distance can be used. This offers some
+distinct advantages for solving as ﬁnal time is not known, but ﬁnal distance is, and
+road slope appears as a function of distance [5].
+
+4.2.3 Internal Constraints
+
+Internal constraints in the optimization problem originate from constrained system
+dynamics, constraints on states, initial and ﬁnal conditions. The following internal
+system constraints are considered:
+
+Vehicle maximum speed and acceleration limits:
+
+Initial and ﬁnal conditions for position and velocity:
+
+vmin\v tð Þ\vmax;
+
+_vmin\_v tð Þ\_vmax;
+
+v 0ð Þ ¼ vi;
+
+v Tð Þ ¼ vf ;
+
+s 0ð Þ ¼ 0;
+
+s Tð Þ ¼ S;
+
+ð4:7Þ
+
+ð4:8Þ
+
+ð4:9Þ
+
+ð4:10Þ
+
+Note that the complete behavior of the electric motor such as maximum available
+torque, rotational speed and efﬁciency is modelled within the efﬁciency map. Apart
+from internal constraints, constraints which are imposed from environment and
+external factors exist.
+
+4.2.4 External Constraints
+
+External constraints can be classiﬁed according to the dependence on two variables
+relevant for the optimization problem. These are space and time. This means that
+external constraints can be grouped into four different groups summarized in
+Table 4.1.
+
+Table 4.1 External constraints classiﬁcation
+
+Space variant
+Space invariant
+
+Time variant
+Other trafﬁc participants
+Trafﬁc lights
+
+Time invariant
+
+Resting time (e.g. every 2 h)
+Trafﬁc signs (e.g. speed limits), road curvature
+
+66
+
+Z. Ajanović et al.
+
+Generally speaking invariant constraints are easier to integrate into the opti-
+mization problem than variant constraints. In some cases time/space variant con-
+straints can lead to tremendous efforts when considered.
+
+Time-and-space-invariant constraints
+This type of constraints is straight forward to integrate as it is constant in time and
+space. Examples are: Trafﬁc signs, which limit maximum speed on some road
+segments or road curvature which also limits maximum speed because of the risk of
+roll-over. On curved segments a minimum longitudinal acceleration limit can also
+be imposed. The resulting acceleration would generate an inertial force pushing
+back the driver and improving the drivability feeling since it may partly compensate
+the uncomfortable centrifugal forces.
+
+Time-invariant-space-variant constraints
+An example of a constraint of this type could be resting time. Usually the driver has
+to make resting stops after continuously driving for longer periods. This generally
+doesn’t explicitly depend on space as there are more resting spots along the road.
+With some approximation, charging of the vehicle could be considered as a con-
+straint of this type.
+
+Time-variant-space-invariant constraints
+Constraints of this type do not change in space but change with time. A typical
+example is a trafﬁc light, which sets the maximum speed to zero when the red light
+is active. This happens in discrete time intervals at a ﬁxed location in space.
+
+Time-and-space-variant constraints
+Constraints of this type are usually hard to consider, sometimes even impossible
+with reasonable effort. Typical examples for a constraint of this type are other
+vehicles moving in the surrounding trafﬁc. Constraints are on the speed and position
+of the controlled vehicle. Time and space of such constraints are not ﬁxed, since the
+velocity of the controlled vehicle itself inﬂuences the constraint. For example if the
+controlled vehicle is moving faster, it will reach a leading vehicle sooner in time
+and space. Things get even more complicated when considering the possibility of
+overtaking. In this case the speed of the controlled vehicle has to be signiﬁcantly
+higher than the speed of the leading vehicle, providing a speed difference to safely
+overtake. Such constraints can be mathematically expressed as:
+
+s tð Þ (cid:3) slead tð Þ
+j
+
+j [ dsafe
+
+v tð Þ (cid:3) vlead tð Þ [ vsafe:
+
+ð4:11Þ
+
+ð4:12Þ
+
+Constraint (4.11) is active in case of vehicle following and constraint (4.12) in
+
+case of overtaking a leading vehicle.
+
+From a practical point of view, as the future movement of other vehicles is
+usually unknown, some assumptions must be made. In this work, the most simple
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+67
+
+movement prediction is used by assuming, that other vehicles will continue to move
+with their actual speed. Additionally, it will be assumed that other vehicles will not
+overtake the controlled vehicle and may slow down behind in order to avoid
+collisions once they have been overtaken. This assumption leads to the possibility
+of neglecting vehicles following the controlled vehicle.
+
+4.2.5 Challenges
+
+There are a few challenges connected to the discussed optimization, which are
+shortly highlighted in the following:
+
+Nonlinear problem
+The problem is nonlinear, as air drag resistance is proportional to the square of the
+velocity. Including the motor efﬁciency adds additional nonlinearity, as there is a
+sign function in motor torque calculation.
+
+Dynamic constraints
+The incorporation of the dynamic constraints increases the problem complexity.
+Many methods such as backward dynamic programming with free ﬁnal time cannot
+cover them as these constraints depend on the trajectory from the start.
+
+Course of dimensionality
+If
+the optimization is solved numerically, state discretization is necessary.
+Increasing the number of system states considered in optimization problem dra-
+matically increases the number of possible state combinations. Each additional state
+multiplies the number of state combinations by the number of its discretization
+values. E.g. Considering multiple propulsion sources as in hybrid cars, or even
+considering distinctive gear ratios will highly increase the computational effort for
+solving.
+
+Real-time computation versus precision
+As the focus is on real-time applications within a vehicle the general tradeoff
+between speed of computation and precision has to be taken into account. This will
+have an impact on the choice of methods.
+
+4.3 Optimal Motion Planner
+
+As explained above, publications considering road slope to generate energy efﬁcient
+speed trajectory do not fully consider other vehicles in trafﬁc and the possibility to
+overtake them. On the other hand publications dealing with optimal overtaking
+tackle the problem locally and consider efﬁciency only as deviation from a desired
+speed which leads to a local optimal solution.
+
+68
+
+Z. Ajanović et al.
+
+In contrary to existing approaches, this work aims to achieve a global optimal
+solution by generating a new optimal speed trajectory. A new optimal speed tra-
+jectory has to be generated since the constraints are assumed to be violated.
+Therefore, the unconstrained optimal speed trajectory in this case is not optimal and
+there is no argument in persisting to still track it.
+
+The approach proposed in this work gives valid conclusion if it is more bene-
+ﬁcial (in terms of overall energy consumption) to overtake a leading vehicle or to
+slow down based on predicted energy usage for the trip and actual overtaking
+maneuver and on which segment of the road to overtake. The planning is based on a
+motion prediction (assumption) of the leading vehicle moving in front and infor-
+mation about the upcoming road.
+
+In this work dynamic programming is used as a method to derive the optimal
+control (here the speed trajectory) because of its broad range of applicability and the
+ﬂexibility to integrate different constraints.
+
+4.3.1 Dynamic Programming
+
+Dynamic programming is a very common method used for solving the optimal
+control problem discussed in this work. The main advantages are its ﬂexibility and
+possibility to incorporate different kinds of models and constraints. It is based on
+the Principle of Optimality, and it was introduced by Bellman [19]. The interested
+reader is referred to [20].
+
+Principle of Optimality
+An optimal policy has the property that whatever the initial state and initial
+decisions are, the remaining decisions must constitute an optimal policy with
+regard to the state resulting from the ﬁrst decisions [19].
+
+This principle enables iterative search for optimal solution starting from the end
+point and building an optimal trajectory to the start. In each step transitions from all
+possible current states to the all previous states with accumulated previous values
+are calculated and minimum costs and respective transitions are selected for each
+possible current state. In this way going backwards in time, trajectories are growing
+by using calculation results from the “previous” step.
+
+For this work a tailored and computationally optimized solution for optimal
+speed trajectory planning based on dynamic programming was developed in
+MATLAB making intensive use of matrix calculus. For a trip of 4200 m with
+discretization steps ds = 5 m and dv = 0.1 m/s solving on a standard PC (intel i5) it
+takes 8.83 s to plan an optimal speed trajectory using energy efﬁciency maps for the
+electric motor and 4.81 s using a constant efﬁciency.
+
+To validate the implementation both, forward and backward dynamic pro-
+gramming schemes were implemented. The achieved results are identical, as it was
+expected. The advantage of the backward calculation is that the calculated result
+can be reused during the trip as it only depends on the ﬁnal state. This is not the
+case with the forward calculation, where results are related to the speciﬁc initial
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+69
+
+state. On the other hand the advantage of the forward calculation is that other states
+such as the position of other vehicles can be calculated as the initial time is always
+known.
+
+The implementation of dynamic programming can use time or distance as a basis
+for discretization. Using distance is useful in ﬁnding the energy optimal trajectory
+as the ﬁnal time is not ﬁxed but it has several disadvantages such as, when the speed
+is zero it is impossible to calculate time. An additional disadvantage is that on high
+speeds time shortens and with ﬁxed speed discretization steps the number of pos-
+sible transitions which satisfy the maximum acceleration constraints decreases.
+Nevertheless, an appropriate selection of the discretization steps leads to a valid
+solution. Therefore, distance as a base is used in this implementation.
+
+In order to deeply understand the optimal control discussed in this work we
+introduce two helpful concepts: the optimal trajectory tree and the cost-to-go map.
+
+4.3.2 Optimal Speed Trajectory Tree
+
+We deﬁne the so called optimal speed trajectory tree as a tree like structure formed
+by connecting all optimal transitions by a line. This results in a nice representation
+of the optimal control problem and together with a cost-to-go map it gives insight
+into an optimal behavior of the case without leading vehicles. This will be useful in
+understanding the advantage of the proposed approach compared to existing
+approaches, which are discussed in Sect. 4.4.2.
+
+What can be noted is that generally if two different trajectories have a common
+
+node they will continue on same trajectory towards the goal.
+
+An optimal speed trajectory tree for a problem considered in this work with
+discretization steps of 10 m for distance and 0.3 m/s for speed is shown on Fig. 4.2.
+This map is generated from end to front in backwards DP. Additionally to the
+optimal solution for the given initial condition, we can see optimal solutions for
+different initial conditions and the impact of different initial conditions.
+
+4.3.3 Cost-to-Go Map
+
+The so called cost-to-go map represents the energy needed to ﬁnish a trip on an
+optimal
+in distance-velocity plane. In Fig. 4.3 the
+cost-to-go map for the same problem as in Fig. 4.2 is shown for the backward DP
+approach.
+
+trajectory from each point
+
+The characteristics of the cost to go map are closely related to the cost function
+and it can be noted that costs increase as distance is closer to the start. Additionally,
+costs are smaller on higher speeds because of the bigger kinetic energy stored in a
+moving vehicle. Costs are also smaller on a hill and bigger in the valley because of
+the potential energy.
+
+70
+
+Z. Ajanović et al.
+
+Fig. 4.2 Optimal speed trajectory tree in backward planning dynamic programming
+
+4.3.4 Considering External Constraints
+
+Time-and-space-invariant constraints
+As mentioned in Sect. 4.2 examples of constraints of this type are: trafﬁc signs,
+which limit the maximum speed on some road segment or due to road curvature
+which also limits the maximum speed because of the risk of roll-over. These
+constraints can be easily incorporated into the optimization and can be handled by
+in both, forward and backward DP, if distance is used as the integration variable.
+This type of constraint imposes that transitions to the speed values which are
+conﬂicting with a trafﬁc sign are not allowed on the distance segments where the
+trafﬁc sign is active. Impossible transitions are implemented by assigning an inﬁnite
+cost value to that transition.
+
+Time-and-space-variant constraints
+Constraints of this type are a main focus of this work, since it deals with other
+vehicles moving in the leading trafﬁc. These constraints are imposed on speed and
+position of the controlled vehicle. As mentioned previously, both time and space of
+such constraints are not ﬁxed, because the velocity of the controlled vehicle itself
+inﬂuences this constraint.
+
+Due to this, forward DP is used here, enabling to calculate the distance between
+the controlled vehicle and the leading vehicle for each trajectory, which is possible
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+71
+
+Fig. 4.3 Cost-to-go map of cumulative costs to travel to the end (backward planning)
+
+since the initial distance is known. The movement of the other vehicle is calculated
+using a simple prediction model that assumes that the leading vehicle is moving
+with constant speed and that it will slow down if it reaches the controlled vehicle
+(after being overtaken). Note that a more sophisticated model of the leading
+vehicle’s choice of velocity which may depend on space, time and the controlled
+vehicle can be easily included.
+
+Finally, the transitions which do not satisfy the constraints (4.11) or (4.12)
+explained in Sect. 4.2 are deﬁned to be impossible. Disabling a transition will
+disable all trajectories leading to a collision. As a consequence only trajectories
+which do not lead to a collision will be checked and the best out of these will be
+selected.
+
+Time-variant-space-invariant
+
+constraints
+
+and time-invariant-space-variant
+
+constraints
+
+Constraints of this type are not considered now, they will be tackled in future
+of
+works. These
+time-and-space-variant constraints, therefore incorporating them should be straight
+forward once time-and-space-variant constraints are incorporated.
+
+considered
+
+constraints
+
+special
+
+case
+
+can
+
+be
+
+as
+
+a
+
+72
+
+Z. Ajanović et al.
+
+4.4 Simulation Results
+
+In this section, analyses and comparison to other approaches will be presented in
+order to highlight fundamental attributes and advantages of the proposed approach.
+Discussion of
+in
+distance-velocity and time-distance plots, appropriate tables will show the differ-
+ences in consumed energy as well as travelled time.
+
+the results will be based on the vehicle trajectories
+
+In the ﬁrst subsection, driving with constant speed is compared to optimal
+driving. In the second subsection, differences between the proposed and existing
+overtaking approach will be investigated. In the third subsection, a short analysis of
+the inﬂuence of the road gradient on the overtaking event will be made. After that,
+the inﬂuence of the speed difference on overtaking event will be analyzed.
+
+For this purpose, a road segment of 500 m with a hill and a valley will be used.
+The hill is 1.6 m high with maximum slope of 6%; the valley has the same shape
+but negative. Discretization step size for distance is 1 m and for speed 0.03 m/s
+have been used. If not stated differently, this discretization applies to all simulation
+experiments.
+
+4.4.1 Constant Speed Versus Optimized Variable Speed
+
+At ﬁrst driving with constant speed is compared to driving at optimal variable
+speed. The example simulation is setup as follows: Three different speed set points
+(7, 9, 11 m/s) are used. The vehicle starts from standstill and accelerates to reach
+the set speed. Then it continues to travel with this speed until it has to decelerate to
+ﬁnally stop at the end of the trip.
+
+In contrast to this, optimal driving, as described in Sects. 4.2 and 4.3, takes road
+slope, air resistance, roll coefﬁcient, board net power consumption, and powertrain
+efﬁciency into consideration. An (in the sense of energy usage) optimal speed
+trajectory is generated for the given travel.
+
+As can be seen in Fig. 4.4, this results in moving on a constant speed of round
+about 10 m/s (for this vehicle and air drag resistance) on a ﬂat road, slowing down
+uphill and speeding up downhill.
+
+Table 4.2 summarizes the results from Fig. 4.4 with respect to energy con-
+sumption and traveling time. Concluding this example, an improvement in energy
+consumption above 8% can be observed. Prolongation of the trip is only about
+1.3%.
+
+4.4.2 Proposed Versus Existing Overtaking Approach
+
+the proposed approach is compared to existing overtaking
+In this subsection,
+approach. As mentioned in the introduction in literature optimal overtaking is
+usually incorporated as a least quadratic (LQ) deviation from the desired vehicle
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+73
+
+Fig. 4.4 Constant speed versus optimized variable speed
+
+trajectory. This means that an unconstrained optimal speed trajectory is generated
+and then modiﬁed to satisfy safety requirements and avoid collisions.
+
+In the following simulation example, it is assumed that a leading vehicle will
+move with a constant speed of 8 m/s located initially 20 m ahead of the controlled
+vehicle. In Fig. 4.5 the green speed trajectory represents the optimal speed trajec-
+tory for the unconstrained case. This trajectory is used as reference trajectory for
+generating a collision free trajectory (red color) as proposed in literature. In contrast
+to this, the blue trajectory is the optimal speed trajectory resulting from directly
+incorporating the constraint into the optimization problem.
+
+As expected from Fig. 4.5, Table 4.3 reveals that regarding the energy con-
+sumption as well as traveling time considering the constraint in the optimization
+leads to better results. The constrained optimization leads to only slightly larger
+energy consumption (+0.74%) compared to the unconstrained case. The standard
+approach leads to a bigger difference (+5.27%). This implies that integration of the
+leading vehicle as a constraint into the optimization problem may play a consid-
+erable role in reducing energy consumption. Even there is the potential to addi-
+tionally save traveling time.
+
+Note that Fig. 4.6 shows that the location and point in time of the overtaking
+event for both approaches differ. In the case of constrained planning, the overtaking
+
+74
+
+Z. Ajanović et al.
+
+Table 4.2 Constant speed versus optimized variable speed
+
+Energy used
+[kJ]
+
+Difference
+[%]
+
+Time travelled
+[s]
+
+Time difference
+[%]
+
+Optimal traj.
+Speed 9 m/s
+Speed
+11 m/s
+Speed 7 m/s
+
+213.87
+231.68
+237.98
+
+237.97
+
+0
++8.3
++11.3
+
++11.3
+
+59.25
+58.49
+49.06
+
+73.75
+
+0
+−1.28
+−17.20
+
++24.47
+
+Fig. 4.5 Proposed versus existing overtaking approach
+
+Table 4.3 Proposed versus existing overtaking approach
+
+Energy used [kJ]
+
+Time travelled [s]
+
+Difference
+[%]
+
+Unconstrained
+Constrained
+LQ deviation
+Summary on energy consumption and traveling time
+
+213.87
+215.45
+225.15
+
+0
++0.74
++5.27
+
+59.25
+57.34
+58.27
+
+Difference
+[%]
+
+0
+−3.23
+−1.66
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+75
+
+Fig. 4.6 Different locations of overtaking events in proposed and existing overtaking approach
+
+event is at 224 m. In the case of LQ deviation planning overtaking event is at
+202 m.
+
+Computation time for calculating LQ deviation trajectory can be approximated
+to be almost twice as big as necessary, because ﬁrst the unconstrained planning has
+to be generated and then LQ deviation trajectory has to be calculated.
+
+4.4.3 Influence of the Road Gradient
+
+Within another simulation study the inﬂuence of the road gradient on a constrained
+trajectory will be analyzed. The leading vehicle’s initial position will be varied so
+that the leading vehicle trajectory crosses the unconstrained trajectory at different
+locations (possible collision at different locations). The leading vehicle will move
+with a constant speed of 8 m/s and its initial position will be set to 5, 10, 15, and
+20 m.
+
+As shown in Fig. 4.7 the algorithm doesn’t give uniform results for all cases and
+it seems that there are some preferred segments for overtaking. Either the vehicle
+speeds up and overtakes the leading vehicle before the hill or it slows down and
+waits until it passed the hill and overtakes on a downhill section (red trajectory).
+This complies with usual human driving behavior (at least when considering energy
+consumption).
+
+Table 4.4 shows that energy consumption in all of the cases is not much bigger
+than 1% and time is smaller as a result of speeding up, compared to the uncon-
+strained problem.
+
+76
+
+Z. Ajanović et al.
+
+Fig. 4.7 Inﬂuence of the road gradient
+
+4.4.4 Influence of the Leading Vehicle Speed
+
+In a last simulation study the inﬂuence of the leading vehicle speed on a constrained
+trajectory will be analyzed. For this reason, the leading vehicle’s speed will be
+varied. The leading vehicle’s position is also adjusted so that the leading vehicle’s
+trajectory crosses the unconstrained trajectory always at 250 m. The leading vehicle
+will have constant speeds with 7.5, 8, 8.5, and 9 m/s.
+
+Figure 4.8 shows the simulation results of the above described setup. It can be
+seen that the optimization again doesn’t give uniform results for all cases and that
+sometimes it is better to slow down and follow the leading vehicle (blue and red)
+and sometimes to speed up and overtake (magenta and cyan). This also complies
+with usual human driving behavior. Table 4.5 shows that differences in energy
+consumption in all of the cases are rather small and differences in travel time
+depend on following or overtaking.
+
+4 Energy Efficient Driving in Dynamic Environment …
+
+77
+
+Table 4.4 Inﬂuence of the road gradient
+
+Energy used
+[kJ]
+
+Difference
+[%]
+
+Time travelled
+[s]
+
+Difference
+[%]
+
+Unconstrained
+Init. pos. = 0 m
+Init.
+pos. = 10 m
+Init.
+pos. = 15 m
+Init.
+pos. = 20 m
+
+213.87
+214.26
+214.99
+
+216.07
+
+215.45
+
+0
+0.18
+0.52
+
+1.03
+
+0.74
+
+59.25
+56.78
+55.12
+
+53.85
+
+57.34
+
+0
+−4.17
+−6.98
+
+−9.12
+
+−3.23
+
+Fig. 4.8 Inﬂuence of the leading vehicle speed
+
+78
+
+Z. Ajanović et al.
+
+Table 4.5 Inﬂuence of the leading vehicle speed
+
+Energy used
+[kJ]
+
+Difference
+[%]
+
+Time travelled
+[s]
+
+Difference
+[%]
+
+Unconstrained
+LV velocity 7.5
+LV velocity 8
+LV velocity 8.5
+LV velocity 9
+
+213.87
+213.94
+215.02
+215.61
+215.42
+
+0
+0.03
+0.53
+0.81
+0.72
+
+59.25
+58.07
+56.80
+63.49
+61.56
+
+0
+−1.99
+−4.13
+7.16
+3.89
+
+4.5 Conclusion
+
+Forward dynamic programming, as a ﬂexible approach, allows the consideration of
+available movement prediction of leading vehicles as constraints within travel speed
+optimization. As a result, a global optimal solution in energy consumption can be
+obtained. Sometimes additional travel time reduction compared to the existing
+overtaking approach reported in literature has been observed.
+
+The constrained problem showed up to require much smaller discretization steps
+to produce valid results compared to the unconstrained problem. A reason for this is
+that the optimal trajectory is usually very close to the constraints during an over-
+taking maneuver so a coarse grid can cause unwanted oscillations. As the minimum
+clearance between vehicles is only a few meters, it is also important that the space
+discretization step is at least one order smaller. Small space discretization steps
+automatically imply small velocity discretization steps to provide enough possible
+transitions in each step.
+
+For the sake of simplicity, the presented work investigated one leading vehicle
+moving in the same direction on a two lane road. However, extending the opti-
+mization to handle more vehicles or vehicles moving in different directions is
+straight forward, since additional vehicles are represented by constraints of the same
+type. The additional constraints just increase the computational effort, but the
+calculation schema stays the same. The consideration of available lanes at certain
+segments can be accomplished by adding the lane as an additional state.
+
+Although considering other trafﬁc participants within the optimization increases
+the effort for solving compared to the original unconstrained problem, there is a big
+potential for improvements in both, energy consumption and travelling time.
+
+First simulation studies also show that driver acceptance will not be a problem
+
+since the behavior is intuitive.
+While research on energy-efﬁcient driving trajectories (i.e. eco-driving) has already
+witnessed numerous efforts [1], the impact analysis of route choice on energy
+consumption and the development of energy-efﬁcient navigation systems (i.e.
+eco-routing) are relatively new subjects. Current available navigation systems
+suggest either the fastest or the shortest route. However, these route choices are not
+always the most energy-efﬁcient ones [2]. A recent experimental study in Sweden
+found that the drivers’ spontaneous route choice is not the most fuel-efﬁcient for
+46% of trips in the city of Lund. Also, these trips could have saved 8% fuel by
+using a fuel-optimized navigation system [3].
+
+The main challenge of an eco-routing navigation system lies in the accurate
+estimation of the vehicle energy consumption, as demonstrated in [4, 5]. Such
+energy consumption should be estimated on each of the different road segments
+composing the routing network of the area under analysis. Models for estimating
+vehicle energy consumption can be broadly divided into macroscopic and micro-
+scopic models, depending on how vehicular activities are aggregated over time and
+space. In a comprehensive study in [5], a comparison of several existing energy
+consumption and emission models for combustion-engine vehicles was conducted.
+After comparing 11 state-of-the-art consumption models, the authors conclude that
+only few may be effectively used for assigning eco-weights, among which also
+some macroscopic models.
+
+instantaneous velocities and accelerations, which are difﬁcult
+
+In general microscopic models are considered more precise because they take as
+to obtain
+input
+without equipped probe vehicles recording GPS and/or CAN-bus data. Eco-routing
+navigation systems based on this type of models need to acquire a large amount of
+driving data in order to determine a statistical cost on each road segment of the
+routing model. For instance, in [6] the authors propose a strategy to reconstruct
+synthetic speed proﬁles from historical speed data to calculate an instantaneous
+power demand and an energy cost for the road segments. In [7], analogously, the
+authors propose to compute eco-weights based on GPS data, and to periodically
+maintain these weights as new information is collected. Intuitively, this approach
+requires a long time to have a reliable and dense mapping of the energy costs of all
+the road segments in the routing network. Also, it requires arbitrary decisions to
+deal with data sparsity and incompleteness, and it is not suited for real-time route
+planning because it is limited to the GPS data area coverage.
+
+On the other hand, macroscopic models take as input mean velocities, mean
+travel time and road grade, which are typically easier to obtain through free or
+commercial historical databases. Such aggregated models can be further classiﬁed
+into regression-based models and load-based models. The regression-based models
+are generally difﬁcult to calibrate in order for all the parameters of the model to be
+signiﬁcant, and they may lead to random errors which are not easy to explain due to
+the little physical foundation of these models [8–10]. The load-based models rely
+upon the longitudinal dynamics of the vehicle and are easier to calibrate using the
+vehicle construction parameters [11, 12].
+
+the authors propose a macroscopic load-based model
+
+All these models make strong assumptions for the energy consumption esti-
+mation, by neglecting accelerations, or road grade, or the impact of the road net-
+work topology and signalization. Only few recent works address the importance of
+considering accelerations even when using macroscopic models, as well as con-
+sidering the elements of the road infrastructure that may cause vehicular speed
+disruptions. In [13],
+to
+compute the eco-weights on the road segments. They also propose a method to
+consider inter-link accelerations induced by the different adjacent average speeds.
+To do so, they have the intuition to separate the costs for all the turning movements
+available at a certain intersection. However, though aware of the fact that the size of
+the routing problem could grow signiﬁcantly, they neglect the issue. In addition,
+since electric vehicles and energy recovery phenomena are considered,
+the
+eco-routing strategy has to deal with the additional challenge of negative energy
+weights on certain road segments of the routing network. Optimal path-searching
+algorithms on graphs with negative weights (e.g. Bellman-Ford algorithm [14]) are
+often discarded in literature because of their computational cost. Alternative
+approaches have been proposed to tackle this issue, mostly based on heuristics for
+graph weights shifting [12] or non-optimal path searching [15].
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+83
+
+In this work, a novel macroscopic energy consumption model and a novel
+eco-routing strategy are described. The novelty of the proposed approach is sum-
+marized as follows.
+
+First, the macroscopic energy consumption model, based on the real physics of
+the vehicle, considers accelerations to move from one road segment to the adjacent
+ones. Also, additional accelerations induced by the road topology and infrastructure
+(e.g. trafﬁc lights, stop signs, turns, etc.) are considered in the energy consumption
+model.
+
+Then, since considering accelerations introduces a correlation between the
+energy cost of adjacent links, and the cost may not be unique due to the presence of
+multiple turning movements, this ambiguity is solved by deploying the routing
+strategy on the weighted adjoint graph. Such graph allows to decouple all the
+turning movements for a correct and non-ambiguous energy cost assignment, and
+also the decoupling is efﬁciently achieved avoiding the exponential growth of the
+routing graph.
+
+Finally, the presence of negative energy weights, due to regenerative breaking, is
+addressed by using an optimal path-searching algorithm, namely Bellman-Ford
+algorithm. The computational time is shown to remain acceptable, and also a
+strategy for a real-time use of the eco-routing navigation system is detailed.
+
+The overall architecture is arranged as a three-layer structure, where the (1) ac-
+quisition of road network and trafﬁc data, the (2) vehicle energy consumption
+model, and (3)
+the energy-oriented navigation algorithm layers all contain
+improvements with respect to the state of the art. Finally, validation results obtained
+via an experimental campaign are presented.
+
+5.2 Problem Description
+
+The objective of this work is a reduction of the energy spent for traction by electric
+vehicles, therefore an increase of their range, obtained through an intelligent nav-
+igation system that performs an energy consumption minimization given an origin
+and a destination. This may be seen as an optimization problem where the function
+to be minimized is the energy consumption of the vehicle. The objective function
+depends on several variables, different in nature and difﬁcult to know or estimate:
+vehicle parameters, network topology, trafﬁc conditions, road grade, driving style,
+etc.
+
+In Fig. 5.1, the proposed eco-routing functioning scheme is reported. Mainly, a
+
+reliable and effective eco-routing strategy depends on three critical modules.
+
+The quality of the map data is of primary importance for a realistic represen-
+tation of the road transportation network, on which the navigation strategy will be
+deployed. These data can be static and dynamic. Static map data include position of
+the roads, position of the intersections, driving directions on the roads, road grade.
+Dynamic map data include trafﬁc conditions. An accurate energy consumption
+model allows to effectively predict
+the energy consumption over a given
+
+84
+
+G. De Nunzio et al.
+
+Fig. 5.1 Overview of the proposed eco-routing strategy
+
+trip. Finally, the map data can be used to generate a model of the road transportation
+network and the navigation framework. Such model is fed with the energy con-
+sumption estimates given by the vehicle model in order to assign a cost to each road
+section in the model. An algorithm to ﬁnd the energy-optimal sequence of road
+segments to drive from the desired origin to the desired destination is needed to
+return the eco-route.
+
+In the following, each module of the strategy will be detailed.
+
+5.2.1 Map Data
+
+The accuracy and reliability of the macroscopic information about the road trans-
+portation network and trafﬁc conditions are paramount for an effective energy
+consumption prediction and a credible energy-aware navigation assistance.
+For this work, the data were provided by Here Maps web-services [16].
+
+Road Network Topology
+The position of road segments and intersections, the driving directions on the road
+segments, and the altitude along the road segments are what is usually referred to as
+“road topology”. The information about the road network topology is provided by
+Here Maps as a list of road segments, uniquely classiﬁed by ID and degree of
+importance. There are ﬁve degrees of importance, or functional classes, for all the
+road segments in Here Maps database, ranging from degree 1 for the main
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+85
+
+highways to degree 5 for the secondary urban streets. Each road segment is also
+identiﬁed by the two endpoints, whose GPS coordinates are given, and by a driving
+direction. For each road segment, Here Maps provides also altitude information as a
+function of the position along the road segment.
+
+This information was used to generate the road transportation network of the
+
+area under analysis.
+Trafﬁc Conditions
+For each road segment, Here Maps is able to provide an average trafﬁc speed,
+which is the average speed that all vehicles are supposed to keep given the pre-
+vailing trafﬁc conditions. Evidently, the average trafﬁc speed is a function of time
+and can be provided by Here Maps for a desired time in the past (based on historical
+data), in the present (based on true trafﬁc data provided by probe vehicles if
+available, or based on historical data), in the future (based on prediction models).
+
+5.2.2 Vehicle Energy Consumption Model
+
+In order to have an accurate estimation of the vehicle energy consumption, the
+complete vehicle powertrain must be modeled taking into account: road grade,
+aerodynamic and rolling friction forces, transmission ratio and efﬁciency, motor
+torque saturation, regenerative braking, electric motor efﬁciency, inverter efﬁciency
+and ohmic losses in the motor wirings (Fig. 5.2).
+
+Vehicle Longitudinal Model
+The vehicle longitudinal dynamical model may be generally written as [17]:
+
+m
+
+dvðtÞ
+dt
+
+¼ Fw (cid:3) Faero (cid:3) Ffriction (cid:3) Fslope
+
+where m is the vehicle mass, vðtÞ the vehicle speed, Fw the force at the wheels, Faero
+the aerodynamic force, Ffriction the rolling resistance force, Fslope the gravity force.
+
+Therefore, the vehicle model shall be written as:
+
+(cid:1)
+
+_x tð Þ ¼ v tð Þ
+m_v tð Þ ¼ Fw (cid:3) 1
+
+2 qaAf cdv tð Þ2(cid:3)mgcr (cid:3) mg sin a xð Þ
+
+ð
+
+Þ
+
+Fig. 5.2 Electric vehicle powertrain
+
+86
+
+G. De Nunzio et al.
+
+where qa is the external air density, Af
+is the vehicle frontal surface, cd is the
+aerodynamic drag coefﬁcient, cr is the rolling resistance coefﬁcient, aðxÞ is the road
+slope as a function of the position, and g is the gravity.
+
+The sum of the aerodynamic and rolling frictions, namely the road load force, is
+
+often approximated as a second order polynomial in the speed v [18]:
+
+Fres ¼ Faero þ Ffriction ¼ a2v tð Þ2 þ a1v tð Þ þ a0
+
+where a0; a1 and a2 are parameters identiﬁed for the test vehicle. Therefore, the
+force at the wheels can be expressed as:
+
+Fw ¼ m_v tð Þ þ a2v tð Þ2 þ a1v tð Þ þ a0 þ mg sin a xð Þ
+
+ð
+
+Þ
+
+The torque requested to the electric motor to meet the force demand at the
+
+wheels is deﬁned as:
+
+(
+
+Tm ¼
+
+;
+
+Fwr
+qtgt
+Fwrgt
+qt
+
+;
+
+if Fw (cid:4) 0
+if Fw\0
+
+where r is the wheel radius, qt
+respectively.
+
+and gt are the transmission ratio and efﬁciency,
+
+An electric motor is a reversible machine, therefore it acts as a motor when Tm is
+positive and as a generator (i.e. energy recovery) when Tm is negative. The torque
+generated by the electric motor is saturated by a maximum torque Tm;max and a
+minimum torque Tm;min. In particular, during braking phases, if the motor torque is
+less negative than the negative saturation Tm;min, then the vehicle is slowed down
+only by the regenerative brake. Otherwise, the mechanical brake works together
+with the regenerative brake.
+
+The power available at the electric motor shaft, in the presence of regenerative
+
+braking mechanism, shall be written as follows:
+
+8
+<
+
+:
+
+Pm ¼
+
+Tm;maxx tð Þ;
+Tmx tð Þ
+Tm;minx tð Þ
+
+if Tm (cid:4) Tm;max
+if Tm;min\Tm\Tm;max
+if Tm (cid:5) Tm;min
+
+Where xðtÞ is the motor rotational regime and is deﬁned as:
+
+x tð Þ ¼ v tð Þqt
+r
+
+Finally, the power demand at the battery of the electric vehicle, can be expressed
+
+as:
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+87
+
+(cid:1)
+
+Pb ¼
+
+;
+
+Pm
+gb
+Pmgb
+
+;
+
+if Pm (cid:4) 0
+if Pm\0
+
+Where gb is the electric drive overall efﬁciency (i.e. electric motor, inverter,
+
+wiring, battery).
+
+In order to improve the model accuracy and the reliability of the energy con-
+sumption estimation, it is important to take into account also the auxiliary power
+requirements. In fact, the power required for driver’s comfort, namely the heating or
+the air conditioning system, has a signiﬁcant impact on the energy consumption. In
+particular, for an electric vehicle, comfort power requirement has a major impact on
+the range, and such impact increases with the trip duration and the ambient tem-
+perature difference with respect to the desired cabin temperature.
+
+The auxiliary power term for comfort can be expressed as a function K of the
+
+ambient temperature, as illustrated in Fig. 5.3.
+
+Therefore, the battery energy consumption over the generic travel time T is
+
+obtained as:
+
+Paux ¼ KðTambÞ
+
+Eb ¼
+
+ðPb þ PauxÞdt
+
+ZT
+
+0
+
+Macroscopic Adaptation of the Vehicle Model
+A time-variant speed or acceleration proﬁle is not available via the map
+web-services, therefore the energy consumption model previously described cannot
+be directly adopted to compute the energy expenditure of a trip.
+
+The model equations presented in the previous section can be rewritten by
+replacing the time-variant speed vðtÞ with the average trafﬁc speed (cid:2)v provided by
+Here Maps. All the vehicles on the road segment i are supposed to travel at speed vi.
+As a consequence the impact of acceleration is no longer taken into account, which
+
+Average Power for Comfort
+
+]
+
+W
+
+[
+ 
+r
+e
+w
+o
+P
+
+6000
+5000
+4000
+3000
+2000
+1000
+0
+
+-20
+
+-10
+
+0
+
+10
+
+20
+
+30
+
+40
+
+Ambient Temperature [°C]
+
+Fig. 5.3 Auxiliary power absorption as a function of the ambient temperature
+
+88
+
+G. De Nunzio et al.
+
+can have a non-negligible impact on energy consumption. Experimental
+tests
+conducted internally showed that this criticality arises whenever the acceleration
+term m_vðtÞ is not negligible when compared to the sum of the friction and gravi-
+tational forces Fres þ Fslope. In other words, the force at the wheels could be largely
+underestimated if the accelerations are neglected when the speed is low and the road
+grade is negative (e.g. a typical scenario of an urban trafﬁc jam or a trafﬁc light on a
+link with negative road grade). Intuitively, for an electric vehicle, which is able to
+recover energy through braking, this could translate into predicting energy recovery
+on links that are actually quite energy expensive. Therefore, the energy con-
+sumption estimation based solely on average speed is not suitable for electric
+vehicles.
+
+In this work, the accuracy of the macroscopic energy consumption estimation
+and of the eco-routing navigation is demonstrated to improve signiﬁcantly by
+considering accelerations induced by the different average trafﬁc speeds and/or the
+known infrastructure elements (i.e. turns, signalized intersections, etc.).
+
+Interface accelerations
+In order to take into account the acceleration effects, and improve the model and the
+energy consumption estimation, the trip on each road segment is supposed to be
+composed of two phases: a cruising phase at the constant speed vi, and an accel-
+eration phase to go from vi(cid:3)1 to vi. Therefore, even though the available infor-
+mation imposes to neglect the temporal acceleration within the road link, the spatial
+acceleration that
+links will be
+considered.
+
+the interface between adjacent
+
+takes place at
+
+The time-varying velocity vðtÞ in every transient is linearly modeled as:
+
+v tð Þ ¼ vi(cid:3)1 þ sign vi (cid:3) vi(cid:3)1
+
+ð
+
+Þat
+
+with vi(cid:3)1 being the constant velocity on the incoming link, vi the constant velocity
+on the outgoing link, a the constant acceleration to perform the jump, and t the time
+needed to perform the speed variation.
+
+A limitation of this modeling solution is that speed ﬂuctuations within a link are
+neglected, which could be an issue in trafﬁc. However, modeling the acceleration
+within a link seems unrealistic at a route planning level, because it highly depends
+on local trafﬁc conditions, and as such is often spontaneous and unpredictable. Also
+note that this assumption mainly affects long and congested links; more speciﬁcally,
+it may lead to underestimation of the energy consumption on those road segments.
+The employed map web-service provides a densely discretized information about
+the road network with rather short links (i.e. average length of about 50 m). With
+such a conﬁguration, it is safer to assume that the travel speed in each link is equal
+or close to the average trafﬁc speed vi.
+
+Infrastructure-induced accelerations
+The consideration of the interface accelerations allows the energy consumption
+model to be more precise and realistic. However, as mentioned before, the available
+a priori information about the average trafﬁc speed is not always complete nor
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+89
+
+Fig. 5.4 Infrastructure-induced accelerations considered in the vehicle energy consumption
+model
+
+updated. In particular, it is very difﬁcult and unlikely to have accurate speed
+information on secondary urban streets. In fact, it may happen that the provided
+trafﬁc speed information on a secondary street is merely equal to a nominal value,
+thus not offering a speed variability across adjacent road links. This may lead to
+underestimations of the energy consumption, and therefore lead the eco-routing
+algorithm to blindly favor this type of streets. Therefore, additional information,
+besides the average trafﬁc speed, should be considered in the energy consumption
+model for a higher robustness in case of partial available information.
+
+Disruptions in the speed proﬁles and accelerations are caused not only by trafﬁc,
+but also by the infrastructure. In particular, critical elements of the road infras-
+tructure, such as trafﬁc lights and intersections are very likely to induce stops or
+signiﬁcant decelerations. Therefore, when the information about the position of
+these critical elements is available, the energy consumption term associated with
+acceleration should be modiﬁed accordingly.
+
+For instance, a stop and therefore an additional speed variation could be intro-
+duced if a trafﬁc light, or a stop sign is known to be located at a speciﬁc inter-
+section. The speed change between two road segments connected by such
+intersection will be then modeled as two distinct transients: the ﬁrst transient from
+vi(cid:3)1 to 0, the second transient from 0 to vi (see Fig. 5.4).
+
+5.2.3 The Energy-Oriented Navigation System (Eco-Routing)
+
+The provided map data need to be interpreted and used in order to represent the road
+transportation network. For the correct deployment of an energy-oriented navigation
+system, each road segment of the topology needs to be assigned an energy cost,
+which represents the energy expenditure for traveling on the segment. Such energy
+cost is evidently provided by the vehicle consumption model, which makes use also
+of topology information for a more realistic energy consumption estimation.
+
+90
+
+G. De Nunzio et al.
+
+Fig. 5.5 Construction example of an adjoint graph
+
+The Graph as a Modeling Tool for the Road Transportation Network
+The road transportation network can be modeled as a graph, a versatile mathe-
+matical tool often used to represent any physical or chemical structure that features
+interconnections.
+
+Let G ¼ ðV; AÞ be such a graph, where V is the set of vertices (or nodes) of
+cardinality n, and A is the set of feasible arcs (or links) of cardinality m connecting
+the nodes of the graph. Let us deﬁne a weighting function w : A ! W, which
+associates each link of the graph with a weight.
+
+In conventional navigation systems and routing graphs (e.g. Google Maps), the
+weight associated with each arc is either the length of the arc or its travel time. In
+the eco-routing framework, each link of the graph is assigned a weight that rep-
+resents the energy expenditure to travel on the link. The consideration of the
+interface accelerations between adjacent links arises a major issue in the graph
+modeling of the road network. In particular, every node of the graph with two or
+more incoming links is critical because vi(cid:3)1 and, consequently, the transient energy
+consumption are not unique. Evidently, this prevents from assigning unique energy
+costs to the links of the graph. Hence, the graph G is not adequate for the proposed
+energy modeling approach.
+
+This difﬁculty can be resolved by introducing another mathematical tool of
+graph theory, often used to study the intrinsic connection properties of regular
+graphs: the adjoint graph. The adjoint graph LðGÞ of a graph G has as nodes the
+links of G, and two nodes of LðGÞ are adjacent whenever the corresponding links of
+G are adjacent. The routing problem will be then solved on the adjoint graph LðGÞ
+instead of the original graph G (Fig. 5.5).
+
+Using the adjoint graph LðGÞ as routing graph allows to uniquely assign the
+energy weights to each link of the graph, by decoupling all the possible turning
+movements modeled in the original graph G. Each link of the adjoint graph rep-
+resents a path on two adjacent links, and therefore each link of the adjoint graph
+contains information about a link of the original graph and its upstream link.
+
+This intrinsic property of the adjoint graph allows not only to properly consider
+the interface accelerations between adjacent links (i.e. vi(cid:3)1 ! vi), but also to model
+in a more realistic way the impact of the infrastructure on the energy consumption.
+More speciﬁcally, as previously mentioned in the vehicle model section, a stop and
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+91
+
+a modiﬁed energy term (i.e. vi(cid:3)1 ! 0 ! vi) can be introduced on the links of the
+adjoint graph that contain a critical element of the infrastructure.
+
+The Eco-Route Searching Algorithm
+Finally, the last stage of the proposed navigation system consists in the actual
+search of the route that minimizes the energy consumption to travel from a selected
+origin to a destination in the road network. Minimization of a cost in a weighted
+graph can be solved by means of a shortest path algorithm.
+
+As previously said, such an algorithm will be run on the adjoint graph. Note that
+the weights on the arcs can be negative, since regenerative braking is considered.
+Therefore, the Bellman-Ford algorithm is a necessary choice to ﬁnd the global
+optimum [14]. Once the algorithm returns the shortest path on the adjoint graph (i.e.
+the most energy-efﬁcient), the result can be easily mapped back to the original
+graph, in order to have the sequence of nodes composing the eco-route.
+Real-Time Trafﬁc Conditions and Eco-Route
+The road grade and the road network topology, along with available trafﬁc lights
+position, as previously mentioned, are supposed not to vary over time and can be
+safely stored ofﬂine for faster computation. The trafﬁc conditions, on the contrary, are
+extremely time-dependent. An ideal real-time query of the map data to retrieve the
+trafﬁc conditions of the entire road network is not suitable for online use of the
+eco-routing navigation system. In fact, this would require not only the necessary time
+to perform all the queries for each link of the graph, but also the time for updating the
+weights (i.e. recalculating the energy costs) on all the links of the adjoint graph.
+
+Another option, more suitable for online purposes, may be to store ofﬂine the
+global information about historical trafﬁc conditions for different days of the week
+and for different times of the day. The real-time adaptation is carried out only after
+the driver selects the desired origin, destination and departure time (see Fig. 5.6).
+The desired departure time is used to load the historical trafﬁc conditions stored
+ofﬂine relative to the same day of the week at the same time of the day. The N-best
+eco-routes are calculated on the graph weighted with the historical data using an
+adaptation of Yen’s algorithm [19]. Their total cost is updated then according to the
+trafﬁc conditions at
+the desired time of departure, and compared in order to
+determine the current best itinerary in terms of energy consumption.
+
+Evidently, the advantage is that only a subset of links need to be updated. The
+drawback is that the solution becomes sub-optimal. However, it is often the case to
+trade an impractical global optimal solution for a faster local sub-optimal one.
+
+Fig. 5.6 Block diagram of the eco-routing algorithm with consideration of current
+conditions
+
+trafﬁc
+
+92
+
+G. De Nunzio et al.
+
+5.3 Validation Results
+
+The vehicle energy consumption model
+(described in Sect. 5.2.2) and the
+eco-routing strategy (described in Sect. 5.2.3) have been also tested and validated
+during an experimental campaign conducted in Turin at CRF on the Fiat 500e.
+
+The objective of the experimental campaign was twofold: ﬁrstly tuning the
+vehicle parameters and validating the vehicle model, then comparing the energy
+consumption of the different routes to validate the eco-navigation system.
+
+Vehicle Model Validation
+In the following an overall statistical analysis of the data will be reported to
+demonstrate the accuracy of the proposed vehicle consumption model using both
+the real measured driving proﬁle vðtÞ and the average trafﬁc speeds vi provided by
+Here Maps. The map data provided by Here Maps and used in the following
+analysis are relative to the week 04/04/2016–10/04/2016 at different times of the
+day collected every hour. The energy consumption prediction for each driving test
+was conducted by using the historical map data of the same day of the week as the
+actual driving test at the same time of the day (e.g. driving test on July 7th at 09:46
+am ! historical data of April 7th at 10:00 am).
+
+Note that using the measured driving proﬁle vðtÞ will allow to evaluate the
+accuracy of the vehicle model parameters. The altitude proﬁle used in the model for
+the energy consumption calculation is provided by Here Maps.
+
+On the other hand, using the average trafﬁc speeds vi provided by Here Maps
+will allow to additionally evaluate the reliability of the modiﬁed energy con-
+sumption
+and
+introduces
+the
+infrastructure-induced accelerations, as described in Sect. 5.2.2. Evidently,
+estimation based on the vi is expected to be less accurate than the estimation based
+on the measured vðtÞ.
+
+accelerations
+
+interface
+
+model,
+
+which
+
+In Fig. 5.7, it is shown that the energy consumption estimation error using the
+measured driving speed is in average less than 5% for the entire data collection of
+35 driving tests. On the other hand, the energy consumption estimation error using
+the average trafﬁc speeds provided by Here Maps is in average less than 8%.
+
+In Fig. 5.8, the travel time prediction error using the average trafﬁc speeds vi
+provided by Here Maps is reported. The average value of the travel time prediction
+error is 12%.
+
+The following important conclusion can be drawn. The proposed vehicle energy
+consumption modeling approach takes the raw values of vi and processes them in
+order to enrich the information and improve the energy consumption estimation
+accuracy by introducing also acceleration terms in the computation. On the other
+hand, the travel time estimation, which is out of the scope of the Optemus project, is
+carried out by simply using the raw values of vi.
+
+The travel time prediction is less accurate than the energy consumption esti-
+mation. This means that the information about the average trafﬁc speeds provided
+by Here Maps is not extremely accurate. Although the information about the
+average trafﬁc speeds is imperfect, the proposed energy consumption model allows
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+93
+
+Fig. 5.7 Distribution of the energy consumption estimation error. On the left-hand side the
+estimation error using vðtÞ. On the right-hand side the estimation error using the vi
+
+Fig. 5.8 Distribution of the travel time estimation error using the vi
+
+to reach promising estimation performance. Note that the map data and in particular
+the average trafﬁc speeds used in the validation are historical data stored ofﬂine and
+relative to a sample week in the past.
+
+94
+
+G. De Nunzio et al.
+
+Fig. 5.9 Distribution of the measured energy consumption repeatability dispersion
+
+The travel time prediction error is higher than the travel time prediction error that
+can be observed by using the Here Maps website. This means that Here Maps
+computes the travel time prediction by processing the average trafﬁc speeds through
+proprietary algorithms in order to improve accuracy.
+
+Finally, a statistical analysis of the repeatability properties of the driving tests
+was conducted, as shown in Fig. 5.9. In particular, for each set of repeated routes
+with the same characteristics (driver, departure time, accuracy of the route track-
+ing), the CAN-measured energy consumption of the single trip was compared to the
+average energy consumption of the set of repetitions. The repeatability character-
+istics of different driving tests of a same route are important for the next validation
+phase concerning the performance of the eco-route.
+
+Eco-Routing Validation
+For the validation analysis of the proposed navigation system, the performance on
+one of the tested O/D pairs will be reported in the following.
+
+The O/D pair that will be analyzed here is:
+
+(cid:129) Origin: 393, Corso Moncalieri, Turin, Italy
+(cid:129) Destination: Variante del Dojrone, Rivalta di Torino, Turin, Italy
+
+The eco, shortest and fastest routes tested in the experimental campaign are
+
+shown in Fig. 5.10.
+
+For validation of the proposed navigation system, let us report ﬁrst the cumu-
+lative sum of the real and predicted energy consumption over the entire length of
+the trip. This allows not only to compare the ﬁnal value of the cumulative sum,
+which corresponds to the total energy consumption of the trip, but also the quality
+of the prediction along the trip. In fact, it is important that the prediction is able to
+replicate as faithfully as possible the energy consumption trends observed in the
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+95
+
+Fig. 5.10 The routes tested in the experimental campaign for the selected O/D pair
+
+Fig. 5.11 Cumulative sum of the energy consumption of the eco-route in one of the repetitions.
+In green the predicted energy consumption based on the map data provided by Here Maps. In
+magenta the measured energy consumption
+
+measured consumption. In Fig. 5.11, it is possible to compare the predicted and real
+energy consumption of one driving test on the eco-route.
+
+Similarly, the energy consumption on the shortest route can be observed in
+
+Fig. 5.12.
+
+Finally, the real and predicted energy consumptions for the fastest route are
+shown in Fig. 5.13. The prediction appears to make a signiﬁcant error on the trip
+portion between 8 and 12 km. This corresponds to the stretch of highway of the
+
+96
+
+G. De Nunzio et al.
+
+Fig. 5.12 Cumulative sum of the energy consumption of the shortest route in one of the
+repetitions. In green the predicted energy consumption based on the map data provided by Here
+Maps. In magenta the measured energy consumption
+
+Fig. 5.13 Cumulative sum of the energy consumption of the fastest route in one of the
+repetitions. In green the predicted energy consumption based on the map data provided by Here
+Maps. In magenta the measured energy consumption
+
+5 Model-Based Eco-Routing Strategy for Electric …
+
+97
+
+Fig. 5.14 Measured and predicted average performance of the eco, shortest and fastest routes in
+terms of energy consumption, travel time and travel distance
+
+fastest route, therefore a portion of the trip in which the travel speed is above
+100 km/h. The sources of this error could be multiple and concurrent: inaccurate
+estimation of the road grade,
+inaccurate vehicle model parameters, difference
+between the actual driving speed and the average trafﬁc speed estimated by Here
+Maps. However, the ﬁnal error on the energy consumption estimation remains
+limited to about 13%. As demonstrated in the previous section and in Fig. 5.7, the
+overall prediction error is quite low.
+
+In Fig. 5.14, the average measured and predicted performance indices of the eco,
+shortest and fastest routes are reported. The average is calculated over the repeti-
+tions for each type of route. It is possible to observe that the proposed navigation
+system predicts higher gains in terms of energy consumption of the eco route with
+respect to the shortest and fastest route. The measured performance gain is more
+moderate. Overall, it is possible to observe a performance consistency among the
+three routes. In other words, the eco-route is the most energy efﬁcient route both in
+simulation and in reality. Similarly, the shortest route is the minimum-distance
+route, and the fastest route is the minimum-time route.
+
+A focus on the average measured energy consumption is reported in Fig. 5.15.
+According to the CAN measurements of the driving tests, the eco-route allows to
+achieve 5% savings in terms of energy consumption with respect to the shortest
+route and 13% savings with respect to the fastest route.
+
+5.4 Conclusions
+
+In this work an innovative energy-efﬁcient navigation system is described.
+
+The existing eco-routing methods are inadequate to accurately estimate the
+energy consumption of an electric vehicle in urban environment. Furthermore, the
+impact of onboard accessories and systems for the driver’s comfort
+is often
+neglected. This work demonstrates that the proposed vehicle model and navigation
+system is able not only to accurately estimate the real energy consumption of the
+vehicle, but also to give a reliable route suggestion to the driver to reduce the trip
+
+98
+
+G. De Nunzio et al.
+
+Fig. 5.15 Average measured energy consumption of the eco, shortest and fastest route
+
+energy consumption. This is achieved by simply using historical map data and
+average trafﬁc speeds available on commercial map web-services.
+
+An experimental campaign conducted on the demonstration vehicle (i.e. Fiat
+500e) validated both the adopted vehicle energy consumption model and the pro-
+posed navigation system. Based on vehicle data measured over the CAN bus, the
+average energy consumption savings of the eco-route with respect to the shortest
+route are in the order of 5%, and the savings with respect to the fastest route are in
+the order of 13%.

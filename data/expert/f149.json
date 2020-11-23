@@ -1,0 +1,16 @@
+{"front_axle": {
+    "suspension_stroke":[[1,2], [1,2]], 
+    "rear_wheel_driven_car":[[1,2], [2,2], [2,2]], 
+    "side_slip_angle":[[1,2], [2,2]], 
+    "transversal":[[1,2]], 
+    "axle":[[2,4], [2,2], [3,2], [3,2], [4,3], [3,2]], 
+    "vertical_force":[[1,2], [2,2]], 
+    "front_wheel":[[2,4], [1,2], [3,2], [2,2], [3,2]], 
+    "rear_wheel":[[1,2], [2,2], [1,2]], 
+    "longitudinal":[[1,2], [2,2]], 
+    "rear_axle":[[2,2], [2,2], [1,2]], 
+    "load_transfer":[[1,2], [2,2]], 
+    "roll_stabilization":[[1,2], [2,2]], 
+    "panhard_bar":[[1,2]], 
+    "front_rear":[[2,4], [1,2], [3,2], [2,2]], 
+    "front_rear_axle":[[2,4], [3,2], [4,2], [2,2], [4,2]]}}

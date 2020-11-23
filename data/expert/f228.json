@@ -1,0 +1,16 @@
+{"wheel_load": {
+    "camber":[[2,2]], 
+    "lateral_force":[[2,2]], 
+    "vertical_load":[[3,2]], 
+    "longitudinal_force":[[2,2]], 
+    "vertical_force":[[3,2]], 
+    "slip_angle":[[1,2]], 
+    "corner_force":[[2,2]], 
+    "corner_stiffness":[[1,2]], 
+    "side_force":[[1,2]], 
+    "roll_angle":[[1,2]], 
+    "side_slip_angle":[[1,2]], 
+    "load_transfer":[[2,2]], 
+    "roll_resistance":[[1,2]], 
+    "camber_angle":[[2,2]], 
+    "deflection":[[2,2]]}}

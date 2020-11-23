@@ -1,0 +1,16 @@
+{"wheel": {
+    "axle":[[2,3], [2,2]], 
+    "half_axle":[[2,2]], 
+    "spin":[[2,3], [2,2]], 
+    "roll":[[2,3], [2,2]], 
+    "lateral_force":[[1,3], [2,2]], 
+    "longitudinal_force":[[1,3], [2,2]], 
+    "rotation":[[2,3], [2,2]], 
+    "rear_axle":[[2,3], [2,2]], 
+    "front_axle":[[2,3], [2,2]], 
+    "driven_wheel":[[2,3], [3,2]], 
+    "four_wheel":[[1,3], [2,2]], 
+    "vertical_force":[[1,3], [2,2]], 
+    "suspension_stroke":[[1,3], [2,2]], 
+    "front_wheel":[[2,3], [3,2]], 
+    "tyre":[[4,3], [3,2]]}}

@@ -1,0 +1,16 @@
+{"curve": {
+    "infinite_slip":[[1,4], [2,2], [2,1]], 
+    "track_error":[[1,4], [1,2], [2,1]], 
+    "straight_line":[[1,4], [1,2], [2,1]], 
+    "traction_force":[[2,4], [2,2], [4,1]], 
+    "characteristic_curve":[[4,4], [3,2], [3,1]], 
+    "acceleration_deceleration":[[2,4], [1,2], [2,1]], 
+    "plot":[[1,4], [1,2], [3,1]], 
+    "yaw_velocity":[[2,4], [2,2], [3,1]], 
+    "steady_state":[[1,4], [1,2], [1,1]], 
+    "slope":[[2,4], [2,2], [2,1]], 
+    "profile":[[2,4], [2,2], [1,1]], 
+    "constant_radius":[[2,4], [2,2], [1,1]], 
+    "maximum_transmittable":[[1,4], [2,2], [1,1]], 
+    "hyperbola":[[3,4], [3,2], [2,1]], 
+    "gear_dependent":[[2,4], [1,2], [4,1]]}}

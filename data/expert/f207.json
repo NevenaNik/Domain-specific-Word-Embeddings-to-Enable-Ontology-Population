@@ -1,0 +1,16 @@
+{"spring": {
+    "bushing":[[1,4]], 
+    "elastic":[[2,4]], 
+    "damper":[[2,4]], 
+    "screw":[[1,4]], 
+    "shock_absorber":[[2,4]], 
+    "bolt":[[1,4]], 
+    "coil_spring":[[3,4]], 
+    "stop_spring":[[3,4]], 
+    "torsion_bar":[[2,4]], 
+    "caliper":[[1,4]], 
+    "roller":[[1,4]], 
+    "rod":[[1,4]], 
+    "tube":[[1,4]], 
+    "rack":[[1,4]], 
+    "twist":[[2,4]]}}

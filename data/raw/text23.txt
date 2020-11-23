@@ -1,0 +1,3383 @@
+Artiﬁcial Intelligence for Modeling
+and Control of Nonlinear Phenomena
+in Internal Combustion Engines
+
+Artiﬁcial intelligence techniques allow to solve highly nonlinear problems offering
+an alternative way to deal with complex and dynamic systems with good ﬂexibility
+and generalization capability. They are widely used in several areas ranging from
+power system modeling and control to medicine and social sciences. Because of
+their good ability to model nonlinear phenomena together with their relatively
+simple application procedure, artiﬁcial
+intelligence systems have found an
+increasing usage in the modeling, diagnosis, and control of internal combustion
+engines. The most used techniques include Artiﬁcial Neural Networks (ANNs),
+Genetic Algorithms, Expert Systems, fuzzy logic and hybrid systems, with several
+combinations of two or more of these.
+
+The present chapter aims to describe the use of artiﬁcial intelligence in some engine
+applications where the inherent nonlinear nature of the process dynamics requires
+alternative approaches to guarantee a more accurate control action. A special focus
+will be kept on the use of Artiﬁcial Neural Networks and fuzzy logic techniques.
+
+1.1 Neural Networks Architectures for Engine
+
+Applications
+
+Neural networks provide a wide range of functions that can be used in the ﬁeld of
+engine control. They can be used for example to train black box process models of
+various engine subsystems with few a priori theoretical knowledge. In this way,
+difﬁculties that appear when applying classical techniques on complex nonlinear
+systems are suppressed.
+
+A basic characteristic of neural networks is that of emulating the structure of
+human brain and, in particular, its ability to learn from experience without actually
+modeling the physical and chemical laws that govern the system [1–3]. In general
+terms, an Artiﬁcial Neural Network is a computational system able to store and
+
+© The Author(s) 2018
+F. Taglialatela Scafati et al., Nonlinear Systems and Circuits in Internal
+Combustion Engines, SpringerBriefs in Nonlinear Circuits,
+https://doi.org/10.1007/978-3-319-67140-6_1
+
+1
+
+2
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+Fig. 1.1 Example of a
+neuron model
+
+utilize knowledge acquired through experimenting [4] and it can be deﬁned as an
+interconnected assembly of simple computational elements called neurons or nodes.
+Each element receives the inputs from neighboring nodes, sums all these contri-
+butions, and produces an output that is a nonlinear function of the sum. The signals
+ﬂowing on every connection are appropriately scaled by programmable parameters
+called weights. In Fig. 1.1, an example of neuron model is depicted. In Fig. 1.1, xi
+represents the ith input (i.e. the ith component of the vector X), wi is the relative
+weight at the ith input (ith component of the vector W), and f(WT, X) is a function,
+known as activation function whose value, calculated as weighted sum of the
+inputs, represents the neuron outputs.
+
+An important part of the modeling with neural networks is the so-called training of
+the network (learning procedure). This latter is the process that, using different learning
+algorithms chosen according to the network structure and type, assigns values to the
+network parameters (in particular, to the connection weights) in order to minimize the
+error between the outputs of the neural model and the correct or desired outputs.
+
+The most popular learning algorithms are the back-propagation and its variants,
+which are generally applied to multi-layer feedforward networks having differen-
+tiable activation functions. The back-propagation algorithm is an iterative algorithm
+that updates the values of the network interconnections such that a total square error
+is optimized on a set of input/output data. The error can be expressed by:
+
+E ¼ 1
+2
+
+X
+
+X
+
+p
+
+i
+
+ðti;p (cid:2) yi;pÞ2 ¼ 1
+2
+
+X
+
+p
+
+Ep;
+
+ð1:1Þ
+
+where p is the number of data supplied during the learning, i is the number of
+outputs (i.e. of neurons in the last layer), t is the desired output value, and y is the
+corresponding value calculated by the network. Initially, the training is performed
+by assigning random values to the weights wi,j. With every iteration, one of the
+training set samples is provided to the neural network and the error committed by
+each neuron output is calculated. Then, the gradient algorithm for back-propagation
+of the output error is applied backward through the network updating the value of
+the weights, according to the formula:
+
+DWijðtÞ ¼ (cid:2)e
+
+@Ep
+@Wij
+
+;
+
+ð1:2Þ
+
+where e is a parameter chosen by the user and called speed of the learning.
+
+1.1 Neural Networks Architectures in Engine Applications
+
+3
+
+The training of all the patterns of a training data set is called an epoch. The
+learning procedure uses a number of epochs that allows to obtain a sufﬁciently low
+error or an error that no longer decreases. This latter case indicates the incapacity of
+the network to solve the problem.
+
+The learning procedure must be carefully designed. The training data should
+cover all nonlinearities and should contain information spread evenly over the
+entire range of the system. This allows to avoid signiﬁcant model failure if the
+neural network model is used in a region where an insufﬁcient amount of data is
+supplied. Moreover, for a good predictive ability of an ANN, it is important that the
+training and the validation are done using experimental and independent data.
+
+An important basic operation that has to be followed to successfully handle a
+problem with Artiﬁcial Neural Networks is the selection of a suitable network
+architecture, which is a choice that mainly depends on the problem.
+
+One of the most frequently employed neural architectures, also in engine
+applications, is the multi-layer perceptron (MLP). MLP networks consist of suc-
+cessive layers of adaptive weights, with a layer of input neurons, some internal
+layers (also called hidden layers), and a layer of output neurons. The neurons of
+each layer have connections that run from every unit in one layer to those in the
+layers, creating a feedforward architecture with no feedback loops (see
+next
+Fig. 1.2). Therefore, an MLP structure is characterized by the number of neurons of
+each layer and the number of hidden layers. The number of hidden layer can be
+increased depending on the problem; however, the most frequent conﬁguration is
+that with one internal layer only, which is suitable for the majority of the engine
+modeling and control problems to be handled. On the other hand, big growing
+networks can be ill-posed for overtraining and be difﬁcult to implement in real time.
+Recurrent Neural Networks (RNN) are neural networks with one or more global
+feedback loops, usually with a unit time delay (often denoted by z−1). The presence
+of feedback loops introduces a dynamic effect in the computational system and
+makes them suitable for black box nonlinear dynamic modeling and for input–
+output mapping. This feature is of a particular interest in engine applications.
+
+Fig. 1.2 Structure of an MLP
+neural network model
+
+4
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+Fig. 1.3 General structure of
+a NARX neural network
+model
+
+The architectural layout of a recurrent network can take many different forms
+mainly dependent on the feedback typology. In nonlinear auto regressive with
+exogenous input (NARX) models, the input of a generic multi-layer perceptron is
+applied to a tapped delay-line memory of q units, whereas the output is fed back to
+the input via another tapped delay-line memory, also of q units. The contents of
+these two tapped-delay-line memories are used to feed the input layer of the
+multi-layer perceptron [3]. A typical structure of NARX model is shown in Fig. 1.3.
+In Fig. 1.3, the present value of the model input is denoted by u(n) and the
+corresponding value of the output is denoted by y(n + 1), which is ahead of the
+input by one time unit. The formulation of the NARX model can be described as:
+
+yðn þ 1Þ ¼ F yðnÞ; . . .; yðn (cid:2) qÞ; uðnÞ; . . .; uðn (cid:2) m þ 1Þ
+
+½
+
+(cid:3);
+
+ð1:3Þ
+
+where q is the number of past output terms used to predict the current output, m is
+the number of input terms used to predict the current output, and F is a nonlinear
+function of regressors that are transformations of past inputs and past outputs.
+Therefore, NARX neural network structure allows the user to deﬁne how many
+previous output and input time steps are required for representing the system
+dynamics best. This feature can be used in all engine applications where input and
+output variables show related dynamics, such as in the case of EGR systems or in
+turbocharged engines where turbine and compressor have a strict connection of
+process dynamics. However, many other applications, such as Air–Fuel Ratio
+(AFR) or exhaust emissions prediction, can be effectively modeled and controlled
+using a recurrent network architecture.
+
+A learning algorithm used for recurrent neural networks is the back-propagation
+through time algorithm (BPTT), which is a modiﬁcation of the back-propagation
+
+1.1 Neural Networks Architectures in Engine Applications
+
+5
+
+learning algorithm used for feedforward neural networks. In BPTT training, the
+network weights are adjusted also on the basis of the network state at previous time
+steps. For a recurrent neural network trained for a time interval ranging from t1 to tn,
+the total cost function E(t) can be represented as:
+
+EðtÞ ¼
+
+EpðtÞ;
+
+Xtn
+
+t¼t1
+
+where the E(t) is the sum of the errors Ep(t) calculated at each time step, and the
+network weights are adjusted on the basis of the equation:
+
+DWijðtÞ ¼ (cid:2)e
+
+¼ (cid:2)e
+
+@EðtÞ
+@Wij
+
+Xtn
+
+t¼t1
+
+@EpðtÞ
+:
+@Wij
+
+ð1:4Þ
+
+ð1:5Þ
+
+1.2 Use of ANNs for Modeling and Control of Internal
+
+Combustion Engines
+
+The ANNs have been applied to predict the performance of various thermal sys-
+tems. Their use for modeling the operation of internal combustion engines is more
+recent. Typically, a neural approach is used to predict the performance and exhaust
+emissions as well as the speciﬁc fuel consumption and fuel–air equivalence ratio of
+both gasoline and diesel engines [5–9]. For spark ignition engines, ANNs were
+originally applied to predict the effects of valve-timing on the engine performance
+and fuel economy [10]. The use of ANN was also proposed to determine torque,
+brake speciﬁc fuel consumption, and emissions in engines using alternative fuels,
+such as different gasoline–ethanol blends and diesel–biofuel blends [11–13].
+
+In the following paragraphs, some examples concerning the use of neural networks
+in the modeling and control of some speciﬁc engine applications will be presented.
+
+1.2.1 Air–Fuel Ratio Prediction and Control
+
+In order to achieve the optimal functioning of a three-way catalytic converter
+(TWC), i.e., its maximum efﬁciency, a spark ignition engine has to operate within a
+narrow band around the stoichiometric air–fuel ratio (14.7:1), with mean deviations
+that cannot exceed 0.1% (see Fig. 1.4).
+
+In current technology for gasoline engines, AFR control currently relies on a
+mean value engine model (MVEM) representation [14, 15]. Such a controller
+estimates in a feedforward way the actual airﬂow rate in the cylinder and provides
+to be delivered in the next engine cycle.
+the correspondent amount of fuel
+
+6
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+Fig. 1.4 Efﬁciency of a
+TWC as a function of air–fuel
+ratio
+
+Moreover, the signal of an oxygen sensor placed at the exhaust is used as a
+feedback control signal to correct the previously calculated mass of fuel to be
+injected, ensuring a steady state stoichiometry of the mixture.
+The fast (but approximate) feedforward component
+
+to handle
+transient operating conditions and to compensate the slow dynamics of the feedback
+loop. There are in fact three time delays included in the value of air–fuel ratio
+(AFRo) measured by means of the oxygen sensor: injection delay, combustion
+delay, and transport delays from the exhaust valve to the oxygen sensor. So:
+
+is important
+
+AFRoðtÞ ¼ AFRcðt (cid:2) tDÞ;
+
+ð1:6Þ
+
+where
+
+tD ¼ tinj þ tcomb þ ttrans:
+
+The transport delay ttrans depends on factors such as engine speed, exhaust air
+
+mass ﬂow rate, exhaust manifold geometry, etc. [16].
+
+Mean value models for the prediction of airﬂow rate in the cylinder have some
+signiﬁcant limitations, such as the high experimental burden requested for parameters
+identiﬁcation and the intrinsic non-adaptive features. To overcome this latter problem,
+adaptive methodologies (based, for example, on observers, sliding mode controllers, or
+Kalman ﬁlters) have been proposed in order to estimate the states and tune the parameters.
+Traditional mean value models for AFR prediction have also to include com-
+pensation terms for fuel path dynamics and wall-wetting phenomena. In fact, the
+liquid fuel injected into the intake port only partially enters the cylinder in the
+current engine cycle. Some of it is collected in fuel ﬁlms on the walls of intake
+manifold and close to the back face of the intake valves. The fuel, then, partially
+evaporates later from these ﬁlms. A model for this phenomenon was proposed by
+Aquino [14].
+
+1.2 Use of ANNs for Modeling and Control of Internal Combustion Engines
+
+7
+
+The fuel ﬁlm dynamics model is highly nonlinear: the fuel fraction and the delay
+strongly depend nonlinearly on several engine variables (e.g., load, speed, and
+temperature). Only a good knowledge of these parameters can assure achievement
+of signiﬁcant range compensation and hence effective transient control.
+
+The residual gas fraction dynamics together with the mixing dynamics are also
+highly nonlinear phenomena that have to be modeled for a correct prediction of
+AFR.
+
+Artiﬁcial Neural Networks, which are a powerful tool for modeling highly
+nonlinear and dynamic systems, can be considered a good candidate for AFR
+process modeling or for the realization of virtual AFR sensors.
+
+Several approaches have been proposed for AFR modeling and control using
+neural networks. Input parameters to the neural models are generally variables such
+as engine angular speed, throttle valve opening, absolute manifold pressure, fuel
+injection time, etc. In [17], AFR was estimated on the basis of spark plug voltage
+waveform. This latter signal, in fact, is considered to be inﬂuenced by the com-
+bustion inside the cylinder, which in turn depends, among other factors, on the
+value of air–fuel ratio. The neural network architecture chosen in this case was a
+multi-layer perceptron with a cumulative back-propagation learning algorithm. Raw
+data were ﬁrstly pre-processed in order to achieve a satisfactory convergence of the
+network. To this aim, data points corresponding to regions of the spark signal
+known to contain poor information about AFR were removed. Moreover, in order
+to enhance the SNR and reduce the effect of cyclic variation on the spark signal, a
+ﬁltering was applied to the input data. With regard to the optimal number of training
+data (input–output vectors pairs), it was stated that a number of training vectors
+comparable with the number of weights in the net leads to a good generalization
+capability of the neural network.
+
+In [18], the application of a multiple MLP architecture for adaptive air–fuel ratio
+(AFR) control is discussed. In this work, the slow AFR process dynamics were
+represented in the input parameters of the model. In particular, the variable time
+constant aspects of the process were considered by presenting input parameters to
+the ANN model as combinations of delayed and ﬁltered sample data values. The
+ﬁlter time constants were designed to span the range of corresponding variable time
+constants in the system. The approach used to model the variable exhaust transport
+delay was to conﬁgure the ANN model with multiple delayed AFR outputs span-
+ning the full range of speed and load-dependent delays. Of course, this approach is
+effective if the delays are known or can be calculated. However, when the delays
+are unknown and variable, a different strategy is required and a further model of the
+delay itself has to be developed. In this case, the authors propose to train a second
+supervisory ANN to attribute relevancies to each of the ANN model output pre-
+dictions. In particular, at high engine speeds, the supervisor attributes more rele-
+vance to the shorter time delay model predictions and vice versa.
+
+In [19], neural networks with feedback connections in a recursive architecture
+were used to model and control the nonlinear air–fuel ratio process dynamics. In
+particular, the authors used an RNN known in the literature as nonlinear output
+
+8
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+Fig. 1.5 General structure of
+an NOE model
+
+error model (NOE) [20] with one output variable, one hidden layer, and two output
+delays, which had a structure like in Fig. 1.5, where the output ^yðtÞ represents the
+actual AFR.
+
+The general form of the NOE model can then be written as:
+
+^y t hjð
+
+Þ ¼ F ^y t (cid:2) 1 hj
+ð
+
+½
+
+Þ; ^y t (cid:2) 2 hj
+
+ð
+
+Þ; . . .; ^y t (cid:2) m hj
+ð
+
+Þ; uðt (cid:2) 1Þ; . . .; uðt (cid:2) nÞ
+
+(cid:3);
+
+ð1:7Þ
+
+where h is the adjustable parameter, u(t) are reference inputs, the indices m, n deﬁne
+lag space dimensions of external inputs and feedback variables, and F is a nonlinear
+mapping function. The input variables, like in most AFR models, included the
+intake manifold absolute pressure (MAP), the engine speed (RPM), and the fuel
+injection pulse width (FPW).
+
+The network training is performed by minimizing a cost function estimated as
+function of the mean squared error. As for other neural network architectures, the
+learning process of a RNN model has to be a compromise between precision and
+generalization. High generalization cannot be guaranteed if the training data set
+does not provide sufﬁcient information. These latter, in the case of AFR models,
+have to cover most of the system operating conditions, providing at the same time a
+good knowledge of the dynamic behavior. For this reason, the experimental proﬁles
+of AFR models generally include, other than engine steady state operations, also
+sharp accelerations and decelerations. The learning process should also avoid
+overtraining that occurs when the minimization task includes many iterations: this
+leads to a better precision but to a generalization loss due to overﬁtting.
+
+A neural controller of injection time based on the information coming from an
+AFR neural network model is proposed in [21]. Like in traditional controls, neural
+controllers require an identiﬁcation phase of the process to be controlled that is
+known as the learning control phase. In case of AFR control, the learning control
+phase might use the AFR estimated by a neural model, using the stoichiometric
+AFR value and the AFR value measured as output of the engine process by means
+of a dedicated sensor.
+
+1.2 Use of ANNs for Modeling and Control of Internal Combustion Engines
+
+9
+
+In order to take into account also process aging effects and to tune the control to
+the speciﬁc engine, the controller conﬁguration can also be done online (online
+training) during the normal functioning of the engine, even if this could require a
+high computational effort to the ECU. For this reason, an extremely simple, from a
+computational point of view, learning algorithm is requested.
+
+Once the controller has been conﬁgured, it can commute to the normal operation
+modality, in which it receives the AFR value measured by the oxygen gas sensor
+and provides the control variable injection time.
+
+The AFR neural controller proposed in [21] had as inputs the engine angular
+speed, the intake manifold absolute pressure and the angle of throttle opening.
+A one-step delay was also introduced to take into account all the delays in the
+measured value of AFR.
+
+In [22], the signal coming from an in-cylinder pressure sensor is used as an input
+for an injection time control architecture based on a neural AFR virtual sensor. The
+feedforward part of the control system relies on engine control maps, whereas the
+feedback part is composed of four subsystems:
+(cid:129) a features selector block, which extracts some parameters from pressure curve to
+
+be used for AFR prediction;
+
+(cid:129) a virtual AFR sensor, based on an MLP neural network model;
+(cid:129) a block that evaluates both the error and the error variation obtained by com-
+paring the AFR value estimated by the virtual sensor and a reference AFR value
+(i.e., stoichiometric value);
+
+(cid:129) a soft computing controller, which modiﬁes the injection pulse duration cal-
+culated by the feedforward section on the basis of the output of the above block.
+
+The features selector block (see Fig. 1.6) performs a pre-processing of the
+in-cylinder pressure signal in order to extract the features most relevant to AFR
+prediction. In other words, it selects the best inputs for the virtual sensor. From an
+algorithmic point of view, the action of this block is based on clustering analysis
+techniques.
+
+Fig. 1.6 AFR control based on the use of a neural virtual sensor
+
+10
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+Fig. 1.7 Block scheme of a virtual AFR sensor
+
+Moreover, the block allows to ﬁnd an optimal sampling of the inputs, i.e., the
+number of consecutive pressure cycles that have to be averaged to improve AFR
+prediction.
+
+Figure 1.7 illustrates the block scheme of the virtual AFR sensor. One of the
+model inputs is Pr50, i.e., the combustion pressure value at 50 crank angles
+(CA) degrees after combustion top dead center divided by the value that the same
+pressure signal assumes at 50 CA before top dead center (Pr50 = P(50)/P(−50)).
+Other inputs are Pr value at 40 CA (Pr40 = P(40)/P(−40)) and the maximum
+pressure value (Pmax). These inputs have been chosen, among others, by the fea-
+tures selector subsystem.
+
+The Edge Detector in Fig. 1.7 is devoted to the synchronization of the model
+components with the incoming data. It samples the data and provides an enabling
+signal to the following blocks. The Pre-Proc block performs a pre-processing of the
+incoming data in order to reduce the cycle-by-cycle variation of the input data. To
+this aim, it carries out a moving average of the input data. The user can modify the
+number of averaged cycles but, in this case, the optimal value has been chosen by
+the feature selector.
+
+The heart of the virtual AFR sensor is represented by a multi-layer perceptron
+neural network. All the endogenous parameters of the neural network, such as the
+regularization parameter, the number of hidden layers, the number of neurons for
+each hidden layer, the type of activation function for the neurons, etc., have been set
+in order to maximize the “generalized forecast capability” of the learning machine.
+To this aim, a modiﬁed version of the ordinary cross-validation estimate of the
+endogenous parameters has been used as ﬁtness function.
+
+The searching of the minimum of this function has been performed by using a
+stochastic searching algorithm known as particle swarm optimization algorithm
+(PSOA) (see [23]).
+
+Error and error variation between output of virtual AFR sensor (AFRmodel) and
+reference AFR (AFRstech) are calculated at time t in the subsystem shown in
+Fig. 1.8. To this aim, input signals are suitably dealt with sum blocks and a time
+delay:
+
+1.2 Use of ANNs for Modeling and Control of Internal Combustion Engines
+
+11
+
+Fig. 1.8 Subsystem for calculation of E(t) and c_E(t)
+
+Fig. 1.9 Membership functions of the variable E(t)
+
+EðtÞ ¼ N1 (cid:4) AFRstech (cid:2) AFRmodel
+c EðtÞ ¼ N2 (cid:4) ðEðtÞ (cid:2) Eðt (cid:2) DTÞÞ;
+
+ð
+
+Þ
+
+where N1 and N2 are two normalization factors.
+
+The variables E(t) and c_E(t) represent the input to the AFR control system.
+AFR soft computing control was implemented by means of fuzzy techniques. In
+particular, the following fuzzy sets of the input variable E(t) were considered:
+(cid:129) E_P “positive error,”
+(cid:129) E_N “negative error,”
+(cid:129) E_Z “zero error,”
+
+with the corresponding membership functions shown in Fig. 1.9.
+The following fuzzy sets have been considered for the variable c_E(t):
+
+(cid:129) CE_P “variation of the positive error”;
+(cid:129) CE_N “variation of the negative error”;
+(cid:129) CE_Z “variation of the zero error”;
+
+with the corresponding membership functions depicted in Fig. 1.10.
+
+12
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+Fig. 1.10 Membership functions of the variable C_E(t)
+
+The fuzzy controller is a fuzzy system having as antecedents the fuzzy sets of E
+(t) (error) and c_E(t) (error variation), and as consequents the fuzzy sets of the
+output variable D_DI (injection time).
+(cid:129) I_N “positive injection,”
+(cid:129) I_P “negative injection,”
+(cid:129) I_Z “zero injection,”
+
+whose membership functions are shown in Fig. 1.11.
+The fuzzy algorithm conceived for the controller was composed by nine rules
+
+having the following traditional form:
+(cid:129) IF E_P AND CE_P THEN output IS I_P
+(cid:129) IF E_N AND CE_N THEN output IS I_N
+(cid:129) IF E_P AND CE_Z THEN output IS I_P
+(cid:129) IF E_N AND CE_Z THEN output IS I_N
+(cid:129) IF E_P AND CE_N THEN output IS I_Z
+(cid:129) IF E_N AND CE_P THEN output IS I_Z
+
+Fig. 1.11 Membership functions of the output variable D_DI
+
+1.2 Use of ANNs for Modeling and Control of Internal Combustion Engines
+
+13
+
+Fig. 1.12 Tridimensional
+map of AFR fuzzy controller
+
+(cid:129) IF E_Z AND CE_Z THEN output IS I_Z
+(cid:129) IF E_Z AND CE_N THEN output IS I_N
+(cid:129) IF E_Z AND CE_P THEN output IS I_P
+
+The aim of the fuzzy algorithm described by the previous rules is to provide for
+each value of input variables a correspondent value of the control variable D_DI
+(injection time). Figure 1.12 illustrates the tridimensional map summarizing the
+way of functioning of the controller.
+
+Finally, to estimate the update of the control variable induced by the feedback
+part of the air–fuel control system the output of the controller is processed in the
+following way:
+
+ti FB ¼ N3 (cid:4) D DIðtÞ þ D DIðt (cid:2) DTÞ;
+
+where N3 and DT are two factors to be tuned.
+
+The proposed approach allowed to obtain a strict control of AFR with an error,
+
+with an error below of 1% both in steady state and during fast transients.
+
+1.2.2 Use of Neural Networks to Predict Combustion
+
+Pressure Parameters
+
+Real-time combustion process monitoring in internal combustion engines may
+provide a strong tool regarding engine operation and may be proﬁtably used for
+closed-loop electronic engine controls that allow internal combustion engines to
+comply with the severe normative on pollutants emission and fuel consumption.
+One of the most important parameters used for the evaluation of the combustion
+quality is the in-cylinder pressure. However, this kind of measure requires an
+intrusive approach to the cylinder and a special mounting process. Moreover, the
+combustion pressure transducers used for this kind of applications still have a high
+
+14
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+cost for mass production automotive engines and still remains some problems of
+robustness and performances. Due to the disadvantage of direct pressure mea-
+surement, several non-intrusive techniques have been proposed to reconstruct the
+cylinder pressure and obtain information about the combustion quality [24–26]. The
+non-intrusive diagnostics offer several advantages: the sensors are generally placed
+externally the engine and no engine structural modiﬁcations are required. Moreover,
+the non-intrusive sensors are quite cheap, as they are not requested to resist very
+high pressures and temperatures.
+
+Artiﬁcial Neural Networks can have a role in estimating several combustion
+pressure parameters on the basis of information coming from sensors already
+present on engine. An example of this is combustion pressure monitoring using the
+engine crankshaft speed.
+
+Cylinder pressure reconstruction on the basis of instantaneous crankshaft speed
+is considered to be a successful approach both for its simplicity and its low cost
+[27–32]. Crankshaft angular speed, in fact, contains information to reconstruct
+cylinder pressure, and hence, it can be chosen as an input to a neural network model
+for cylinder pressure estimation. In particular, the following correlation can be
+written:
+
+_x ¼ 1
+JðhÞ
+
+(cid:2)
+(cid:2) 1
+2
+
+dJðhÞ
+dh
+
+x2 þ Tind (cid:2) Tfric (cid:2) Tload
+
+ð1:8Þ
+
+(cid:3)
+;
+
+where x is the crankshaft velocity, J(h) is the moment of inertia of the engine, Tind,
+Tfric, and Tload are the indicated torque, frictional torque, and load torque, respec-
+tively. The indicated torque is strictly correlated to the in-cylinder pressure P(h),
+and for a single cylinder engine, it is given by:
+
+Tind ¼ PðhÞ (cid:2) Pman
+
+ð
+
+ÞAp
+
+dsðhÞ
+dh
+
+;
+
+where Ap is the piston head surface area, Pman is the intake manifold pressure, and s
+(h) is the piston stroke from top dead center (TDC). Therefore, Eq. (1.8) can be
+re-written as:
+
+_x ¼ f ðh; P; xÞ ¼ 1
+JðhÞ
+
+(cid:2) 1
+2
+
+dJðhÞ
+dh
+
+(cid:2)
+
+x2 þ PðhÞ (cid:2) Pman
+
+ð
+
+ÞAp
+
+(cid:2) Tfric (cid:2) Tload
+
+:
+
+dsðhÞ
+dh
+
+ð1:9Þ
+
+(cid:3)
+
+ð1:10Þ
+
+Equation (1.10) illustrates clearly the nonlinear correlation existing between
+
+engine crankshaft speed and in-cylinder pressure.
+
+In [31], cylinder pressure reconstruction was carried out using a RNN with
+instantaneous crankshaft speed ﬂuctuations and motored pressure as input signals.
+In addition, spark advance was chosen as another input, since the values of peak
+pressure and its location and the rate of pressure rise are signiﬁcantly affected by the
+inﬂuence on the
+ignition time value. Equivalence ratio also has a signiﬁcant
+
+1.2 Use of ANNs for Modeling and Control of Internal Combustion Engines
+
+15
+
+cylinder pressure peak, hence it was chosen as one of the inputs. On the basis of
+these inputs, the regression vector for neural network was given by:
+
+P t wjð
+
+Þ ¼ NN P t (cid:2) 1
+ð
+ð
+ð
+Pmot t (cid:2) c
+
+ð
+Þ; . . .; P t (cid:2) a
+ð
+Þ; SA t (cid:2) 1
+
+ð
+Þ; £ t (cid:2) 1
+
+Þ; wÞ
+
+ð
+Þ; x t (cid:2) 1
+
+ð
+Þ; . . .; x t (cid:2) b
+
+Þ; Pmot t (cid:2) 1
+ð
+
+Þ;
+
+ð1:11Þ
+
+where a, b, and c are the number of past cylinder pressure output, the number of
+past speed, and past motored pressure data given to the neural network as feedback
+variables.
+
+The authors demonstrated that the minimum mean square error in pressure
+prediction was obtained for a = 3, b = 7, c = 7, and with 13 neurons in the hidden
+layer. By using the above-described RNN model,
+the residuals between the
+experimental pressure curve and the simulated one lay in the range ±0.5 bar for all
+the investigated operating conditions.
+
+In [32], a radial basis function (RBF) neural network model having as input the
+instantaneous angular speed was used for pressure waveform reconstruction. Using
+an RBF, the correlation between cylinder pressure P and engine angular speed is
+given by:
+
+PkjðhÞ ¼
+
+hkiðhÞwij:
+
+Xn
+
+i¼1
+
+Therefore, the pressure can be expressed as a linear combination of the output of
+the hidden neurons, that is, as a linear combination of a set of n ﬁxed basis functions
+hkið(cid:5)Þ; the coefﬁcients of the linear combinations, wij, are the weights or model
+parameters.
+
+The results of the proposed approach showed that the measured and estimated
+pressure traces matched well over all stages of the pressure process: compression,
+onset of combustion, peak pressure, and the rise and fall of the combustion.
+
+The maximum deviation interval between the predicted and measured pressures
+resulted less than 0.46 bar. This is the same quantitative order as that of the
+cycle-to-cycle variation and, therefore, the prediction can be judged to be accurate
+enough for averaged analysis over the cyclic variation. Deviation of peak pressure
+was less than 3 bar, whereas the deviation of the angular location of pressure peak
+was ±1 crank angle.
+
+In [33], a neural network approach for real-time prediction of in-cylinder pres-
+sure peak value (PP) and its angular location (LPP) has been proposed. The trained
+network, which can be viewed as a nonparametric model of the engine process, had
+as inputs the engine angular crankshaft speed and the crankshaft speed derivative
+(i.e., crankshaft acceleration) (see Fig. 1.13).
+
+In order to train and validate the neural network model, measurements were
+carried out over the engine speed range 1000–2000 rpm, with steps of 200 rpm, and
+absolute intake pressure values ranging from 1000 to 1600 mbar.
+
+16
+
+1 Artiﬁcial Intelligence for Modeling and Control …
+
+Fig. 1.13 Neural network model for prediction of LP and LPP
+
+Table 1.1 Main features of the neural model for PP and LPP prediction
+
+Neural network structure
+
+Neuron model
+# Neurons in hidden layer
+Training algorithm
+
+feedforward MLP
+tanh(x)
+30
+Trainbr with 0.3 as regularization factor
+
+The overall data set was, then, divided into two groups. One group was used as
+training data set, i.e., to train the neural network model and to set the internal model
+parameters. The other group was used as testing data set, i.e., to validate the trained
+network.
+
+As neural model, a multi-layer perceptron (i.e., MLP) neural network was
+chosen. The MLP had only a hidden layer with 30 neurons and arctan as activation
+function. In order to train the network, a Bayesian regularization back-propagation
+was used. This latter is a process that minimizes a combination of squared errors
+and weights and then determines the correct combination so as to produce a net-
+work that generalizes well. Use of this process guaranteed a satisfactory general-
+ization capability of the neural network model and, at the same time, allowed to
+avoid overﬁtting issues. The tuning of internal parameters (e.g., the value of the
+regularization parameter, neuron biases) of the neural network model was optimized
+by using an evolutionary algorithm. In Table 1.1, the main features of neural net-
+work model are shown.
+
+The overall Relative Error in the prediction of pressure peak (PP), obtained from
+scaling the root mean square error (RMSE) by the maximum of the peak pressure of
+the experimental data set, was 4% at 1000 rpm, 5% at 1500 rpm, and 7% at
+2000 rpm. The model also showed a good capability of predicting the angular
+location of pressure peak (LPP) with a RMSE ranging from 1.38 to 5.2 crank angles
+degrees.
+
+The results conﬁrmed that the neural model can be effectively used for PP and
+LPP estimation. Moreover, the model also revealed its capability to predict pressure
+peak reductions due for example to inefﬁcient combustions, misﬁring events, and
+other combustion abnormalities. As a consequence, it can be used as a non-intrusive
+tool for real-time diagnosis of engine combustion quality in advanced closed-loop
+control systems.
+
+1.2 Use of ANNs for Modeling and Control of Internal Combustion Engines
+
+17
+
+Fig. 1.14 Spark advance closed-loop control based on LPP prediction by means of a neural model
+
+Location of pressure peak, as it is strictly connected to the ignition angle, rep-
+resents a promising control variable for gasoline engine spark advance control.
+A possible engine controller could estimate the LPP from the crankshaft speed
+information and could use it as a feedback variable in an ignition timing controller.
+This allows to maintain the LPP close to its reference value modifying, if requested,
+the spark advance value stored in the engine control maps. For each engine speed
+and engine load, the LPP set-point can be deﬁned as the optimal value to obtain the
+desired engine behavior. In high load ranges, for example, late pressure peak
+locations could be requested to hold down the NOx emissions.
+
+A block scheme of a possible engine closed-loop control is shown in Fig. 1.14.
+
+The architecture includes a proportional–integral controller for LPP control.
+
+A similar controller was proposed in [34]. Also in this work, a spark advance
+control strategy based on the location of peak pressure (LPP) is presented.
+A feedforward MLP neural network is introduced in this study to predict LPP by
+using only few samples (ﬁve) extracted from in-cylinder pressure voltage signal
+(the entire acquisition of pressure curve was not required).
+Non-interfering Diagnostics for the Study
+of Thermo-Fluid Dynamic Processes
+
+The conversion of chemical energy into mechanical power, operated by internal
+combustion engines, involves a great number of complex phenomena that often
+occur in transient thermo-ﬂuid dynamic conditions. The majority of these phe-
+nomena are affected by nonlinear dynamics, thus requiring appropriate compen-
+sation techniques.
+
+The analysis and comprehension of these nonlinear processes is a basic
+requirement for the design of effective control solutions, able to optimize the
+combustion processes in terms of engine power, efﬁciency, and emissions.
+
+In this chapter, we present some advanced non-interfering optical diagnostics
+that allow to study in detail the reasons and the effects of the nonlinear behavior of
+many processes occurring in internal combustion engines.
+
+The internal combustion (IC) engine is designed to provide power from the
+energy that fuel contains. More speciﬁcally, the chemical energy of fuel and air
+creates a mixture that burns to produce mechanical power. There are various types
+of fuels that can be used in IC engines, which include liquid (gasoline, Diesel fuel,
+biofuels) and gaseous (methane, propane, hydrogen) substances. The output power
+produced by an IC engine results from the fuel that it uses and its mechanical parts.
+In an internal combustion engine, a piston moves up and down in a cylinder, and
+the power produced is transferred through a connecting rod to a crankshaft. Most
+engines operate on what is known as four-stroke cycle. Each piston completes four
+separate strokes while turning a crankshaft. A stroke refers to the full travel of the
+piston along the cylinder, in either direction [1]. Both spark ignition (SI) and
+compression ignition (CI) engines use this cycle, which comprises:
+(cid:129) Intake stroke, in which fresh air enters and the fuel can start to spray;
+(cid:129) Compression stroke, in which the ﬂuid and fuel are compressed and, at end, the
+
+combustion can occur;
+
+(cid:129) Expansion stroke or power stroke, when the combustion evolves and exhaust
+
+gases, including pollutants, are produced;
+
+(cid:129) Exhaust stroke, when the exhaust gases are emitted.
+
+2 Non-interfering Diagnostics for the Study …
+
+The processes occurring during these cycles consist of a complex interaction of
+homogenous and heterogeneous chemistry and transport processes. The processes
+involved in internal
+turbulent
+mixing-controlled, and they include short timescale phenomena such as turbulence
+production and dissipation, spray breakup and evaporation, and pollutants
+formation.
+
+combustion engines
+
+two-phase,
+
+(ICE)
+
+are
+
+As consequence, in order to carry out appropriate investigations, non-intrusive
+diagnostic techniques with high temporal and spatial resolution must be considered.
+In these years, the science of optics has played an important role in the measure-
+ment and understanding of combustion phenomena, including not only laboratory
+ﬂames but also practical devices such as the internal combustion engines. Optical
+diagnostics allows to obtain pertinent knowledge in complex systems where non-
+linear and very fast phenomena occur. In particular, the use of optical engines with
+wide accessibility, improved detectors, and ultra-fast light sources tools is con-
+sidered of great interest, as it allows real-time and high spatial resolution charac-
+terization of the phenomena without any modiﬁcation of the different phases
+occurring.
+
+There are numerous methods applied in optical engines, and just a few of them
+have the potential of being applied in practical engines. Optical diagnostics operate
+in a broad spectral range, from ultraviolet (200 nm) to infrared (10,000 nm). In
+each spectral domain, it can apply diagnostics based on emission, absorption, and
+scattering ﬂuorescence measurements. The decision for application of a speciﬁc
+optical technique is always based on the requested information other than the efforts
+and chances to gain the required results with a given method.
+
+The present chapter provides an overview of optical methods and their appli-
+cation to the study of the complex phenomena occurring in internal combustion
+engines.
+
+2.1 Air Motion
+
+The study of ﬂuid mechanics in the cylinder in terms of mean motion and turbu-
+lence characteristics can be made by means of Laser Doppler Anemometry (LDA),
+also known as Laser Doppler Velocimetry (LDV), Particle Image Velocimetry
+(PIV), and Phase Doppler Anemometry (PDA). By these techniques, it is possible
+to analyze the air motion, which contributes both to the air/fuel mixing and to the
+ﬂame propagation process during combustion. The LDA is a technique that uses the
+Doppler shift in a laser beam to measure the velocity [2]. It is an optical method,
+tightly related to both the physical and geometrical optics, and it is a widely
+accepted tool for investigating ﬂuid dynamics with gases and liquids. As the ﬂuid
+moves through the probe volume with small seeding particles, the information of
+the ﬂow velocity is generated. In particular, when a particle passes through the
+intersection volume (measurement volume) formed by the two coherent
+laser
+beams, the scattered light, received by a detector, has components from both beams.
+
+2.1 Air Motion
+
+23
+
+The intensity of the scattered light has a fundamental frequency that is connected to
+the particle velocity.
+
+length scales of
+
+LDA usually provides single-point velocity statistics, typically in two directions,
+while PIV provides instantaneous velocity images. LDA can be arranged to mea-
+sure local ﬂow velocity, even the smallest
+the ﬂow (the
+Kolmogorov scale), and it provides single-point statistics, which are well matched
+to time-averaged modeling approaches (e.g., RANS models). While it is usually
+quite difﬁcult to acquire PIV data down to the Kolmogorov scale, PIV provides
+additional insight by allowing researchers to visualize an entire ﬁeld and thus to
+visualize phenomena like spatial correlations that are well matched to LES models.
+For reasonably laminar or transitional ﬂows, PIV is often used by itself. For tur-
+bulent ﬂows as air motion in the ICE, the problem becomes much more chal-
+lenging. LDA and PIV are often used in complementary ways for such ﬂows.
+Both LDA and PIV require that the ﬂow be seeded with particles, and this seeding
+process is usually different from one ﬂow to the next. To apply PIV to new
+environments usually requires the researcher to evaluate the needed seed density for
+good spatial resolution. During the combustion, this technique lacks in sensibility:
+very high seed density can affect ﬂame temperature by enhancing radiation heat
+transfer from the ﬂame. One must also be careful to consider factors like inter-pulse
+spacing to produce best quality correlation of the two PIV images. In addition,
+three-dimensional ﬂows require one to consider out-of-plane motion and its effect
+on accuracy. To apply PIV to challenging environments can require special
+arrangements, such as a fast shutter to avoid high background levels caused by
+ﬂame radiation.
+
+2.2 Mixture Preparation
+
+Mixture preparation is of major importance when designing next generation internal
+combustion engines. To minimize engine out emissions, such as CO2, CO, NOx,
+and particulate matter, while enhancing performance and fuel economy, it is crucial
+to have control over this parameter. The investigation of the fuel and air mix within
+the cylinder can be carried out by several techniques that have been widely used in
+the past and now greatly improved by new intensiﬁed charge-coupled device
+(ICCD) cameras, complementary metal-oxide semiconductor (CMOS) cameras, and
+less expensive laser sources.
+
+During the last decade, various laser techniques have clearly shown their
+effectiveness in measurement and diagnostics of various combustion phenomena.
+These techniques have the great beneﬁt of being able to make non-intrusive mea-
+surements (no physical probe introduced in the combustion zone), to have high
+spatial (<0.001 mm3) and temporal resolution (<10 ns), and they can measure
+several points/species in one laser pulse. In addition, many techniques can provide
+two- or even three-dimensional information.
+
+24
+
+2 Non-interfering Diagnostics for the Study …
+
+Fig. 2.1 Characteristics of different fuels [commercial Diesel (REF), GTL and several biofules
+(SME, RME blends and RME aged)] obtained by luminous intensity distributions in the jet
+
+interesting results about
+
+They are based on the high-speed direct, backlight, and Schlieren imaging [3]
+and can be applied to study spray atomization, the fuel penetration and dispersion,
+as well as the evaporation phenomena. Although cycle resolved, these techniques
+cannot provide spatial quantitative information on the air–fuel mixing in the
+combustion chamber, but only statistical data can be obtained, owing to the
+instability and highly turbulent nature of Diesel sprays and of high injection
+pressure of new gasoline direct injection spray. Nevertheless, the liquid tip pen-
+etration and cone angle can be obtained with good accuracy for the main injec-
+tion, meanwhile less information can be obtained for short pre- and pilot
+injections. Recently,
+injection were
+obtained with use of infrared diagnostics. In [4], the visualization of the pilot
+injection process was obtained by means of an optical access in the piston head
+and by the presence of an inclined mirror for the collection of the images. The
+pilot
+IR imaging. This innovative and
+non-conventional optical technique in the infrared was applied for the visualiza-
+tion of the liquid and vapor fuel. Other authors [5] performed in the infrared
+(IR) region of the spectrum black-body emission an imaging of the temperature
+reduction caused by the impingement of the spray on an electrically heated wall.
+However, the metallic (or fused silica) surfaces in the cylinder cannot be treated
+as a black body. Hydrocarbon fuels absorb IR light over broad wavelength
+regions. By measuring the attenuation of transmitted IR light, it would be possible
+to detect even thin wall ﬁlms. A disadvantage is that optical access to the com-
+bustion chamber
+is needed for a transmission
+measurement.
+
+injection was characterized by fast
+
+from two opposing sides
+
+the pre- or pilot
+
+Developments in laser source and detection systems allowed to set new 2-D
+laser imaging diagnostics to obtain the spatial distribution of liquid and vapor of
+fuel inside optically accessible engines by simultaneous use of laser-induced
+Rayleigh and Mie scattering imaging, and EXCIPLEX technique, based on a
+ﬂuorescence system. This latter technique, even if it can distinguish simulta-
+neously between the spray liquid and vapor phases, needs of a ﬂuorescence
+
+2.2 Mixture Preparation
+
+25
+
+dopant, and therefore,
+is limited to oxygen-free atmosphere because the
+doping molecule is severely quenched by the oxygen and a surrogate fuel must
+be used [2].
+
+it
+
+A different technique, based on the principle of absorption of ultraviolet laser
+light by vapor fuel and the scattering of visible laser light by liquid fuel, seemed to
+give good results because it measures simultaneously the concentrations of vapor
+and liquid in an evaporating Diesel spray. Being an absorption technique, its
+drawback is the integration across the entire width of spray. The technique can be
+used in optical engines using a polychromatic light beam, and it is based on
+Lambert–Beer’s law. Considering that a light beam of an intensity I0 is attenuated
+when it passes through a multi-phase spray, the transmitted light intensity It can be
+written as follows:
+
+It
+I0
+
+ð
+¼ exp (cid:2)Kext (cid:3) L
+
+Þ
+
+ð2:1Þ
+
+ð2:2Þ
+
+where L is the optical path length and Kext the extinction coefﬁcient that is equal to:
+Z
+
+Kext ¼ (cid:2)
+
+Cn
+
+QextNðDÞD2dD
+
+p
+
+4
+
+where Cn is the number density of droplets, Qext is the extinction efﬁciency,
+D is the droplet diameter, and N(D) is the droplet size distribution function
+[2]. In the UV and visible range, the spectral extinction is due to different
+phenomena which can be separately analyzed [6]. Using the principle of
+absorption of ultraviolet light by fuel vapor and the scattering of light in the
+visible range by liquid fuel droplets, the concentration of both phases can be
+obtained. The visible light, which is not absorbed by both liquid and vapor
+phases, is attenuated only by the scattering caused by droplets. Therefore, the
+transmissivity of visible light by the fuel spray is equal to the transmissivity
+due only to the scattering caused by liquid droplets, as shown by the following
+equation:
+
+Visible :
+
+log
+
+¼ log
+
+(cid:2) (cid:3)
+I0
+It
+
+Vis
+
+(cid:2) (cid:3)
+I0
+It
+
+L;sca
+
+ð2:3Þ
+
+The ultraviolet light, which is absorbed by both liquid and vapor phases, is
+attenuated due to the absorption caused by vapor, to the scattering caused by
+liquid droplets, and to the absorption of liquid droplets according to the
+equation:
+
+UV :
+
+log
+
+¼ log
+
+þ log
+
+þ log
+
+ð2:4Þ
+
+(cid:2) (cid:3)
+I0
+It
+
+UV
+
+(cid:2) (cid:3)
+I0
+It
+
+(cid:2) (cid:3)
+I0
+It
+
+(cid:2) (cid:3)
+I0
+It
+
+V;abs
+
+L;sca
+
+L;abs
+
+26
+
+2 Non-interfering Diagnostics for the Study …
+
+The last two terms are much lower than the ﬁrst one, so the UV transmissivity
+
+depends mainly on the absorption by fuel vapor [6].
+
+Considering Eqs. (2.1) and (2.2) and experimental extinction data in the visible
+
+reported in the hypothesis of Eq. (2.3), it can be obtained:
+
+(cid:2)
+¼ (cid:2)
+
+(cid:2) (cid:3)
+I0
+It
+
+vis
+
+p
+
+4
+
+Cn
+
+Z
+
+log
+
+(cid:3)
+
+QextNðDÞD2dD
+
+L
+
+ð2:5Þ
+
+From this equation, the mass concentration of fuel droplets per unit volume, Cd,
+
+considering the results of [6], can be expressed as:
+(cid:2) (cid:3)
+I0
+It
+
+Cd ¼ 2
+3L
+
+D32
+Qm
+
+log
+
+q
+f
+
+Vis
+
+where qf is the liquid fuel density, Qm is the mean extinction efﬁciency for the
+poly-dispersed particle cloud, and D32 is known as the volume/surface mean
+diameter (Sauter diameter), which can be obtained by Phase Doppler Particle
+Analyzer (PDPA) measurements or by the correlation of Hiroyasu [7]. Analogous
+expression can be obtained for the vapor concentration, Cv, considering Eqs. (2.1)
+and (2.4), as reported in [6]:
+
+ð2:6Þ
+
+ð2:7Þ
+
+Cv ¼ 1
+kL
+
+log
+
+(cid:2) (cid:3)
+I0
+It
+
+V;abs
+
+where k is the molar absorptivity of the vapor fuel.
+
+A comparison between liquid and vapor distribution for n-heptane and Diesel
+fuel, obtained from extinction measurements at different
+times, after Start of
+Injection, can be found in [8], where the measurements are carried out in an optical
+Diesel engine using a commercial Diesel fuel and n-heptane.
+
+In order to better understand the liquid distribution of the different fuels, the
+injection images detected in the combustion chamber can be processed and con-
+verted on 8-bit scale. A scale of 256 colors is used to represent the several luminous
+levels into the jet (Fig. 2.1). The RME fuels show a denser liquid core with respect
+to the reference and a higher penetration because of the high density/viscosity.
+
+2.3 Combustion
+
+In the past, optical analysis of the intermediate steps from ignition to soot formation
+was generally restricted to the measurements of ignition delay, and the high-speed
+imaging was performed doping the fuel with copper to create a more luminous
+emission before the formation of soot. The lack of spatial and time resolution
+typical of these techniques has been partially overcome with the natural chemilu-
+minescence imaging by using ICCD and CMOS cameras.
+
+2.3 Combustion
+
+27
+
+Fig. 2.2 Temperature and soot evolution in a Diesel engine
+
+In [9], the combustion evolution in an optical common rail Diesel engine
+detected by chemiluminescence measurements using a visible narrow ﬁlter on a
+CCD camera is reported. By this diagnostics, useful information on turbulent
+evolution of ﬂame in the combustion chamber and on the species involved in this
+spectral range can be obtained. Radiation of a Diesel ﬂame is essentially due to
+thermal radiation of the soot particles formed under heterogeneous diffusion
+combustion of the fuel sprays. Its visible intensity is used to evaluate temperature
+and soot concentration comparing it with Planck’s radiation formula. This “two
+color” method was applied to obtain the results presented in Fig. 2.2 for the same
+conditions reported in [9]. It is based on the use of two selected wavelengths
+(colors) in the spectrum, which are used to obtain, with an iterative procedure, the
+absolute temperature by Planck’s formula.
+
+Analogous results can be obtained for SI engines, even if the soot produced is
+very low. In order to overcome this limitation and to consider the effect of
+cycle-to-cycle variation typical of SI engine, a CMOS camera is used in [10]. In this
+work, a selection of images detected during the combustion phase of ethanol and
+gasoline for injection pressures of 30 and 120 bar is shown. The images were
+obtained through an optical window on a piston of an optical accessible spark
+ignition (SI) engine. For both fuels, a luminous arc represents the evidence of spark
+ignition. It occurs at around 24° CA BTDC and persists until 15° CA BTDC, when
+the ﬂame kernel is well observable, even if its luminosity is much lower than the
+the ﬂame kernel moves from the spark plug in the combustion
+spark. Then,
+chamber, and it is the highest for the gasoline injected at 30 bar, whereas it
+
+28
+
+2 Non-interfering Diagnostics for the Study …
+
+decreases when the injection pressure increases, due to a better fuel–air interaction.
+About ethanol, the soot amount production increases at the rise of injection pressure
+due to the amount of fuel impinged on the piston. In this case, it is important to note
+that at the opening of exhaust valves, the differences of soot amount in the com-
+bustion chamber decrease. Moreover, the development of the combustion process
+can be analyzed by means of a post-processing of the optical data. In particular, the
+ﬂame front speed and radius, which are key parameters in the study of combustion
+process in spark ignition engines, can be evaluated.
+
+These techniques also allow the detection of anomalous combustion occurring in
+SI engine known as knock. Knock is a consequence of a spontaneous ignition of a
+portion of the fresh mixture ahead the propagating ﬂame. It gives the name to the
+noise transmitted through the engine structure. The noise, which sounds like a
+metallic ringing, different from the muted sound of normal combustion, is a con-
+sequence of the pressure waves generated by the abnormal combustion. The
+abnormal combustion suddenly releases a chemical energy that excites within the
+cylinder volume a local increase of pressure followed by oscillations. It is also
+generally accepted that spontaneous ignition begins at one or more exothermic
+centers in the end-gas region, as conﬁrmed by optical probe measurements [11, 12].
+Optical measurement methods are fulﬁlled requirements because the spontaneous
+nature of a self-ignition event and the high propagation velocity must be accounted
+for with adequate signal recording techniques, which detect in-cylinder gas signals
+and provide location of the knock signal origin [13–15].
+
+Figure 2.3 shows typical knock conditions obtained in SI. The ﬂame front
+proﬁle has a concavity with a radius of curvature located in the opposite direction of
+the main propagation. In particular, SOI-307 (cycle n°57) ﬂame outline presents
+more than one concavity, with a center of curvature at the bottom left or right of the
+chamber (intake valves). Instead, early split injection case (SOI-307-200) shows
+one wider concavity clearly visible in the exhaust valves, i.e., in the upper part of
+the frame. One large concavity and two smaller ones characterize the SOI-307-100
+ﬂame proﬁle, due to the different ﬂame speed previously described. Explosions
+causing knock often appear in close connection with a negative curvature in the
+ﬂame front propagation proﬁle. The presence of this negative curvature is associ-
+ated with the slowdown of main ﬂame front propagation and to low-temperature
+chemical kinetics in the zone not yet reached by normal combustion. Indeed, it was
+found out that the location of self-ignitions is strongly related to the curvature of the
+propagating ﬂame front. This process can be deeply analyzed by evaluating the
+spatial evolution of the center of mass weighted on the luminous intensity (centroid
+of luminosity). Figure 2.4 illustrates the movement of the centroid from the spark
+plug position for one of the three analyzed conditions, SOI-307 cycle n°57. The
+centroid of luminosity starts moving slowly, and it remains located near the spark
+plug position. A slow deviation can be observed toward the exhaust or intake valves
+for all the test cases, reﬂecting the previously described prevalent ﬂame front
+propagation directions. This shift can be partially masked by the carbonaceous
+deposits on the window.
+
+2.3 Combustion
+
+Fig. 2.3 Comparison
+between ﬂame outline before
+explosion and knock onset
+location in the end-gas region,
+for three selected test cases
+
+29
+
+The spectroscopic measurements have allowed to characterize the ﬂame evo-
+lution with high spatial and temporal resolution and to detect other species present
+during self-ignition, knock phase, and involved in pollutants formation. Several
+species involved in the ﬁrst exothermic reactions due to the self-ignition of the air–
+fuel mixture can be detected by means of spectroscopic and ultraviolet (UV) [16].
+Simultaneous use of spectral emissivity and absorption measurements in UV-visible
+range have shown to be a powerful tool comparing with high-speed imaging
+techniques. In fact, the ultraviolet spectrum is important because of the presence in
+this region of the well-known “water bands” due to OH radical that contributes to
+oxidation of fuel, knock marker [17], formation of NOx [17], and oxidation of soot
+[18]. CH and C2 bands provide a more precise signature of the reaction zone. CH
+can be used as an indicator of temperature in ﬂame studies and C2 as a CH
+precursor or precursor of soot [19]. Finally, CH/OH ratio intensity can be employed
+as a measure of the local equivalence ratio [20, 21], whereas CN radical emission
+can be considered as the marker of spark discharge in the combustion chamber [22,
+23]. Moreover, carbonaceous material and large aromatic molecules exhibit
+absorption bands between 200 and 350 nm [9, 16, 19, 24, 25].
+
+30
+
+2 Non-interfering Diagnostics for the Study …
+
+Fig. 2.4 Movement of centroid of luminosity evaluated for the test case SOI-307
+
+2.4 Pollutants Formation
+
+The luminosity/chemiluminescence imaging and the simultaneous planar imaging
+of laser-induced incandescence (LII) and elastic scattering have contributed to
+detect the onset of soot during the range of time in which a solid particle is formed
+from fuel molecules. The experimental difﬁculties involved in the soot formation
+and oxidation processes in the environment of the cylinder are enormous due to the
+high temperatures and pressures that extremely condition the reactive intermediate
+species occurring. Nevertheless, the light extinction, Rayleigh and Mie scattering,
+laser-induced incandescence (LII), and laser-induced ﬂuorescence (LIF) allowed to
+follow the soot formation and oxidation process in terms of soot particle size and
+number density, as well as to have information on the ﬂame temperature and the
+concentration of some typical species produced during the combustion process. As
+
+2.4 Pollutants Formation
+
+31
+
+an example, NO concentration and its temporal evolution can be obtained by both
+absorption and LIF measurements, which involves closely linked advantages and
+disadvantages.
+Modeling of Particle Size Distribution
+at the Exhaust of Internal Combustion
+Engines
+
+Nowadays, the interest in the effect of exhaust emissions from road vehicles on public
+health is stronger than ever. Great attention is paid to particulate matter (PM) both for
+its impact on the environment and for the adverse effect on human health. The internal
+combustion engines (ICEs), both spark ignition (SI), and compression ignition
+(CI) are the main sources of PM emissions in the urban area. Particles are usually
+classiﬁed according to their diameter in coarse particles, diameter larger than 10 lm
+(PM10) and ﬁne particles, diameter smaller than 2.5 lm (PM2.5). Further distinction
+is made for PM2.5, particles smaller than 100 nm are called ultraﬁne particles and
+those smaller than 50 nm are called nanoparticles. The chemical nature of the parti-
+cles as well as the number and size depends on the engine type. Diesel engine particles
+consist mainly of agglomerated carbonaceous primary particles on which volatile
+organic material is adsorbed. The gasoline particles, instead, are mainly composed of
+organic fraction. Both CI and SI engines emit mainly particles in the ultraﬁne size
+range. Anyway, the particles’ emissions from gasoline direct injection (GDI) engines
+are higher than that for port fuel injection (PFI) engines and Diesel engines equipped
+with a Diesel particulate ﬁlter (DPF).
+
+The severe adverse effects on human health of ﬁne and ultraﬁne particles emitted
+from internal combustion were well described in the literature [1–3]. Recent studies
+evidenced the strict relation between the particle size and the impact on heart and
+brain [4]. Smaller particles can, in fact, penetrate more easily the cell membranes
+than large particles [5]. Considering the negligible weight of the ﬁne particle, a
+particle number (PN) emission limit
+is enforced in addition to the PM mass
+emission limits for particles larger than 23 nm at the Euro 6 (2014) for all categories
+of light-duty (LD) DI vehicles.
+
+Great efforts are paid to reduce the particle emissions. Several solutions are
+under study, regarding the optimization of the combustion and the use of biofuel to
+reduce particle formation as well as the improvement of after-treatment devices for
+the reduction of emissions at the exhaust. In any case, availability of real-time
+information on the characteristics of particulate emissions, such as particle number
+and size, would enable the development of advanced closed-loop control
+Modeling of Particle Size Distribution …
+
+architectures aimed at reducing the impact of toxic particle emissions. However,
+modeling of the mechanisms of particle formation is not easy due to the complex
+and highly nonlinear processes involved.
+
+The present chapter will ﬁrstly describe some of these mechanisms and, then, it
+will introduce a soft computing model, developed by the authors, devoted to the
+real-time prediction of particle size distribution at the exhaust of internal com-
+bustion engines on the basis of some speciﬁc inputs, such as engine speed, engine
+load, and amount of exhaust recirculated gases.
+
+3.1 Particulate Matter Emissions in Engines
+
+Particulate matter (PM) consists of tiny solid particles and liquid droplets that in
+urban area are mainly due to vehicles’ emissions. Particles differ in size, compo-
+sition, solubility, therefore also in their toxic properties. The composition of the
+particles depends on the fuel and on the combustion process. PM is usually com-
+posed of three basic fractions:
+(cid:129) Solids: dry carbon particles, commonly known as soot;
+(cid:129) Soluble organic fraction (SOF): heavy hydrocarbons adsorbed and condensed
+
+on the carbon particles;
+
+(cid:129) SO4: sulfate fraction, hydrated sulfuric acid.
+
+A small amount of inorganic ash due to metal compounds in the fuel (if metallic
+
+additives are present) and lubrication can also be present.
+
+Soot is formed from unburned fuel that nucleates from vapor to solid phase in
+fuel-rich regions at elevated temperatures. Hydrocarbons or other available mole-
+cules due to un/partially burned fuel/lubricant oil may condense on or be absorbed
+by soot depending on the surrounding conditions.
+
+The evolution of liquid- or vapor-phase hydrocarbons to solid particles and
+possibly back to gas-phase products involves many chemical and physical pro-
+cesses that can be grouped into two steps: PM formation and PM oxidation. PM
+formation takes place via ﬁve different processes: pyrolysis, nucleation, coales-
+cence, surface growth, and agglomeration. The nucleation and surface growth
+involve vapor concentrations and gas/particle conversion processes [6]. The
+agglomeration, instead, regards a solid phase. The step of particle formation and the
+scheme of PM formation are reported in Fig. 3.1 [6]. In practical combustion
+systems, the sequence of processes may vary between the two extremes.
+
+A detailed scheme of soot formation and oxidation is depicted in Fig. 3.2.
+Pyrolysis is the process whereby organic compounds, such as fuels, in the
+presence of high temperature alter their molecular structure without signiﬁcant
+oxidation even though oxygen species may be present. All fuels undergo pyrolysis
+and produce essentially the same species: unsaturated hydrocarbons, polyacetyle-
+nes, polycyclic aromatic hydrocarbons (PAH), and especially acetylene. Fuel
+
+3.1 Particulate Matter Emissions in Engines
+
+35
+
+Fig. 3.1 Schematic diagram of the steps in the soot formation processes from gas to solid
+agglomerates particles
+
+Fig. 3.2 Formation (a) and oxidation (b) mechanisms
+
+pyrolysis results in the production of some species that are precursors or building
+blocks for soot. Soot precursor formation is a competition between the rate of pure
+fuel pyrolysis and the rate of fuel and precursor oxidation by the hydroxyl radical,
+OH. Both pyrolysis and oxidation rates increase with temperature, with the latter
+being faster. This explains why in premixed ﬂames, where some amount of oxygen
+is present, soot is less than in respect to diffusion ﬂames where no oxygen is present
+in the pyrolysis region.
+
+Nucleation or soot particle inception is a homogeneous process occurring in the
+gas phase. The formation of particles from gas-phase reactants is controlled by
+chemical aspects. The particle inception process consists of radical additions of
+small, probably aliphatic, hydrocarbons to larger aromatic molecules [7]. Particle
+
+36
+
+3 Modeling of Particle Size Distribution …
+
+inception temperatures vary from 1300 to 1600 K. The nuclei of particles do not
+contribute signiﬁcantly to the total soot mass, but have a signiﬁcant inﬂuence on the
+mass added later, because they provide sites for surface growth.
+
+The greater part of soot is formed by surface growth rather than soot inception.
+Surface growth is a process of adding mass to the surface of a nucleated soot
+particle. There is no clear distinction between the end of nucleation and the
+beginning of surface growth, and in reality, the two processes are concurrent.
+During surface growth, the hot reactive surface of the soot particles readily accepts
+gas-phase hydrocarbons. This leads to an increase in soot mass, while the number
+of particles remains constant. Surface growth continues as the particles move away
+from the primary reaction zone into cooler and less reactive regions, even where
+hydrocarbon concentrations are below the soot inception limit [8]. The problem is
+that surface growth is not a gas-phase reaction of small molecules, but a hetero-
+geneous process, where adsorption and desorption processes at the surface have to
+be considered as well. The majority of the soot mass is added during surface
+growth, and thus, the residence time of the surface growth process has a large
+inﬂuence on the total soot mass or soot volume fraction. Surface growth rates are
+higher for small particles than for larger particles because small particles have more
+reactive radical sites [9]. Coalescence and agglomeration are both processes by
+which particles combine.
+
+Coalescence (sometimes called coagulation) occurs when particles collide and
+coalesce, thereby decreasing the number of particles and holding the combined
+mass of the two soot particles constant. During coalescence, two roughly spheri-
+cally shaped particles combine to form a single spherically shaped particle.
+Coagulation speed depends on particle diameter. Coagulation is more efﬁcient
+between particles of different size since the speed of coagulation is a product of size
+and diffusion coefﬁcient: big particles provide a large absorbing surface, and the
+smaller particles have a rapid diffusion [10]. Coagulation takes place only for
+relatively small particles (up to a diameter of 10 nm) which are characterized by
+high rates of growth in low-pressure premixed systems [11].
+
+Agglomeration occurs when individual or primary particles stick together to form
+large groups of primary particles. The primary particles maintain their shape.
+Typically, the combined soot particles form chain-like structures, but in some cases,
+clumping of particles can be observed. Soot agglomeration takes place in the late
+phase of soot formation when, due to lack of surface growth, coagulation is no longer
+possible [12]. As a result, open-structured aggregates containing from 10 to 100
+primary particles and characterized by a lognormal size distribution are formed [13].
+The process of soot particle oxidation is parallel to the surface growth being
+itself a surface reaction. Soot particle oxidation occurs when the temperature is
+higher than 1300 K [14]. Once carbon has been partially oxidized to CO, the carbon
+will no longer evolve into a soot particle even if entering a fuel-rich zone. Oxidation
+can take place at any time during the soot formation process from pyrolysis through
+agglomeration. Potential soot oxidants are O, O2, OH, and CO2. The major oxi-
+dation process occurs at the very beginning of soot particle growth, which is the
+
+3.1 Particulate Matter Emissions in Engines
+
+37
+
+soot particle nucleation period, where a rapidly decreasing concentration of O2 in
+fuel-rich environments is observed. The most active oxidation species depends on
+the process and state of the mixture. Oxidation of small particles is considered a
+two-stage process. First a chemical attachment of oxygen to the surface (absorption)
+occurs, then a desorption of the oxygen with the attached fuel component from the
+surface as a product takes place [15]. Under lean conditions, soot is oxidized by
+both OH and O2 [16]. OH is most likely to dominate soot oxidation under fuel-rich
+and stoichiometric conditions [17] as the soot decreases with an increase in OH
+concentration. CO2 addition has an indirect effect on soot oxidation. CO2 promotes
+hydroxyl concentration that in return increases the oxidation of soot precursors.
+
+The PM are not spherical particles, but they are aggregates and contain void
+spaces. If their material density is unknown, in order to determine their size it is
+necessary to know one or more parameters. For this reason, often it is most con-
+venient refer to equivalent diameters, deﬁned as the diameter of a sphere, which
+with a given instrument would yield the same size measurement as the particle
+under consideration [18].
+
+The most commonly used equivalent diameters are as follows:
+
+(cid:129) Volume equivalent diameter (dve): also known as envelope equivalent diameter,
+is deﬁned as the diameter of a spherical particle of the same volume as the
+particle under consideration. For an irregular particle, dve is the diameter that
+the particle would have if it were melted to form a droplet while preserving any
+internal void spaces. dve is equal to the geometric diameter dp for spherical
+particles [19].
+
+(cid:129) Mass equivalent diameter (dme): is similar in concept to dve with the difference
+that dme does not include internal voids. Therefore, for a particle with no
+internal voids dve = dme. If the particle contains internal voids, dve > dme.
+(cid:129) Electrical mobility diameter (dm): is the diameter of a sphere with the same
+migration velocity in a constant electric ﬁeld as the particle of interest.
+Instruments such as the DMS and the SMPS measure dm. This measurement is
+obtained via a force balance between the electrical force of a constant electric
+ﬁeld on the net charges on the particle and the drag force experienced by the
+particle.
+
+(cid:129) Aerodynamic diameter (da): is the diameter of a spherical particle having a
+density of 1 g/cm3 that has the same terminal settling velocity in the gas as the
+particle of interest. Terminal settling velocity is a measure of the aerodynamic
+properties of the particle, and the aerodynamic diameter depends on the ﬂow
+regime. Instruments such as the ELPI measure da. The aerodynamic diameter
+has been developed in order to provide a simple means of categorizing the sizes
+of particles having different shapes and densities with a single dimension.
+(cid:129) Stokes diameter (ds): is the diameter of a sphere which has the same density and
+
+setting velocity as the particle of interest [20].
+
+For irregular particles of standard density, dm < dve < da.
+According to their diameter, particles are usually classiﬁed in [21]:
+
+38
+
+3 Modeling of Particle Size Distribution …
+
+(cid:129) Nano: particles smaller than 50 nm;
+(cid:129) Ultraﬁne: particles with an aerodynamic diameter lower than 0.1 lm;
+(cid:129) Fine (PM2.5): particles with an aerodynamic diameter in the size range from 0.1
+
+(cid:129) Coarse (PM10): particles with an aerodynamic diameter in the size range from
+
+up to 2.5 lm;
+
+2.5 up to 10 lm;
+
+(cid:129) Supercoarse: particles with an aerodynamic diameter higher than 10 lm.
+
+The particles usually form separated modes in the number size distribution. They
+
+can be classiﬁed as follows:
+(cid:129) Nuclei mode: particles smaller than 50 nm, usually formed from a volatile
+
+precursor during exhaust dilution and cooling processes;
+
+(cid:129) Accumulation mode: particles from 50 nm up to 1000 nm usually consisting of
+
+carbonaceous agglomerates and adsorbed material;
+
+(cid:129) Coarse mode: particles larger than 1000 nm consisting of re-entrained accu-
+
+mulation mode particles and crankcase fumes.
+
+However, the last generation engines usually emit only particles in nucleation
+and accumulation mode. Figure 3.3 shows a typical size distribution of atmospheric
+particulate matter of a Diesel engine, where no particles in coarse mode are emitted.
+Highly irregular particle populations, such as PM, will show signiﬁcant differ-
+ences in the size distributions measured simultaneously by mobility and aerodynamic
+techniques. These are not real discrepancies; instead, they merely capture the dif-
+ferent dependence of both equivalent diameters on the fundamental particle prop-
+erties. This phenomenon has been observed in several investigations [22, 23, 24].
+
+PM formation process is strictly affected by the combustion process. Soot
+concentration, in fact, depends on C/O ratio, therefore on the equivalence ratio of
+
+Fig. 3.3 Typical particle size
+distribution
+
+3.1 Particulate Matter Emissions in Engines
+
+39
+
+the mixture, apart from temperature and pressure. For C/O ratio bigger than a
+critical value, soot formation occurs in the temperature range from 1400 to 2200 K,
+with a maximum at around 1700 K.
+
+Diesel particulate matter is mainly composed of carbonaceous particles gener-
+ated in the engine cylinder during the combustion. The primary particles are car-
+bonaceous spherical in shape on which are adsorbed unburned compounds that
+agglomerate to form long chain-like structures. In details, small nuclei of hydro-
+carbon with low H/C ratio are formed where combustion is locally rich. Then, these
+nuclei particles aggregate and adsorb smaller particles to their surface. Diesel soot
+formation mechanism is described in [24].
+
+According to Dec theory, soot is formed throughout the fuel jet cross section, but
+the major part of soot is oxidized inside the cylinder. The actual composition of
+Diesel PM depends on the engine type and load and speed conditions. “Wet”
+particles can contain up to 60% of the hydrocarbon fraction (SOF), while “dry”
+particles comprise mostly of dry carbon. The amount of sulfates is directly related
+to the Sulfur contents of the fuel [25]. Primary soot particle size appears to vary
+depending on operating condition, injector type, and injector conditions but most
+primary particles’ sizes reported range from 10 to 70 nm. After combustion ends,
+particles agglomerate and are seen to be chain-like.
+
+The mechanism of particle formation in Gasoline Port Fuel Injection Spark
+Ignition (GPFI SI) engines is very different from Diesel engines and not yet well
+understood. In a PFI SI engine, fuel and air are premixed in the intake duct before
+combustion. Particle formation in this case results from local
+inhomogeneous
+conditions, fuel pooling, big droplets, cracks, crevices, etc. Analyses of particulate
+emissions from gasoline PFI engines reveal that the bulk of the mass is ash with the
+second largest fraction of unburned lubricating oil. Carbon emissions are found to
+be signiﬁcant only at high speed and load with mixture enrichment. PM emission
+from PFI SI engines is negligible with respect to the Diesel ones and, for this
+reason, they are not considered in the actual emission standard limits. It was
+observed that gasoline particles’ emissions depend on engine speed and load [26,
+27]. Nevertheless, there are few detailed analysis on the effect of the state variables,
+such as rpm and load, and control parameters, such as AFR and spark timing, on
+particles number and size.
+
+For gasoline direct injection (GDI) engines, instead, the environmental con-
+dition prompt to particle formation [28]. Differently, from GPFI SI engines, less
+time is available for the charge to become a homogeneous mixture and even for
+all the fuel to evaporate. In this case, in fact, the time available for mixture
+preparation and fuel evaporation is limited to the window between injection and
+ignition. The consequent charge heterogeneity and fuel droplet presence are two
+mechanisms causing large PM emissions in GDI engines. Another aspect
+to
+consider is the piston and wall wetting due to the fuel impingement on the piston
+crown creating a fuel ﬁlm. This ﬁlm can burn diffusively and as a pool ﬁre. Both
+cases are particularly effective at forming primary carbon particles that
+later
+aggregate.
+
+40
+
+3 Modeling of Particle Size Distribution …
+
+Anyway, whatever the CI and SI conﬁguration, the engines emit a large number
+of ultraﬁne particles. Health studies [2] have shown that ultraﬁne particles have a
+greater adverse effect on men’s health than larger particles of the same composition
+since they are capable of penetrating deeper into the respiratory tract. Furthermore,
+particle dynamics and lifetime in the atmosphere can inﬂuence visibility, radiative
+balance, climate change, with the extent dependent on the size distribution and
+nature of the aerosols [29].
+
+The larger thoracic coarse particles are primarily deposited in the nose and in
+larger airways due to impaction because they cannot follow the air stream at
+bifurcations; these particles are ﬁltered out of the air stream and cannot penetrate
+down to the deep lung. Smaller particles can pass through the large airways and are
+deposited in the lung due to sedimentation (settlement of particles in resting air due
+to gravity). These ﬁne particles may preferentially affect the cardiovascular system.
+For this reason, particle regulation on the number of particles larger than 23 nm was
+introduced from Euro 6 for direct injection light-duty cars [30].
+
+3.2 Real-Time Prediction of Particle Sizing at the Exhaust
+
+of a Diesel Engine
+
+The present paragraph summarizes the results of studies carried out by the authors
+on the prediction of characteristics of exhaust particles emitted by Diesel engines.
+In particular, it will be described a neural network model that provides real-time
+information about particle number and size on the basis of engine parameters such
+as angular speed, load, and EGR level.
+
+The experimental activity was carried out on a four-stroke Diesel engine, with
+four inline cylinders, 16 valves, a displacement of 1.9 l, and a compression ratio
+of 17.5:1. The engine was equipped with a common rail injection system, which
+allowed two injections (Pilot—Main) for each cycle (Unijet). The engine was also
+provided with an exhaust gas recirculation (EGR) system, whose basic element is
+an electro-valve controlled by the electronic control unit. The electro-valve
+receives an electrical signal (duty-cycle) and orders a pressure reduction to the
+mechanical valve (EGR valve) placed between the outlet and the inlet pipes.
+When the depression is applied, the EGR valve allows the addition of part of
+exhaust gases to the airﬂow. The whole process is controlled by the electronic
+control unit using characteristic look-up tables stored in its memory. The actual
+EGR percentage, according to the conventional deﬁnition [31], can be obtained
+measuring the aspired air (ṁair) with and without EGR and using the following
+equation:
+
+3.2 Real-Time Prediction of Particle Sizing at the Exhaust of a Diesel Engine
+
+41
+
+EGR% ¼ 1 (cid:2)
+
+_mair wEGR
+_mair w=oEGR
+
+(cid:3)
+
+pw=oEGR
+pwEGR
+
+(cid:3)
+
+TwEGR
+Tw=oEGR
+
+;
+
+ð3:1Þ
+
+in order to get the exact EGR percentage values, corrections of pressure and
+temperature are necessary. The presence of exhaust gases in the inlet manifold does
+not imply the same reduction of the aspired fresh air. This is due to the contribution
+of exhaust gases thermal energy, and it leads to an increase of the aspired ﬂuid
+temperature and therefore to its expansion.
+
+An opacimeter was used to evaluate particulate mass concentration as a function
+of time. Opacimeter is a partial-ﬂow system that measures the visible light atten-
+uation (550 nm) from the exhaust gases. From empirical relations, it is possible to
+convert the opacity percentage in particulate mass concentration [32].
+
+Particle size distribution at the Diesel engine exhaust was evaluated by means of
+an electrical low-pressure impactor (ELPI). It measures in real time the particle
+aerodynamic diameter in the range 7 nm–10 lm [33]. The sample ﬁrst passes
+through a unipolar positive polarity charger, where the particles are electrically
+charged by ions produced in a corona discharge. After the charger, the particles pass
+in a low-pressure impactor where they are classiﬁed according to their aerodynamic
+diameter. The stages of the impactor are electrically insulated, and each stage is
+individually connected to an electrometer current ampliﬁer. The charged particles
+collected in a speciﬁc impactor stage produce an electrical current, which is
+recorded by the respective electrometer channel. The current value of each channel
+is proportional to the number of particles collected, and thus to the particle con-
+centration in the speciﬁc size range. The current values are converted to an aero-
+dynamic size distribution using particle-size-dependent relations describing the
+properties of the charger and the impactor stages [34]. Fine particle sampler
+(FPS) was used to sample and dilute ratio the exhaust gas.
+
+The modeling approach used for prediction of particulate emissions character-
+istics was based on the idea of developing a soft computing model acting as a
+“supervisor” of PM emissions from a Diesel engine. In particular, the model gives,
+for every engine operating condition, information about the characteristics of par-
+ticulate emissions in terms of particle size distribution.
+
+The soft computing model has as output the number concentration of particulate
+particles with ﬁxed aerodynamic diameters, respectively, of 8, 28, 54, 91, 154, 261,
+and 381 nm, whereas the inputs are the engine speed, the engine load, and the
+actual EGR ratio (see Figure 3.4). The proposed model has been conceived taking
+into account the paradigm of a learning machine trained and tested on experimental
+data. As learning machine model, a feedforward MLP (Multilayer Perceptron)
+neural network with one hidden layer has been chosen.
+
+To improve the generalization capability of the neural network model, an
+automated regularization procedure applied during the model training, known in the
+literature as Bayesian regularization, was considered, see [35, 36]. According to the
+Bayes’s rule, the “best” model is deﬁned as the model with the highest a posteriori
+probability of the correctness, this means:
+
+42
+
+3 Modeling of Particle Size Distribution …
+
+Fig. 3.4 Block scheme of the
+model for prediction of
+particulate emissions
+characteristics
+
+ð(cid:2) logðPðDjHhÞ (cid:2) logðPðHhÞÞ;
+
+min
+h
+
+ð3:2Þ
+
+where h is the parameter of the model Hh used to describe a system, whose
+observed event is indicated with D. In Eq. (3.2), P(D|Hh) represents the probability
+of the event conditioned by the correctness of the model. In the context of a neural
+network model, the observed event of the system is:
+
+D ¼ fð(cid:2)xi; (cid:2)yiÞji ¼ 1; . . .; ng;
+
+ð3:3Þ
+
+where (cid:2)xi is the i-th input vector of the neural network model, and (cid:2)yi is the related i-
+th output vector used as dataset for the model training. The neural network is
+described as a nonlinear map gh:
+
+(cid:2)yi ¼ ghð(cid:2)xiÞ;
+
+ð4Þ
+
+which, in function of the weights and biases of the hidden layer neurons (all
+described by the vector h), links the input–output data. In the Bayesian neural
+network approach, a normal Gaussian data distribution is supposed only if the
+model is correct. So, if h is the correct parameter vector, the observed values (cid:2)yi are
+normally distributed around ghð(cid:2)xiÞ. After trivial calculations, it can be obtained that:
+
+(cid:2) logðPðDjHhÞÞ ¼ (cid:2) log
+
+Yn
+
+ð(cid:2)yi(cid:2)gh ð(cid:2)xi ÞÞ2
+2r2
+
+e(cid:2)
+
+i¼1
+1
+2
+
+Xn
+
+i¼1
+
+¼
+
+1
+r2
+
+ð(cid:2)yi (cid:2) ghð(cid:2)xiÞÞ2;
+
+ð3:4Þ
+
+3.2 Real-Time Prediction of Particle Sizing at the Exhaust of a Diesel Engine
+
+43
+
+therefore, the function to be minimized (during the training phase of the model) is:
+
+ 
+
+Xn
+
+1
+2
+
+i¼1
+
+min
+h
+
+(cid:2)
+(cid:2) (cid:3)
+(cid:2)yi (cid:2) gh (cid:2)xi
+
+(cid:3)
+
+2
+
+(cid:2)r2 log P hð Þ
+ð
+
+Þ
+
+;
+
+!
+
+ð3:5Þ
+
+with −r2log(P(h)) that represents a kind of a priori information about the correct
+solution.
+
+A dataset composed of 38 experimental points was used to train and test the
+neural network model. The whole dataset was then divided into training and testing
+sets, composed of 28 and 10 experimental points, respectively. For each particle
+aerodynamic diameter, training and testing datasets included engine speeds ranging
+from 1000 to 2000 rpm, engine loads from 2 to 5 bar, and EGR percentages from 0
+to 56%. Training data were chosen in order to contain information spread evenly
+over the entire range of engine operative conditions. This in order to increases
+generalization capability of the neural network model. The number of neurons in
+the hidden layer was set equal to 5. Also, other neural network conﬁgurations were
+tested. In particular, maintaining a ﬁxed number of neurons in the hidden layer, the
+performances of the model to changes in the ratio between training and testing
+dataset size (from 24/14 to 33/5) were evaluated. Moreover, the inﬂuence of the
+number of neurons in the hidden layer on the performances of the model was also
+investigated. The results of all these tests conﬁrmed that the model conﬁguration
+with 5 neurons in the hidden layer and a ratio between training and testing dataset
+equal to 28 to 10 provide the lower absolute mean square error in the prediction of
+particle concentration, for all the particle equivalent diameters considered.
+
+Figure 3.5 shows, for different EGR ratios, the particle size distribution mea-
+
+sured at the exhaust of the test engine at 1500 rpm and 30 Nm.
+
+Fig. 3.5 Particle size
+distribution at different EGR
+ratio
+
+2.5x108
+
+2.0x108
+
+1.5x108
+
+108
+
+5.0x107
+
+]
+3
+
+m
+c
+/
+1
+[
+ 
+p
+D
+g
+o
+d
+/
+N
+d
+
+l
+
+1500 rpm 2 bar
+
+EGR 0
+EGR 32
+EGR 39
+EGR 47
+EGR 52
+EGR 56
+
+0.0
+
+1
+
+10
+
+100
+Particle diameter [nm]
+
+1000
+
+10000
+
+3 Modeling of Particle Size Distribution …
+
+Table 3.1 Absolute and percent mean square error related to the estimated concentration of the
+particles having as equivalent diameters, respectively, 8, 28, 54, 91, 154, 261, and 381 nm
+
+Particle diameters
+(nm)
+
+Percent mean square error
+(%)
+
+Absolute mean square error
+(cm−3)
+5.0E+06
+1.02E+07
+2.36E+07
+1.30E+07
+2.14E+06
+5.11E+05
+2.51E+05
+
+6
+4.4
+3.1
+4.3
+3.8
+3.3
+6
+
+44
+
+8
+28
+54
+91
+154
+261
+381
+
+The ﬁgure clearly indicates that EGR does not affect signiﬁcantly the particle
+size distribution, which for all the cases shows a unimodal behavior. However, an
+increase in EGR produces an increase in the number concentration. The particle
+formation is prompt in all the size range; however, the formation of larger particles
+is enhanced because of the lower temperature, which boosts the growing processes,
+such as coagulation and agglomeration, and of the lower presence of oxygen, which
+improves particle formation and worsens the particle oxidation. This result became
+more evident at the increasing of the EGR.
+
+Table 3.1 shows the comparison between the experimental and the estimated
+number concentration of the selected size particles for the testing points chosen to
+validate the model.
+
+The mean square error is within the range 3–6% of the maximum experimental
+data. This shows a satisfactory generalization capability of the neural network
+model; hence, the soft computing approach followed in this works seems to be able
+to guarantee similar fair performance also in other un-experimented engine con-
+ditions. Only for the lower and larger diameter, the error was higher than 5%, this
+can be due to the fact that these are the upper and lower limits of the instruments, so
+they measure can be slightly biased.
+Diagnosis and Control of Engine
+Combustion Using Vibration Signals
+
+In other parts of this book, the importance of non-intrusive diagnostic techniques to
+evaluate the combustion quality in internal combustion engines has been high-
+lighted. Non-intrusive diagnostics offer several advantages: the sensors are gener-
+ally placed externally the engine, therefore, no engine structural modiﬁcations are
+required. As a consequence, the sensors used for this kind of applications are not
+requested to resist very high temperature and pressure and they are relatively
+cheap. Among non-intrusive diagnostic techniques, those based on the analysis of
+the engine vibration seem to be the most promising and several studies may be
+found in the literature [1–12]. In particular, the strong connection between the
+characteristics of the combustion process and the so-called vibration signature of
+the engine induced some authors to perform a reconstruction of the cylinder
+pressure signal by using the information coming from single or multiple
+accelerometers placed on the engine block. The signal processing tools used for that
+purpose were de-convolution methods [1], spectrum analysis [2], cyclo-stationarity
+properties [5], and methods using neural network models [6].
+
+The present chapter proposes a method for “advanced” combustion diagnosis
+and control without using in-cylinder pressure transducers. The method includes a
+vibration signal processing in order to separate the combustion phenomena from all
+the other noise signatures on the signal. The strict correlation between the ﬁltered
+block vibration signal and some combustion parameters (such as MFB50 and
+combustion pressure peak location) has been also demonstrated. Finally, the chapter
+contains some possible combustion control strategies based on vibration signal
+analysis.
+
+In order to test the proposed approach, several types of ICEs were employed. In
+particular, two single cylinder research engines (one compression ignition (CI) and
+another spark ignited (SI)), and two multi-cylinder engines, still compression and
+spark ignition, were used. Engines characteristics and injection system speciﬁca-
+tions are reported in Table 4.1. All engines had four valves per cylinder and were
+equipped with different injection systems, direct injection common rail for com-
+injection for spark
+pression ignition engines, and indirect
+
+injection port fuel
+Diagnosis and Control of Engine Combustion …
+
+Table 4.1 Main features of the engines used for the experimental tests
+
+SCRE 1 CI
+
+SCRE 2 SI
+
+MCRE 3 CI MCRE 4 SI
+
+# of Cylinders
+Bore (mm)
+Stroke (mm)
+Displacement (cm3)
+Compression ratio
+Injection system
+
+1
+85
+92
+522
+16.5:1
+Common rail
+
+1
+79
+81
+399
+10.0:1
+Port fuel injection Common rail
+
+4
+83
+90
+1956
+16.5:1
+
+4
+71
+79
+1242
+10.1:1
+Port fuel injection
+
+ignition. The injection systems were managed by ECUs that allowed to control the
+injection pressure, the injector energizing time, the injection timing, the number of
+injections per cycle, and the dwell time between consecutive injections.
+
+All
+
+the engine vibration measurements were carried out by a low-cost,
+low-power, linear capacitive accelerometer working on a 6 kHz bandwidth. The
+accelerometer included a sensing element and an integrated circuit interface able to
+take the information from the sensing element and to provide an analog output
+signal. The sensor was set by means of glue in the upper surface of the elongated
+cylinder, close to the cylinder head, and under the exhaust manifold. This solution
+was found to be the best in terms of sensitivity and accessibility. The investigated
+engine operating conditions were at different engine speeds and brake mean
+effective pressure (BMEP).
+
+In Fig. 4.1, the motored and ﬁred in-cylinder pressure signals and the corre-
+spondent engine vibration signals are reported for three consecutive cycles of a
+Diesel engine at an engine angular speed of 1500 rpm. The accelerometer signal
+detected during the engine operation in motored condition provides important
+information about the background vibrations and it can be assumed as baseline. As
+can be noted at the bottom of Fig. 4.1, when the injection is activated and the
+combustion starts, the vibration signal characteristics vary with respect to the
+baseline. The difference between the vibration signal in motored and ﬁred condi-
+tions occurs around the peak pressure and the combustion event is the main
+responsible of this variation.
+
+Basically, engine block vibration is due to several sources such as valve opening
+and closing, piston slap, combustion process and several additive noises. Transient
+waves generated by these sources overlap each other and the main issue is to isolate
+the contribution of interest. In order to extract information about the combustion
+pressure from the vibration signal, the accelerometer signal has been analyzed by
+means of a time–frequency analysis.
+
+In Fig. 4.2, the time–frequency study of the vibration signal is shown for both
+SCRE 1 CI engine (left) and SCRE 2 SI engine (right), respectively. The diagram
+has been obtained by using the MATLAB command “spectrogram”: it produces
+time–frequency diagrams by making many STFTs (Short Time Fourier Transforms)
+of the same length. The amplitude of STFTs is then translated to a colorful graph.
+The spectrogram reported in Fig. 4.2 refers to a speed of 1500 rpm for CI engine
+
+4 Diagnosis and Control of Engine Combustion …
+
+49
+
+Fig. 4.1 Generic sampling of the in-cylinder pressure and accelerometer signals with engine in
+motored (up) and ﬁred (bottom) conditions, respectively, at 1500 rpm
+
+Fig. 4.2 Time–frequency spectrogram of accelerometer signals and averaged pressure cycles for
+SCRE1 engine (left) and SCRE 2 engine (right)
+
+50
+
+4 Diagnosis and Control of Engine Combustion …
+
+and 2000 rpm for SI engine. In order to help the identiﬁcation of correlations
+between cylinder pressure cycle and vibration signal, also the average pressure
+cycle (averaged on 400 consecutive engine cycles), has been superimposed on the
+graphs.
+
+From the analysis of the spectrogram, it can be deduced that the energy of
+combustion is prevailing in the frequency band 1000–1500 Hz for CI SCRE 1
+engine. On the other hand, the frequencies below 4000 Hz well represented the
+whole combustion process for SCRE 2 engine. In particular, for this latter engine a
+dominant frequency band can be observed in the range 1500–1800 Hz. The
+high-amplitude components below 500 Hz for SCRE 1 and below 100 Hz for
+SCRE 2 are probably due to spurious sources and they cannot be associated to any
+combustion phenomena. Similar results were obtained with the time–frequency
+study performed at other engine speeds.
+
+In order to select the frequency bandwidth of interest, it can be combined the
+time–frequency analysis with a coherence analysis. The value of the coherence
+function between the vibration signal and the cylinder pressure, in fact, gives
+frequencies where the information of combustion can be extracted from the
+vibration trace. The coherence function can be computed as a normalized measure
+that depends on the cross-power spectral density, Pp;vðf Þ, of cylinder pressure and
+block vibration signal, and on the spectral densities, Pp;pðf Þ and Pv;vðf Þ, of each
+signal (see Eq. (1)).
+
+Cp;vðf Þ ¼
+
+(cid:1)
+(cid:1)2
+
+(cid:1)
+(cid:1)
+Pp;vðf Þ
+Pp;pðf Þ:Pv;vðf Þ
+
+:
+
+ð1Þ
+
+Cp;vðf Þ, has values between 0 and 1, and higher is Cp;vðf Þ, higher is the corre-
+
+lation between cylinder pressure and block vibration signal.
+
+Figure 4.3 shows the coherence between in-cylinder pressure and accelerometer
+signal for the SCR1 engine tested at 2000 rpm. From this ﬁgure, highest coherence
+values are exhibited in the frequency bandwidths 800–1200 Hz for SCRE 1. This
+indicates the strong correlation between the spectral components of in-cylinder
+pressure and accelerometer signals in these frequency ranges. These results also
+conﬁrm the information obtained by means of the time–frequency analysis and they
+allow to deﬁne a band-pass ﬁlter to separate the combustion occurrence from all
+other noise sources on the vibration signal. The cutoff frequencies reported in
+Table 4.2 were chosen to ﬁlter the accelerometer signal coming from the engine
+block of the different engines used for experimental tests.
+
+In Fig. 4.4, the angular position of maximum amplitude of ﬁltered accelerometer
+signals (LMA) is plotted versus the angular location of the pressure peak (LPP) for
+all the engine operating conditions of the two multi-cylinder (MCR) engines tested.
+The graph shows a good linear-like correlation. In Table 4.3, averaged LMA values
+and the correspondent averaged LPP values are reported for all selected engine
+operating conditions. The standard error related to the estimation of the LPP by
+
+4 Diagnosis and Control of Engine Combustion …
+
+51
+
+Fig. 4.3 Coherence analysis for SCRE 1 engine at 2000 rpm
+
+Table 4.2 Frequency-ranges adopted to ﬁlter vibration signals
+
+SCRE 1 CI
+SCRE 2 SI
+MCRE 3 CI
+MCRE 4 SI
+
+1500 rpm (Hz)
+1000–1500
+1500–1800
+1500–3000
+500–800
+
+2000 rpm (Hz)
+800–1200
+1500–1800
+1500–3000
+500–800
+
+Fig. 4.4 Pressure peak and
+vibration signal maximum
+location for MCRE 3 and
+MCRE 4
+
+4 Diagnosis and Control of Engine Combustion …
+
+Table 4.3 Comparison between average values of LMA and LPP. MCRE 3
+
+Load
+(mbar)
+
+Average LPP
+(CAD)
+
+Average LMA
+(CAD)
+
+Standard
+Error
+
+30
+50
+100
+30
+50
+100
+30
+50
+100
+30
+50
+100
+
+15.4
+27.2
+25.3
+12.5
+20.4
+21.3
+14.1
+21
+22.6
+16.7
+25.4
+25.6
+
+16
+29.9
+29.5
+11.3
+19.4
+20.7
+10.8
+20.9
+22.3
+12.4
+22.6
+23.4
+
+2.1
+2.8
+1.9
+0.8
+1.2
+1.5
+1.3
+1.4
+3.4
+0.6
+3.5
+4.6
+
+52
+
+Speed
+(rpm)
+
+2000
+2000
+2000
+3000
+3000
+3000
+4000
+4000
+4000
+4500
+4500
+4500
+
+using the LMA is listed too. The standard error value is similar for all the conditions
+and it is lower than 5. This result conﬁrms that accelerometers can be exploited as
+non-intrusive sensors in a closed-loop control system that uses as the crank angle of
+the pressure peak as feedback value.
+
+In Table 4.4, the average Maximum Pressure Rise (MPR) angular position,
+which is considered another important parameter for engine control, and the
+average LMA are compared for MCRE 3 engine. The table refers to the entire sets
+of tested engine operating conditions; the averages are calculated over 400 con-
+secutive engine cycles. Also the standard errors, related to the estimation of MPR
+position by using LMA, are reported in the table. In particular, the maximum
+difference between average values of MPR position and of LMA is 0.2 CAD and
+the maximum standard error is 0.3 CAD for MCRE 3 facility.
+
+In order to use the vibration signal for diagnosis and control of the Diesel
+combustion process (SCRE 1 and MCRE 3), the correlation between this signal and
+the in-cylinder mass fraction burned has been investigated. In particular, a strict
+correspondence between LMA and MFB50 (angular position where the 50% of the
+fuel mass inside the cylinder is burnt) can be found (see Fig. 4.5). MFB50, also
+called center of combustion, represents a very important combustion indicator, as
+widely described in the literature [14], and mentioned in the next chapter of the
+present book. Its value is strictly connected to the in-cylinder combustion progress
+and represents a stable measure of the timing of combustion. Moreover, in Diesel
+engines, a linear dependence of MFB50 on Start of Injection (keeping constant all
+
+Table 4.4 Comparison between average values of LMA and MPR position. MCRE 3
+
+Speed (rpm)
+
+Average MPR (CAD)
+
+Average LMA (CAD)
+
+Standard error
+
+2000
+2000
+
+8.3
+11.3
+
+8.5
+11.2
+
+0.3
+0.3
+
+4 Diagnosis and Control of Engine Combustion …
+
+53
+
+Fig. 4.5 Correlation between ﬁltered vibration signal and in-cylinder mass fraction burned (LMA
+vs MFB50)
+
+Fig. 4.6 Proposed architecture for
+accelerometer signal
+
+real-time control of compression ignition engines via
+
+the other injection parameters and EGR rate) can be demonstrated [13–15].
+Therefore, MFB50 can be used as a feedback variable in a closed-loop control
+system that acts on the Start of Injection (SOI) to obtain the optimal combustion
+timing in compression ignition engines.
+
+A block scheme of such a closed-loop control is shown in Fig. 4.6. The goal of this
+controller is to maintain the actual MBF50 (estimated by means of the vibration
+signal) as close as possible to its optimal value. To this aim, SOI is real-time adjusted
+until the actual MFB50 value meets its target value stored in engine control maps.
+
+Some criteria for use of MFB50 in closed-loop control architectures of SI
+engines are presented in the next chapter. On the other hand, it is well known that in
+
+54
+
+4 Diagnosis and Control of Engine Combustion …
+
+SI engines the optimal pressure peak location should be fairly constant (around 16
+CAD ATDC), regardless of the operating conditions [14]. Therefore, a spark
+advance control algorithm able to maintain unchanged the LPP can be conceived.
+To this aim, the vibration signal could be used to estimate LPP. This information
+can be subsequently sent to the controller, which gives as output, on the basis of the
+LPP reference value (i.e., 16 CA ATDC), a new spark timing value. However, in
+the calculation of the new spark advance, the controller should also guarantee that
+the adjusted spark timing will not induce engine knock.
+Use of in-Cylinder Pressure and Learning
+Circuits for Engine Modeling and Control
+
+The parameter widely considered as the most important for the diagnosis of com-
+bustion process in internal combustion engines is the cylinder pressure. This signal
+represents, in fact, the most direct signal available for engine control [1] and
+numerous control algorithms based on pressure measurement as a feedback signal
+have been proposed.
+
+However, measure of cylinder pressure can involve an intrusive approach to the
+cylinder and a special mounting process. Moreover, combustion pressure trans-
+ducers used for these applications are very expensive, also because they are
+requested to resist to a highly hostile environment. For all these reasons, use of
+modeling and control techniques based on cylinder pressure analysis has been
+generally limited to research applications. However, more robust and cost-effective
+in-cylinder sensors have been recently developed and their usage in mass-produced
+vehicles now appears more feasible. On the other hand, use of a pressure sensor
+allows to replace many other sensors present in engines such as knock sensor and
+air mass meter. Typically, this new type of pressure sensors is integrated in the glow
+plugs [2], in the spark plugs, or into the injector valves.
+
+Cylinder pressure signal includes most of the nonlinear phenomena occurring
+during engine combustion process. A typical example is represented by the so-called
+cyclic variability (also known as cyclic dispersion), which consists in a substantial
+variation from one cycle to the next in the combustion development. This phe-
+nomenon, which can lead to signiﬁcant differences in the combustion efﬁciency from
+one engine cycle to another, is more evident in spark-ignited engines, especially
+when fueled with lean mixtures. Basically, cyclic variability is caused by variations
+in mixture motion within the cylinder at the time of the spark, variations in the
+amounts of air and fuel fed to the cylinder at each cycle, and variations in the mixing
+of fresh mixture and residual gases within the cylinder at each cycle [3]. Cyclic
+dispersion can be described as a highly nonlinear, or even chaotic process [4, 5],
+even if some researchers have highlighted its inherently non-deterministic and
+stochastic nature. The most evident effect of cyclic variation on cylinder pressure is a
+clear variability of pressure traces versus time from cycle-to-cycle (see Fig. 5.1).
+Use of in-Cylinder Pressure and Learning Circuits …
+
+Fig. 5.1 Example of cyclic
+dispersion of pressure signal
+in a SI engine
+
+Use of real-time cylinder pressure in control architectures for both SI and Diesel
+engines offers a variety of signiﬁcant advantages in terms of improved engine
+performances and reduced toxic emissions. Closed-loop controls using cylinder
+pressure measurements are able to compensate for manufacturing variations, aging
+and wear, fuel properties, and some environmental factors like humidity. In SI
+engines, some examples of applications that can achieve great beneﬁts from the use
+of pressure signal are knock detection and control, air–fuel ratio control, which can
+be in this way enabled also during transient operation and cold-starts, lean-burn
+control, fault diagnosis (e.g., misﬁre detection), estimation of cylinder air charge,
+and exhaust emission monitoring. Moreover, cylinder-pressure-based feedback
+control allows to achieve an individual-cylinder control, in which optimal com-
+bustion control can be maintained in each cylinder of the engine. This permits to
+compensate for cylinder-to-cylinder A/F imbalances that can be due to both unequal
+fuel ﬂow and unequal airﬂow to the cylinders.
+
+In Diesel engines, closed-loop combustion control based on real-time combus-
+tion information coming from a cylinder pressure sensor is a key element that
+enables use of the so-called alternative Diesel combustions (e.g., Homogeneous
+Charge Compression Ignition) in series production engines.
+
+5.1 Cylinder Pressure Analysis and Extraction
+
+of Parameters for Engine Combustion Diagnosis
+and Control
+
+Use of whole pressure trace for engine combustion diagnosis and control requires a
+high computational effort to modern ECU. For this reason, several algorithms that
+employ parameters derived from the pressure signal, and strictly related to the
+behavior of the combustion process, have been proposed for control-oriented
+
+5.1 Cylinder Pressure Analysis and Extraction of Parameters …
+
+57
+
+applications. To this aim, location of cylinder peak pressure (LPP) has been sug-
+gested as a parameter for closed-loop control of spark timing in SI engines [6].
+However, use of LPP as a unique combustion indicator in pressure-based control
+systems shows a reduced applicability, especially when used for diluted air–fuel
+mixtures, e.g., during idle or with high EGR rates [7]. Another method for ana-
+lyzing cylinder pressure signal is based on the use of the so-called momentum of
+pressure trace (vs crank angle) as an input to an estimator algorithm. This approach
+was successfully applied for air–fuel ratio control [8], but the calculation procedure
+is quite computationally intensive [9] and, for this reason, it was not extended to
+other control functions.
+
+Indicated Mean Effective Pressure (IMEP), which can be calculated from the
+cylinder pressure waveform during the combustion event, was used as another
+possible parameter for the diagnosis of combustion efﬁciency. In particular, several
+algorithms [10] for engine torque ﬂuctuations monitoring on the basis of IMEP
+value have been developed. Moreover, this information has been used to identify
+the combustion dilution limits and to detect the occurrence of misﬁred cycles.
+
+Other approaches proposed for real-time pressure-based control of internal
+combustion engines are the so-called pressure ratio and difference pressure
+methods.
+
+The pressure ratio (PR) algorithm [9] involves the calculation of the ratio
+between the ﬁred pressure and the corresponding motored pressure (Pmot) at each
+engine crank angle:
+
+PR ¼ PðhÞ
+PmotðhÞ
+
+:
+
+ð5:1Þ
+
+The PR has a unity value before combustion and rises during combustion to a
+ﬁnal pressure ratio value (FPR), which, depending on the amount of heat release per
+unit charge mass, usually ranges from 2.8 to 4 and typically occurs at around
+55 crank angles ATDC for spark-ignited engines.
+
+A strict correlation between the fuel mass fraction burned (MFB) and the
+
+pressure ratio exists. In fact, it can be thermodynamically demonstrated that
+
+MFBðhÞ (cid:2) PRðhÞ (cid:3) 1:
+
+ð5:2Þ
+
+Therefore, the fractional rise in the pressure ratio can be considered an estimate
+of the mass fraction burned, which only slightly is inﬂuenced by piston motion and
+heat transfer [9].
+
+According to [9], pressure ratio calculated during combustion at 10° ATDC,
+normalized to the FPR, and indicated as PRM10, provides a very sensitive measure
+of combustion phasing and can thus be used as a variable in algorithms for
+closed-loop spark timing control. In [9], a spark control system was implemented
+by controlling the PRM10 to a nominal value of 0.55, even if modiﬁcations to this
+target were made for some special operating conditions (e.g., for decelerations or
+during knock).
+
+58
+
+5 Use of in-Cylinder Pressure and Learning Circuits …
+
+FPR reaches its maximum value for stoichiometric mixtures and decreases as the
+mixture dilution increases; therefore, it can be a useful indicator of the total charge
+dilution, and it is applicable to the control of lean-burn systems, of systems that use
+high amount of EGR or of systems that vary the amount of residuals through
+variable valve trains [9].
+
+Another method for combustion diagnosis and control is the so called difference
+pressure method, which uses the ﬁred cylinder pressure signal, subtracted by the
+corresponding motored pressure, as a control parameter.
+
+D PðhÞ ¼ PðhÞ (cid:3) PmotðhÞ:
+
+ð5:3Þ
+
+This approach, according to [11], allows to solve the problem of a reliable
+absolute pressure measurement without drifting and scaling issues, which is
+required when the pressure ratio method is used.
+
+Several pressure-based algorithms using the difference pressure approach have
+been proposed. Most of these employ parameters extracted from the difference
+pressure curve, such as the difference pressure curve peak ðhpeak; D PpeakÞ or the
+length of a secant to the difference curve at some speciﬁc crank angles.
+
+However, it has to be pointed out that both pressure ratio and difference pres-
+sure approaches require an approximation of the motored pressure curve, which can
+be reconstructed using a polytropic approximation.
+
+One of the most used parameters in pressure-based control algorithms is the
+position of the 50% of burn mass (MFB50), i.e., the crank angle at which 50% of
+the fuel is converted. MFB50 is considered an important combustion indicator; its
+value is strictly connected to the in-cylinder combustion progress and represents a
+stable measure of the timing of combustion. MFB50 value affects the engine
+thermal efﬁciency, peak cycle temperature and pressure, and exhaust emissions. It
+can be calculated from the pressure signal using for example Eq. (5.2), in which
+MFB value can be estimated quite easily on the basis of the pressure ratio. A linear
+dependence of MFB50 on Start of Injection (SOI), keeping constant all the other
+injection parameters and EGR rate, has been demonstrated in Diesel engines. [12].
+On the basis of this feature, MFB50 can be used as a feedback variable in Diesel
+engine closed-loop control systems acting on SOI to obtain optimal combustion
+timing (more details are in the previous chapter).
+
+In [13], it has been shown, on the basis of thermodynamic considerations and
+experimental results, that a MFB50 value of approximately 8–10 CA degrees after
+TDC guarantees an optimal combustion efﬁciency in SI engines, irrespective of the
+considered engine operating condition. This feature has been used in many
+pressure-based ignition control architectures in SI engines. Some examples will be
+shown in the next paragraphs.
+
+5.2 Use of Learning Algorithms in Pressure-Based Engine Controls
+
+59
+
+5.2 Use of Learning Algorithms in Pressure-Based Engine
+
+Controls
+
+The relation between the value of most of the above indicated parameters extracted
+from the pressure curve and engine output signals, such as engine torque, exhaust
+emissions is often highly nonlinear. Therefore, engine control architectures based
+on the analysis of the pressure signal generally require the modeling of these
+correlations. To this aim, learning algorithms, and in particular neural networks, can
+be employed for their feature of being valuable tools for approximation and control
+of nonlinear dynamic systems. Neural networks are also used in real-time adaptive
+controllers in order to enhance the feed-forward control action during engine
+transients. An example of this can be found in [11], where an adaptive neural
+network controller is employed in a pressure-based ignition control system. In
+general, the objective of an ignition control is to maximize the engine efﬁciency for
+each engine operating condition, avoiding at same time knocking phenomena. This
+goal, as mentioned before, can be obtained if the ignition point is set such that at a
+speciﬁed crank angle (9 CA after TDC) exactly 50% of fuel is burned. Therefore, in
+a closed-loop ignition control system, the condition MFB (9 CA) = 0.5, can be used
+as a control objective. However, such a feedback control leads to good performance
+only under steady state and slowly time variants conditions. This is due to the fact
+that, based on the measurement from the current engine cycle, optimal ignition time
+can only be computed for the next cycle. Thus, a dead time of one cycle exists.
+Moreover, as severe cycle-to-cycle ﬂuctuations can be found even under steady
+state conditions, the results of cylinder pressure evaluation have to be averaged over
+several engine cycles (at least 10 cycles). This further slows down the control action
+during transients. For this reason, in [11], the control system is enhanced by adding
+an adaptive neural feedforward controller for each cylinder, with online learning
+action performed during the normal operation of the engine.
+
+5.3 Use of Combustion Pressure Signal for Cylinder Air
+
+Charge Estimation
+
+Three-way catalytic converters (TWC) allow spark-ignited engines to obtain sig-
+niﬁcant reduction of exhaust emissions. A precise control of air–fuel ratio (AFR) to
+the stoichiometric value is necessary to achieve the maximum efﬁciency of TWC in
+the conversion of the toxic exhaust gases (CO, NOx, HC) into less harmful products
+(CO2, H2O, N2).
+
+Traditional AFR control strategies are composed by a feed-forward part, in
+which the amount of fuel to be injected is calculated on the basis of the in-cylinder
+mass airﬂow, and a feedback part, which uses the signal of an oxygen sensor
+(lambda sensor) placed at the exhaust to ensure that AFR remains in a strict
+neighborhood of stoichiometric value. Generally, the feedback part of an AFR
+
+60
+
+5 Use of in-Cylinder Pressure and Learning Circuits …
+
+control system is fully active only in steady state conditions; moreover, the oxygen
+sensor signal is available only after that this sensor has reached a ﬁxed operating
+temperature. Thus, during transients and cold starting, the feedback control is
+deactivated and the feedforward component of AFR control assumes a greater
+signiﬁcance. Estimation of cylinder air charge is the basis for calculating the
+amount of fuel to inject in the feedforward part of an AFR control system.
+
+A conventional
+
+technique [3] for estimating the cylinder air charge in a
+
+spark-ignited engine involves the use of a speed–density equation:
+
+_map ¼ g ðpm; NÞ VdN
+120
+
+pa
+RTm
+
+;
+
+ð5:4Þ
+
+where _map is the inlet air mass ﬂow rate, Vd is the engine displacement, N is the
+engine angular speed, and pa is the ambient pressure. Tm and pm are the mean
+manifold temperature and pressure, respectively, whereas η is the engine volumetric
+efﬁciency. This latter can be considered a highly nonlinear function of engine speed
+(N) and manifold pressure (pm). It can be calculated via experimental for different
+engine operating points. A standard method is to map the volumetric efﬁciency and
+compensate it for density variations in the intake manifold. One of disadvantages in
+using the speed–density equation for the in-cylinder airﬂow estimation is the
+uncertainty in the volumetric efﬁciency. Generally, the volumetric efﬁciency is
+calculated in the calibration phase with the engine under steady state conditions.
+However, variations in the volumetric efﬁciency due for example to engine aging
+and wear, buildup of deposits in the combustion chamber, etc., can induce errors in
+the air charge estimation. Moreover, the low-pass characteristic of the commercial
+Manifold Absolute Pressure (MAP) sensors used for the determination of the
+manifold pressure makes the signal affected by a delay that introduces an error in
+the calculation of cylinder air charge during the fast transients. This problem is not
+solved by using a faster sensor: in this case the sensor captures also pressure
+ﬂuctuations due to the valve and piston motion [14].
+
+It has also to be considered that in engines equipped with an EGR valve, the
+MAP sensor cannot distinguish between fresh air and inert exhaust gas in the intake
+manifold. Therefore, in this case, the speed–density equation cannot be used as
+written in (5.4), and the air charge estimation algorithm must provide a method for
+separating the contribution of recirculated exhaust gas to the total pressure in the
+intake manifold [15].
+
+An alternative method for the air charge determination is to use a mass airﬂow
+(MAF) sensor located upstream from the throttle body, which measures directly the
+inlet airﬂow. The main advantages of a direct airﬂow measurement are [3]:
+– automatic compensation for engine aging and for all factors that modify engine
+
+volumetric efﬁciency;
+– improved idling stability;
+– lack of sensibility of the system to EGR, since only fresh airﬂow is measured.
+
+5.3 Use of Combustion Pressure Signal for Cylinder Air Charge Estimation
+
+61
+
+Anyway, airﬂow measurement by means of a MAF sensor, which generally is a
+hot wire anemometer, accurately estimates the ﬂow into the cylinder only in steady
+state, while in transients the intake manifold ﬁlling/emptying dynamics play a
+signiﬁcant role [16, 17]. In addition, MAF sensors for commercial automotive
+applications have a relatively high cost compared to the cost of the MAP sensors
+used in the speed-density approach.
+
+An alternative way to estimate engine air mass charge involves the use of
+cylinder pressure measurement. This approach, which assumes each cylinder to be
+equipped with a pressure sensor, offers the possibility of a cylinder-individual
+control, resulting in a more uniform load and air/fuel ratio distribution. Moreover,
+even though use of combustion pressure sensors can represent a high cost, espe-
+cially for low-end cars, it allows to totally replace other types of air mass sensors.
+A neural network model, which uses the signal from a low-cost combustion
+pressure transducer for prediction of cylinder air charge, is presented in [18].
+Basically, the heart of the system is a mass airﬂow estimator, which is a model able
+to predict in real-time the air charge as a function of some features extracted from
+the combustion pressure signal. The output of the MAF estimator can then be used
+by the engine control maps, in the feedforward part of an air/fuel control system, to
+calculate the optimal injection time for a stoichiometric intake mixture.
+
+The MAF estimator has the following inputs:
+
+(cid:129) throttle position signal, coming from a dedicated sensor used to monitor the
+
+throttle opening;
+
+sensor;
+
+(cid:129) engine angular speed, typically evaluated by means of a variable reluctance
+
+(cid:129) engine angular absolute position;.
+(cid:129) cylinder pressure signal, coming from a combustion pressure transducer.
+
+The output is represented by an estimated mass airﬂow value, expressed as kg/h.
+From a mathematical point of view, the MAF estimator can be described as a
+learning machine trained in order to emulate the way of functioning of a common
+MAF sensor used in the traditional approaches for cylinder air charge estimation.
+A MLP neural network was used as learning machine model. The choice of all the
+endogenous parameters of the neural network model, such as the number of hidden
+layer, the number of neurons for each hidden layer, the type of activation functions,
+the value of the regularization parameter was made in order to maximize the
+“generalized forecast capability” of the learning machine.
+
+Mass airﬂow estimator included some sub-blocks devoted to the processing of
+neural network input and output signals. By means of an input data preprocessing,
+they were transformed in dimensionless data with a zero mean and a unitary
+variance. Moreover, on these new dimensionless data a Principal Component
+Analysis (PCA) transform was carried out. A post-processing sub-block performed
+the inverse of the previous transforms. Lastly, an Edge Detector sub-block was used
+to enable or disable the model prediction according to engine angular position
+value. In particular, airﬂow estimation is enabled only in the crank angle interval
+
+62
+
+5 Use of in-Cylinder Pressure and Learning Circuits …
+
+when the air induction process is realized. Therefore, the Edge Detector enables the
+model functionality when the engine is at TDC at the end of the exhaust stroke (i.e.,
+when the intake stroke is starting). Then, model prediction is disabled when inlet
+and exhaust valves are simultaneously closed (at 140 crank angles BTDC in the
+compression stroke for the test engine used in this study). This event occurs when
+inlet air charge reaches its maximum value.
+
+The mass airﬂow estimated by the model can be used for the calculation of fuel
+mass amount to deliver during the subsequent engine cycle. Therefore, an inherent
+delay, which assumes more importance during transient operations, is introduced
+with this approach.
+
+The neural network was trained on an experimental data set including different
+engine speeds and loads. In particular, three engine speeds (3000, 4600, and
+5800 rpm) and eight throttle positions corresponding to different engine loads were
+considered. For each engine operating condition, the respective air mass ﬂow value
+was acquired by means of a hot wire anemometer mounted upstream of the intake
+manifold. The engine used both for the training of the mass airﬂow estimator and
+for its validation was a four stroke single-cylinder SI engine with a displacement of
+125 cm3.
+
+In the following ﬁgures,
+
+the comparison between the mass airﬂow value
+(measured by means of a MAF sensor) and the mass airﬂow estimated by the soft
+computing model is shown. The ﬁgures refer to the engine in steady state condi-
+tions. In particular, in Figs. 5.2 and 5.3, the measured and the estimated mass
+airﬂows are compared for an engine speed of 4600 and a throttle opening of 70 and
+20%, respectively. Figures 5.4 and 5.5 refer to an engine speed of 5800 rpm and a
+throttle opening of 30 and 100% (wide open throttle condition).
+
+Fig. 5.2 Comparison between the estimated and measured MAF at 4600 rpm and 70% of throttle
+opening
+
+5.3 Use of Combustion Pressure Signal for Cylinder Air Charge Estimation
+
+63
+
+Fig. 5.3 Comparison between the estimated and measured MAF at 4600 rpm and 20% of throttle
+opening
+
+Fig. 5.4 Comparison between the estimated and measured MAF at 5800 rpm and wide open
+throttle condition
+
+The results of the study conﬁrmed that the pressure-based MAF model is capable
+of providing a good estimation of the intake air in steady state, with a mean square
+error lower than 3% for all the investigated engine operating conditions (see
+Table 5.1).
+
+64
+
+5 Use of in-Cylinder Pressure and Learning Circuits …
+
+Fig. 5.5 Comparison between the estimated and measured MAF at 5800 rpm and 30% of throttle
+opening
+
+Table 5.1 Mean square error
+in mass airﬂow estimation
+
+Speed (rpm)
+
+Throttle opening (%)
+
+Mean square error
+
+4600
+4600
+5800
+5800
+
+70
+20
+100
+30
+
+0.011
+0.029
+0.015
+0.010
+
+As mentioned before, the intake manifold ﬁlling/emptying dynamics play a
+dominant role in cylinder air charge estimation during transient conditions.
+However, using in-cylinder pressure curve as an input, cylinder air estimation is
+less sensitive to these dynamics and a better prediction of the intake air value is
+generally provided. In any case, due to its lack of precision in transients, the
+measure provided by an anemometer mounted upstream of the intake manifold
+cannot be employed for the validation of pressure-based models during transients.
+
+5.4 Engine Knock Detection and Control Using
+
+in-Cylinder Pressure Measurement
+
+In spark-ignited engines, knock is an abnormal combustion that occurs when the
+temperature and the pressure of the unburned gas in the cylinder increase too much,
+causing the fuel to self-ignite: this results in an oscillating pressure wave in the
+combustion chamber. A common reason for engine knock is the use of poor quality
+
+5.4 Engine Knock Detection …
+
+65
+
+gasoline with low octane rating and the tendency to ignite prematurely. The
+octane-number requirement of an engine depends on how its design and the conditions
+under which it is operated affect the temperature and pressure of the end-gas ahead of
+the ﬂame and the time required to burn the cylinder charge [3]. In spark ignition
+engines, knock is a phenomenon that limits how efﬁciently the engine can operate: the
+high oscillating pressure can cause damages, which can lead to a shorter lifetime for
+the engine. Severe knock can damage the engine even after only one or few
+self-ignitions. For these reasons, the detection of knock and the evaluation of its
+intensity are critical issues for electronic engine control systems and several methods
+have been proposed and used for this purpose [19, 20]. Most of the techniques for
+knock detection and control currently employed on mass-produced engines are based
+on engine block vibration analysis [21, 22]. The high-frequency pressure oscillations
+inside the cylinder caused by knocking events are transmitted to the engine block in the
+form of vibrations. The engine block vibration signal is measured using one or more
+accelerometers, often tuned to the nominal ﬁrst resonance mode of the engine,
+mounted on the engine block. The accelerometers give a signal that is rectiﬁed using a
+pass-band ﬁlter. The values of total signal energy over time or of the maximum
+amplitude of the ﬁltered signal are used as knock indicators and are compared to a
+knock discriminating threshold value. One advantage of using accelerometers for
+knock detection is that, with careful placement, only one or two sensors are required to
+monitor all cylinders. In addition, these sensors are relatively cheap. Anyway using
+this approach, it is important to distinguish knock-induced vibrations from block
+vibrations which can occur even during normal combustion. These vibrations are
+mainly induced from valve closing events and piston slaps, and they have a level that
+depends on the operating state of the engine (especially engine speed). Therefore, the
+effectiveness of the block vibration method for the knock detection is inﬂuenced by the
+appropriate choice of the threshold values, and it is generally a method that gives a
+poor signal-to-noise ratio (SNR) at high engine speeds due the high level of back-
+ground noise. The most sensitive and reliable method for knock detection involves
+direct pressure measurement in each cylinder of the engine, since this measurement is
+not measurably affected by other mechanical sources. The necessity of one sensor for
+each cylinder and the high cost of the traditional pressure transducers limit the use of
+detection methods based on cylinder pressure analysis to research applications.
+However, the recent development of low-cost pressure sensors for EMS applications
+will make feasible in the next future the use of pressure transducers for knock detection
+and control for mass-produced engines.
+
+As mentioned before, high-pressure oscillations, whose amplitude decays with
+time, can be observed on the in-cylinder pressure signal during knock. The
+amplitude of the pressure oscillations depends on the amount of the end-gas that
+undergoes self-ignition, and therefore, it inherently depends on the knock intensity.
+Moreover, the pressure waves have a characteristic frequency that is inﬂuenced by
+the characteristic length of the oscillation and by the speed of the sound in the
+combustion chamber [23], but
+it does not depend on engine angular speed.
+Figure 5.6 shows the typical oscillations occurring on the pressure curve during a
+knocking combustion.
+
+66
+
+5 Use of in-Cylinder Pressure and Learning Circuits …
+
+Fig. 5.6 High-frequency pressure ﬂuctuations on the pressure cycle due to knock
+
+A proper band-pass ﬁltering of the pressure curve allows to separate the
+superimposed knock pressure waves from the cylinder pressure bias. Several
+parameters of the pass-band ﬁltered pressure signal have been proposed as knock
+indicators. The simplest knock indicator is represented by the maximum amplitude
+of band-pass ﬁltered data [24]. Many other knock indicators from the pressure
+signal have been suggested, such as the integral of the absolute value of pressure
+oscillations or the integral of the absolute value of the ﬁrst derivative of pressure
+oscillations [25, 26]. However, use of these indicators makes the knock detection a
+very compute intensive task for the standard microcontroller architectures used in
+the automotive ﬁeld.
+
+is presented. According to this method,
+
+In [27], a system using in-cylinder pressure curve and soft computing techniques
+for knock detection and control
+the
+high-pressure oscillations are extracted from the cylinder pressure curve using a
+band-pass ﬁltering. Then, the ﬁltered curve is digitalized by comparison with a
+ﬁxed threshold, and a variable number of digital pulses are produced. The number
+and the total duration of these digital pulses, by using fuzzy logic techniques,
+provide information about the presence of knock and its intensity in the form of a
+knock index. A knock controller will, then, use this latter index to modify the output
+of engine control maps delaying the ignition angle until the knock disappears.
+
+Fuzzy logic techniques are traditionally used for the processing of rough and
+qualitative data, which can be explained by qualitative terms of the human language
+(e.g., “high temperature,” “medium temperature,” “low temperature,” etc.) [28, 29].
+The estimation of knock intensity can certainly be seen as qualitative information
+that can be evaluated using fuzzy algorithms.
+
+5.4 Engine Knock Detection …
+
+67
+
+Compared to traditional systems, a fuzzy logic approach for knock detection
+allows to ﬁnd high-quality nonlinear correlations between inputs (knock indicators)
+and outputs (knock intensity level). Moreover, knock estimation by using fuzzy
+algorithms is easy to implement and requires a low computational time.
+
+As mentioned before, the knock estimator presented in [27] uses as knock
+estimator the number and the total duration of the digital pulses obtained from the
+digitalization of the ﬁltered pressure curve.
+
+In particular, the following fuzzy sets of the variable Pul_Cnt (number of digital
+
+pulses) are considered:
+(cid:129) npulse-abs:
+(cid:129) npulse-low:
+(cid:129) npulse-medium: “medium number of digital pulses”
+(cid:129) npulse-high:
+
+“absence of digital pulses”
+“low number of digital pulses”
+
+“high number of digital pulses”
+
+with the corresponding membership functions indicated in Fig. 5.7.
+For the variable “total duration of digital pulses” (Pul_Dur), the following fuzzy
+
+sets are considered:
+(cid:129) tpulst-abs
+(cid:129) tpulst-low
+(cid:129) tpulst-medium “total pulse duration medium.”
+(cid:129) tpulst-high
+
+“total pulse duration zero”
+“total pulse duration low”
+
+“total pulse duration high”
+
+with the corresponding membership functions depicted in Fig. 5.8.
+The knock estimator implements a fuzzy algorithm with Pul_Cnt and Pul_Dur as
+antecedents and as consequents; therefore, the fuzzy sets are deﬁned as follow (Fig. 5.9):
+(cid:129) Kgrade-abs
+(cid:129) Kgrade-low
+(cid:129) Kgrade-medium “Medium knock”
+(cid:129) Kgrade-high
+
+“Knock absence”
+“Light knock”
+
+“Heavy knock”
+
+Fig. 5.7 Fuzzy sets of the variable Pul_Cnt (number of digital pulses) and their membership
+functions
+
+68
+
+5 Use of in-Cylinder Pressure and Learning Circuits …
+
+Fig. 5.8 Fuzzy sets of
+membership functions
+
+the variable Pul_Dur (total duration of digital pulses) and their
+
+Fig. 5.9 Fuzzy sets of the variable Knock Index and their membership functions
+
+The fuzzy algorithm used for the knock estimator is composed by eight rules,
+
+whose general expression is
+
+IF npulse-low AND tpulst-medium THEN Kgrade-low.
+The output of the fuzzy algorithm with de-fuzziﬁcation is shown in Fig. 5.10.
+For each couple of inputs Pul_Cnt and Pul_Dur, the output of the estimator is a
+Knock Index value, which is a number ranging from 0 to 1. The input–output
+correlation can be represented by the three-dimensional map illustrated in Fig. 5.11.
+Once the knock occurrence has been detected and its intensity has been calcu-
+lated by means of the fuzzy estimator, a control action has to be performed by the
+electronic control unit (ECU) in order to remove knock. In traditional engine
+control systems, this is generally achieved by delaying the ignition angle. This latter
+is the fastest control action because changes take effect already in the next cycle.
+The control system can modify the value of ignition through an instruction of the
+
+following type:
+
+5.4 Engine Knock Detection …
+
+69
+
+Fig. 5.10 Values of Knock Index for each couple of inputs (Pul_Cnt and Pul_Dur)
+
+Fig. 5.11 Three-dimensional
+map of knock index
+
+Ignition Angle ¼ ðIgnition AngleMap
+
+Þ þ K (cid:4) ðKnock IndexÞ;
+
+where K is a proportionality factor, which determines how gradual the control
+action has to be.
+Identiﬁcation and Compensation
+of Nonlinear Phenomena in Gasoline
+Direct Injection Process
+
+Future emission regulations require the development of gasoline combustion
+engines with improved efﬁciency in order to obtain a strong reduction of the toxic
+emissions coupled to the reduction of fuel consumption and hence carbon dioxide
+emissions. The greatest fuel consumption beneﬁt is achieved by means of systems
+such as the gasoline direct
+injection (GDI) combustion with unthrottled lean
+stratiﬁed operation. In this mode, the fuel is injected later in the compression stroke
+[1] allowing stable combustion of ultralean mixtures. However, the use of gasoline
+stratiﬁed charges can lead to several problems. In particular, due to the oxygen
+excess in the combustion stroke, the NOx emission levels are generally higher than
+in the port fuel injection (PFI) engine or in homogeneous charge direct injection.
+Moreover, short time for mixture preparation and spray wall impingements are
+responsible for a high cycle-to-cycle variability and high particle emissions. On the
+other hand, the reduction of the particulate at the exhaust of gasoline direct engines
+represents a crucial aspect also considering the introduction of EU6 emission leg-
+islation that strongly pushes toward a reduction of the particulate emitted by the
+engines.
+
+A potentially effective way to mitigate the problems of GDI stratiﬁed operation
+and reduce the wall impingement is the use of multiple fuel injections, splitting up
+the total fuel injection into several smaller (and shorter in duration) shots. The ﬁrst
+effect of this approach is the reduction of the jet penetration into the combustion
+chamber, thus reducing the wall wetting and decreasing the particulate formation.
+Moreover, it has been demonstrated [2] that the use of multiple injection strategies
+allows to retard the angle of 50% mass fraction burned (MBF50), placing it close to
+the thermodynamic optimum. This allows to have lower combustion peak tem-
+peratures with a reduction of NOx emissions.
+
+However, this is not easy to obtain by the traditional GDI solenoid injectors.
+Indeed, the management of small injections forces GDI solenoid injectors to work
+in their so-called ballistic mode. The ballistic behavior appears at small injection
+pulse width when the pulse is cutoff before the valve fully lifts up. During the
+ballistic operation, the correlation between the electrical command and the injected
+Identiﬁcation and Compensation of Nonlinear Phenomena …
+
+Fig. 6.1 Characteristic curves of the injection rate obtained for two injectors belonging to the
+same family
+
+amount of fuel is highly nonlinear, the valve motion is unstable, and the fuel
+delivering cannot be controlled with optimum precision.
+
+Figure 6.1 shows the characteristic curves of injection rate obtained for two
+different injectors belonging to the same family. The graphs represent an example
+of the typical dispersion. For both the injectors, in fact, the correlation between the
+pulse command duration and the injected fuel amount appears linear and repetitive
+for pulse durations greater than 400 ls and for injected fuel greater than 2.8 mg.
+For command pulse widths lower than 400 ls, the correlation becomes highly
+nonlinear and, for some pulse durations, may also invert the trend with a decrease of
+fuel quantity at the increase of the electrical command. In the nonlinear region, for
+very short injection command pulses, the injector needle starts the closure before
+having reached the widest lift position. It has been reported [3] that the causes of the
+nonlinear behavior mainly rely on the inertia of the injector spring–mass system and
+the reduction of the electromagnetic forces exerted by the coil, friction variations,
+and more. All these have an unpredictable effect on the dynamic of the needle lift
+due to manufacturing tolerances and aging effects, too. This is the reason for which,
+up to now, the nonlinear region has not been used in the traditional injection
+strategies for commercial GDI engines.
+
+In order to achieve the desired injection target also during the ballistic operation,
+and to extend the use of solenoid injectors to short injections, real-time information
+about the actual fuel amount delivered at ballistic is needed. On the basis of this
+information, the injector energizing time can then be adjusted in real time by means
+of a closed-loop algorithm to obtain the requested injected quantity.
+
+The graph in Fig. 6.2 illustrates a comparison between the injector voltage signal
+and the corresponding injected mass ﬂow rate. The analysis of the two curves
+depicts that the voltage signal shows an inﬂection at the same time when the
+
+6 Identiﬁcation and Compensation of Nonlinear Phenomena …
+
+75
+
+30
+
+20
+
+10
+
+0
+
+-10
+
+-20
+
+]
+v
+[
+ 
+e
+g
+a
+t
+l
+o
+V
+
+Voltage
+
+Mass Flow Rate
+
+4
+
+3
+
+2
+
+1
+
+0
+
+-1
+
+-2
+
+-3
+
+-4
+
+l
+
+M
+a
+s
+s
+ 
+F
+o
+w
+R
+a
+t
+e
+
+ 
+
+ 
+
+-30
+-0.0005
+
+0
+
+0.0005
+
+time [s]
+
+0.001
+
+Fig. 6.2 Comparison between differential voltage command signal and the corresponding injected
+mass ﬂow rate, for a coil energizing time of 300 µs
+
+injected mass ﬂow rate is annulled. This feature is not dependent on the value of
+coil energizing time.
+
+The inﬂection on the voltage signal occurs during the switch-off phase, when the
+injector coil is de-energized and a self-induction voltage is created. In this phase,
+the voltage signal typically includes, other than a contribution due to decaying eddy
+currents, a contribution due to the movement of the needle in the de-energized coil,
+which has an amplitude depending on the needle speed. As this speed reaches its
+maximum value directly before the needle closing time, an inﬂection on the voltage
+signal appears at this time. On the basis of this feature, it comes out that a proper
+processing of the injector voltage signal allows to have real-time information about
+the needle closing time and then, in turn, on the actual amount of injected fuel. This
+latter can then be compared to absolute target values, and, as a result, the length of
+the electrical command can be consequently adjusted in real time during the bal-
+listic operation mode. Using this approach, a closed-loop control architecture of
+injection duration in GDI engines can be introduced (see the block scheme in
+Fig. 6.3). This control architecture allows to manage the delivery of small fuel
+amounts in order to increase the minimum fuel injection capabilities of GDI
+solenoid injectors and permits to extend their use to the multiple fuel injection
+strategies.
+
+As indicated in Fig. 6.3, the voltage signal in the de-energized coil has to be
+ﬁrstly ﬁltered by means of a low-pass ﬁlter to reduce the superimposed noise. On
+the basis of results of a spectral analysis, a low-pass moving average ﬁlter with 40
+coefﬁcients and a cutoff frequency of 12 kHz has been proposed in [4]. The ﬁltered
+signal is subsequently compared with a reference voltage signal (Vref). The refer-
+ence signal Vref represents the voltage induced in the de-energized coil using an
+electrical command that does not produce any movement of the injector needle
+(e.g., due to a too short command pulse). Therefore, this latter signal exclusively is
+
+76
+
+6 Identiﬁcation and Compensation of Nonlinear Phenomena …
+
+Fig. 6.3 Closed-loop control algorithm for real-time compensation of fuel quantity injected
+during the ballistic operation
+
+related to the self-induced voltage due to the decaying eddy currents and it does not
+include the above-mentioned component due to the needle motion. As a conse-
+quence, the difference between the voltage signal and the reference signal allows to
+separate the contribution due to the needle movement and the needle closing time
+can be determined with a higher level of accuracy. In a real application, a reference
+voltage signal can be either generated and implemented during the calibration phase
+of the engine or periodically generated by the ECU in order to take also into
+account the aging effects of the injector.
+
+Then, the signal obtained by the difference between the coil voltage signal and
+the reference voltage signal can be processed to calculate the time of its maximum
+value (or minimum, depending on the sign of the difference). This time corresponds
+to the injector needle closing time.
+
+Being able to measure the time of needle closing means being able to measure
+the injected fuel mass. In fact, it can be demonstrated that for solenoid injectors,
+when there is no variation in opening delay, fuel mass amount is linearly correlated
+with needle closing time. An experimental correlation between needle closing time
+and the corresponding amount of fuel injected is depicted in Fig. 6.4 for two
+commercial GDI injectors.
+
+The graph clearly shows that a linear correlation exists between injection
+duration (i.e., the time elapsing from the starting of the electrical command to the
+complete needle closing) and the corresponding mass of fuel injected. This corre-
+lation does not depend on the particular injector (of the same family) used, and it is
+also valid at ballistic.
+
+On the basis of this correlation, the control system, once that injection duration
+has been detected from the voltage signal, can calculate the actual amount fuel
+amount injected. This fuel mass value is subsequently compared with a target value
+previously deﬁned, and as a result of this comparison, a correction value for the coil
+energizing time is deﬁned.

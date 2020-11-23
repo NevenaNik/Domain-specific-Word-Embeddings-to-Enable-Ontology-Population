@@ -1,0 +1,16 @@
+{"diesel_engine": {
+    "diesel":[[3,4], [3,1]], 
+    "compression_ignition_engine":[[4,4], [3,1]], 
+    "combustion_process":[[3,4], [2,1]], 
+    "port_fuel_injection":[[2,4], [2,1]], 
+    "gasoline_engine":[[2,4], [2,1]], 
+    "carburetor":[[1,4], [1,1]], 
+    "fuel_injection":[[2,4], [2,1]], 
+    "gasoline":[[1,4], [1,1]], 
+    "gasoline_direct_injection":[[1,4], [1,1]], 
+    "direct_injection":[[2,4], [2,1]], 
+    "spark_ignition_engine":[[1,4], [1,1]], 
+    "exhaust_gas_recirculation":[[2,4], [2,1]], 
+    "gasoline_compression_ignition":[[1,4], [1,1]], 
+    "compression_ignition":[[3,4], [2,1]], 
+    "spark_ignition":[[1,4], [1,1]]}}

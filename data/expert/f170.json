@@ -1,0 +1,16 @@
+{"lane_change": {
+    "evasive_maneuver":[[3,4], [1,2], [2,1]], 
+    "left_turn":[[2,4], [2,2], [1,1]], 
+    "intention":[[1,4], [1,2], [2,1]], 
+    "dangerous_situation":[[2,4], [1,2], [2,1]], 
+    "stop_sign":[[1,4], [1,2], [1,1]], 
+    "avoid_collision":[[2,4], [1,2], [2,1]], 
+    "traffic_participant":[[2,4], [1,2], [2,1]], 
+    "overtake_maneuver":[[3,4], [3,2], [2,1]], 
+    "change_lane":[[4,4], [4,2], [4,1]], 
+    "maneuver":[[2,4], [3,2], [2,1]], 
+    "collision":[[2,4], [1,2], [2,1]], 
+    "lane_change_maneuver":[[4,4], [4,2], [4,1]], 
+    "target_lane":[[2,4], [2,2], [3,1]], 
+    "overtake":[[3,4], [3,2], [2,1]], 
+    "critical_situation":[[2,4], [1,2], [2,1]]}}

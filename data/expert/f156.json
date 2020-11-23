@@ -1,0 +1,16 @@
+{"gasoline_compression_ignition": {
+    "particulate_number_formation":[[1,4], [1,2]], 
+    "gasoline_direct_injection":[[3,4], [3,2]], 
+    "high_compression_ratio":[[2,4], [1,2]], 
+    "direct_injection":[[2,4], [3,2]], 
+    "cold_start":[[2,4], [1,2]], 
+    "spark_ignition_engine":[[2,4]], 
+    "reduce_emission":[[1,4], [1,2]], 
+    "lean_burn":[[1,4]], 
+    "high_thermal_efficiency":[[1,4], [1,2]], 
+    "diesel_engine":[[1,4]], 
+    "homogeneous_charge_compression_ignition":[[2,4], [3,2]], 
+    "combustion_technique":[[2,4], [2,2]], 
+    "compression_ignition_engine":[[3,4], [3,2]], 
+    "combustion_efficiency":[[1,4], [1,2]], 
+    "compression_ignition":[[3,4], [3,2]]}}

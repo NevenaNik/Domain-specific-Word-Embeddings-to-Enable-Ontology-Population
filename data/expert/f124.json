@@ -1,0 +1,16 @@
+{"collision": {
+    "dangerous_situation":[[3,4], [3,2]], 
+    "automatic_emergency_brake":[[2,4], [1,2]], 
+    "potential_collision":[[4,4], [3,2]], 
+    "stop_sign":[[1,4], [1,2]], 
+    "pedestrian":[[1,4], [1,2]], 
+    "road_user":[[1,4], [1,2]], 
+    "oncoming_traffic":[[1,4], [1,2]], 
+    "overtake":[[1,4], [1,2]], 
+    "accident":[[4,4], [3,2]], 
+    "danger":[[3,4], [2,2]], 
+    "obstacle":[[1,4], [2,2]], 
+    "adjacent_lane":[[1,4], [1,2]], 
+    "lane_change":[[1,4], [2,2]], 
+    "hazard":[[2,4], [1,2]], 
+    "avoid_collision":[[3,4], [1,2]]}}

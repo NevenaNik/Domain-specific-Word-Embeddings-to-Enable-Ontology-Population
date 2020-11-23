@@ -1,0 +1,16 @@
+{"exhaust_gas": {
+    "hydrocarbon":[[3,4], [3,2]], 
+    "burn":[[2,4], [2,2]], 
+    "carbon_monoxide":[[3,4], [3,2]], 
+    "oxygen":[[3,4], [3,2]], 
+    "combustion_chamber":[[3,4], [3,2]], 
+    "soot":[[3,4], [2,2]], 
+    "atmosphere":[[2,4], [2,2]], 
+    "catalytic_converter":[[2,4], [2,2]], 
+    "diesel_fuel":[[2,4], [2,2]], 
+    "intake_air":[[1,4], [1,2]], 
+    "coolant":[[1,4], [1,2]], 
+    "nitrous_oxide":[[3,4], [3,2]], 
+    "nox":[[3,4], [3,2]], 
+    "catalyst":[[2,4], [1,2]], 
+    "gas":[[4,4], [4,2]]}}

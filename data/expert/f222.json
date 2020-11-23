@@ -1,0 +1,16 @@
+{"valve": {
+    "solenoid_valve":[[3,2]], 
+    "check_valve":[[2,2]], 
+    "volumetric_flow":[[2,2]], 
+    "plunger":[[2,2]], 
+    "valve_meter_unit":[[2,2]], 
+    "chamber":[[2,2]], 
+    "servo_valve":[[2,2]], 
+    "hydraulic":[[2,2]], 
+    "distributor":[[2,2]], 
+    "inlet_valve":[[4,2]], 
+    "hydraulic_modulator":[[3,2]], 
+    "switch_valve":[[2,2]], 
+    "flap":[[4,2]], 
+    "pressure_regulator":[[2,2]], 
+    "return_pump":[[1,2]]}}

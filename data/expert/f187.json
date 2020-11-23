@@ -1,0 +1,16 @@
+{"piston_ring": {
+    "pin_bore":[[1,2], [2,2]], 
+    "bore":[[1,2]], 
+    "contact_surface":[[1,2], [2,2]], 
+    "lubricate":[[1,2], [2,2]], 
+    "cylinder_bore":[[2,4], [1,2], [2,2]], 
+    "liner":[[1,2], [1,2]], 
+    "crankcase":[[1,2], [1,2]], 
+    "small_end_bore":[[1,2]], 
+    "piston_pin":[[2,4], [1,2], [2,2]], 
+    "coat":[[1,2], [2,2]], 
+    "piston_skirt":[[2,4], [1,2], [2,2]], 
+    "cylinder_wall":[[2,4], [1,2], [2,2]], 
+    "piston_crown":[[2,4], [2,2], [3,2], [3,2]], 
+    "cylinder_liner":[[2,4], [2,2], [1,2]], 
+    "cylinder_surface":[[2,4], [1,2], [2,2]]}}

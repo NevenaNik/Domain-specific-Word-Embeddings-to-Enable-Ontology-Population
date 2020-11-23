@@ -1,0 +1,16 @@
+{"battery": {
+    "electrical_energy":[[4,4], [4,2], [4,1]], 
+    "fully_charge":[[2,4], [1,2], [2,1]], 
+    "starter_battery":[[4,4], [3,2], [4,1]], 
+    "electrochemical_power":[[4,4], [2,2], [4,1]], 
+    "electrical":[[3,4], [3,2], [4,1]], 
+    "hybrid_vehicle":[[2,4], [2,2], [1,1]], 
+    "charge":[[2,4], [2,2], [4,1]], 
+    "deplete":[[2,4], [2,2], [3,1]], 
+    "electrical_consumer":[[2,4], [3,2], [3,1]], 
+    "battery_pack":[[4,4], [4,2], [4,1]], 
+    "battery_charge":[[3,4], [3,2], [4,1]], 
+    "recharge":[[2,4], [2,2], [4,1]], 
+    "alternator":[[2,4], [1,2], [2,1]], 
+    "fuel_cell":[[3,4], [2,2], [1,1]], 
+    "supercapacitor":[[2,4], [2,2], [2,1]]}}

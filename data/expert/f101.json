@@ -1,0 +1,16 @@
+{"antilock_brake_system": {
+    "anti_spin_regulator":[[3,4], [1,4], [3,2], [2,2], [1,3], [3,2]], 
+    "electronic_stability_program":[[4,4], [3,4], [3,2], [2,2], [2,3], [1,2]], 
+    "antilock_brake":[[4,4], [4,4], [4,2], [4,2], [4,3], [4,2]],  
+    "hydraulic_brake":[[2,4], [1,4], [2,2], [1,2], [2,3], [2,2]], 
+    "electrohydraulic":[[1,4], [1,4], [2,2], [1,2], [1,3], [1,2]], 
+    "brake_intervention":[[2,4], [3,4], [3,2], [3,2], [2,3], [3,2]], 
+    "sensotronic_brake_control":[[2,4], [4,2], [2,2], [2,3], [3,2]], 
+    "traction_control":[[1,4], [2,4], [4,2], [2,2], [1,3], [3,2]], 
+    "electronic_stability_control":[[4,4], [2,4], [3,2], [2,2], [1,3], [1,2]], 
+    "traction_control_system":[[1,4], [2,4], [4,2], [2,2], [1,3], [3,2]], 
+    "actuation":[[1,4], [2,2], [1,3], [1,2]], 
+    "chassis_suspension":[[1,4], [1,4], [2,2], [1,2], [1,3]], 
+    "parking_brake":[[2,4], [1,4], [2,2], [1,2], [1,3], [2,2]], 
+    "hydraulic_modulator":[[1,4], [2,4], [1,2], [1,3]], 
+    "automatic_brake":[[2,4], [1,4], [2,2], [1,2], [1,3], [2,2]]}}

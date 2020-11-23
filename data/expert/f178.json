@@ -1,0 +1,16 @@
+{"navigation_system": {
+    "server":[[2,4], [1,1], [2,3]], 
+    "voice_recognition":[[1,4], [1,1], [2,3]], 
+    "wireless_communication":[[2,4], [1,1], [2,3]], 
+    "internet":[[2,4], [1,1], [2,3]], 
+    "navigation":[[4,4], [2,1], [4,3]], 
+    "cell_phone":[[2,4], [1,1], [2,3]], 
+    "wireless":[[2,4], [1,1], [2,3]], 
+    "global_position_system":[[3,4], [2,1], [4,3]], 
+    "connectivity":[[2,4], [1,1], [2,3]], 
+    "smart":[[2,4], [1,1], [2,3]], 
+    "radio":[[1,4], [1,1], [2,3]], 
+    "digital_map":[[3,4], [2,1], [2,3]], 
+    "onboard":[[2,4], [1,1], [2,3]], 
+    "computer":[[2,4], [1,1], [2,3]], 
+    "communication_technology":[[3,4], [1,1], [2,3]]}}

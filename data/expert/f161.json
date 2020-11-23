@@ -1,0 +1,16 @@
+{"hybrid": {
+    "powertrain_topology":[[2,4], [3,4], [2,2], [2,2]], 
+    "hybrid_electric":[[4,4], [3,4], [4,2], [4,2]], 
+    "hybrid_electric_vehicle":[[4,4], [3,4], [4,2], [3,2]], 
+    "energy_management":[[1,4], [3,4], [2,2], [2,2]], 
+    "serial_hybrid":[[2,4], [3,4], [4,2]], 
+    "propulsion_system":[[1,4], [3,4], [2,2], [1,2]], 
+    "electric_motor_inverter_battery":[[2,4], [2,4], [4,2], [2,2]], 
+    "hybrid_powertrain":[[4,4], [3,4], [4,2], [3,2]], 
+    "parallel_hybrid":[[2,4], [3,4], [3,2], [3,2]], 
+    "electric":[[2,4], [3,4], [4,2], [2,2]], 
+    "state_machine":[[2,4], [1,4], [2,2], [1,2]], 
+    "topology_optimization":[[3,4], [1,4], [2,2], [1,2]], 
+    "hybrid_vehicle":[[4,4], [3,4], [4,2], [3,2]], 
+    "series_hybrid":[[2,4], [2,4], [4,2], [1,2]], 
+    "operating_strategy":[[3,4], [1,4], [2,2], [2,2]]}}

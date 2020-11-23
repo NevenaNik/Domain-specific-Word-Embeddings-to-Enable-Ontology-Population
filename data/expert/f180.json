@@ -1,0 +1,16 @@
+{"mechanical": {
+    "piezoelectric_actuator":[[3,4], [1,1], [2,3]], 
+    "purely_mechanical":[[4,4], [4,1], [4,3]], 
+    "hydraulic_pipe":[[3,4], [2,1], [3,3]], 
+    "drivetrain":[[2,4], [2,1], [1,3]], 
+    "power_steer":[[3,4], [1,1], [2,3]], 
+    "electromechanical":[[3,4], [2,1], [4,3]], 
+    "electric_power_steer":[[1,4], [1,1], [1,3]], 
+    "servo_unit":[[2,4], [2,1], [2,3]], 
+    "steer_column":[[3,4], [4,1], [2,3]], 
+    "mechanically":[[4,4], [4,1], [4,3]], 
+    "steering":[[3,4], [3,1], [1,3]], 
+    "mechanical_hydraulic":[[4,4], [3,1], [4,3]], 
+    "power_steer_pump":[[2,4], [2,1], [2,3]], 
+    "hydraulic":[[3,4], [2,1], [1,3]], 
+    "axle_kinematics":[[3,4], [4,1], [3,3]]}}

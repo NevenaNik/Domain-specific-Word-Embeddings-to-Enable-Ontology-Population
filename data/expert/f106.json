@@ -1,0 +1,16 @@
+{"assistance": {
+    "brake_intervention":[[2,4], [2,2], [3,2], [2,2], [3,2]], 
+    "active_steer":[[2,4], [2,2], [2,2], [3,2]], 
+    "intervention":[[3,4], [2,2], [3,2], [2,2]], 
+    "longitudinal_guidance":[[2,4], [1,2], [3,2]], 
+    "electronic_stability_control":[[2,4], [2,2], [2,2], [2,2]], 
+    "automatic_brake":[[2,4], [2,4], [2,2], [3,2], [2,2], [2,2]], 
+    "warn_counter_measure":[[2,4], [2,4], [2,2], [1,2]], 
+    "assistance_function":[[4,4], [3,4], [4,2], [3,2], [2,2]], 
+    "assistance_system":[[4,4], [3,4], [4,2], [3,2], [4,2], [4,2]], 
+    "assistant":[[4,4], [3,4], [3,2], [4,2], [3,2]], 
+    "emergency_brake":[[2,4], [2,4], [2,2], [3,2], [2,2]], 
+    "steer_intervention":[[2,4], [2,4], [2,2], [2,2], [3,2]], 
+    "automatic":[[3,4], [3,4], [2,2], [2,2], [2,2]], 
+    "intervene":[[3,4], [3,4], [2,2]], 
+    "lane_keep_assistance_system":[[3,4], [3,4], [3,2], [2,2], [3,2]]}}

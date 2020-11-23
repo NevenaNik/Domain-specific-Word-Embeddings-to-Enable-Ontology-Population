@@ -1,0 +1,16 @@
+{"shaft": {
+    "universal_joint":[[1,2]], 
+    "sun_gear":[[1,2], [2,2]], 
+    "gearbox_output_shaft":[[2,2], [3,2]], 
+    "torsion_bar":[[2,2]], 
+    "flywheel":[[1,2], [2,2]], 
+    "pinion":[[1,2], [2,2]], 
+    "ring_gear":[[1,2], [2,2]], 
+    "bevel_gear":[[1,2], [2,2]], 
+    "steer_pinion":[[1,2], [2,2]], 
+    "differential_gear":[[1,2]], 
+    "crankshaft":[[3,4], [1,2], [4,2]], 
+    "rod":[[2,2]], 
+    "rack":[[1,2], [2,2]], 
+    "output_shaft":[[2,2], [2,2], [3,2]], 
+    "input_shaft":[[2,2], [2,2], [3,2]]}}

@@ -1,0 +1,16 @@
+{"assistance_system": {
+    "collision_warn":[[3,4], [3,1], [3,3]], 
+    "intervene":[[2,4], [2,1], [2,3]], 
+    "actuate_element":[[2,4], [2,1]], 
+    "collision_avoidance":[[3,4], [3,1], [3,3]], 
+    "lane_keep_assistance_system":[[4,4], [3,1], [3,3]], 
+    "lane_departure_warn":[[3,4], [3,1], [3,3]], 
+    "emergency_evasion":[[3,4], [3,1], [3,3]], 
+    "vehicle_guidance":[[4,4], [3,1], [3,3]], 
+    "assistance_function":[[4,4], [3,1], [4,3]], 
+    "electronic_stability_control":[[3,4], [2,1], [2,3]], 
+    "human_machine_interface":[[2,4], [2,1], [2,3]], 
+    "assistant":[[4,4], [2,1], [3,3]], 
+    "advanced_drive_assistance_system":[[4,4], [3,1], [4,3]], 
+    "longitudinal_control":[[3,4], [2,1]], 
+    "emergency_brake":[[3,4], [3,1], [2,3]]}}

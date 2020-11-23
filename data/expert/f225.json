@@ -1,0 +1,16 @@
+{"voltage": {
+    "alternator_voltage":[[2,2], [4,2], [2,2]], 
+    "voltage_level":[[2,2], [4,2], [4,2]], 
+    "capacitor":[[2,2], [2,2], [1,2]], 
+    "current_flow":[[2,2]], 
+    "voltage_drop":[[2,2], [4,2], [2,2]], 
+    "primary_current":[[2,2], [2,2], [1,2]], 
+    "capacitance":[[1,2]], 
+    "supply_voltage":[[2,2], [4,2], [2,2]], 
+    "battery_charge":[[2,2], [1,2]], 
+    "resistor":[[2,2], [1,2]], 
+    "battery_voltage":[[2,2], [4,2], [2,2]], 
+    "output_voltage":[[2,2], [4,2], [2,2]], 
+    "charge_voltage":[[2,2], [4,2], [2,2]], 
+    "diode_alternator":[[1,2], [1,2]], 
+    "electrical_consumer":[[1,2], [1,2]]}}

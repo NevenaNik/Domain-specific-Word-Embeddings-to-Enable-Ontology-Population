@@ -1,0 +1,16 @@
+{"accident": {
+    "risk":[[2,4], [1,2]], 
+    "harm":[[3,4], [3,2]], 
+    "serious_injury":[[3,4], [3,2]], 
+    "accident_cause":[[3,4], [1,2]], 
+    "death":[[2,4], [1,2]], 
+    "injury":[[3,4], [3,2]], 
+    "crash":[[4,4], [4,2]], 
+    "collision":[[4,4], [4,2]], 
+    "causation":[[1,4]], 
+    "fatality":[[2,4], [1,2]], 
+    "road_user":[[1,4], [1,2]], 
+    "severe_injury":[[3,4], [3,2]], 
+    "traffic_accident":[[4,4], [4,2]], 
+    "road_traffic":[[1,4], [1,2]], 
+    "hazard":[[2,4], [1,2]]}}

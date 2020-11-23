@@ -1,0 +1,16 @@
+{"electronic_stability_control": {
+    "automatic_brake":[[1,4], [2,4], [3,2], [3,2]], 
+    "intervention":[[2,4], [2,4], [2,2], [2,2]], 
+    "parking_brake":[[1,4], [1,4], [2,2], [1,2]], 
+    "brake_intervention":[[1,4], [2,4], [4,2], [3,2]], 
+    "lane_keep":[[4,4], [1,4], [4,2], [4,2]], 
+    "anti_spin_regulator":[[4,4], [2,4], [3,2], [2,2]], 
+    "traction_control_system":[[4,4], [2,4], [4,2], [3,2]], 
+    "antilock_brake_system":[[3,4], [2,4], [4,2], [2,2]], 
+    "emergency_brake":[[2,4], [2,4], [3,2], [2,2]], 
+    "traction_control":[[2,4], [2,4], [4,2], [3,2]], 
+    "electronic_stability_program":[[4,4], [3,4], [4,2], [4,2]], 
+    "assistance_system":[[2,4], [3,4], [4,2], [2,2]], 
+    "active_steer":[[1,4], [1,4], [3,2], [2,2]], 
+    "assistance_function":[[2,4], [2,4], [3,2], [2,2]], 
+    "hydraulic_brake":[[1,4], [2,4], [2,2], [1,2]]}}

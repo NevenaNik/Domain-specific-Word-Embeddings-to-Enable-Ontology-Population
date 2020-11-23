@@ -1,0 +1,16 @@
+{"lane_departure_warn": {
+    "drive_assistance_system":[[2,4], [4,2], [3,1]], 
+    "active_lane_keep":[[2,4], [4,2], [3,1]], 
+    "collision_warn":[[2,4], [1,2], [3,1]], 
+    "human_machine_interface":[[2,4], [3,2], [2,1]], 
+    "active_safety_system":[[2,4], [2,2], [2,1]], 
+    "drive_assistance":[[2,4], [3,2], [3,1]], 
+    "lane_keep_assistance":[[3,4], [4,2], [4,1]], 
+    "blind_spot_warn":[[2,4], [1,2], [2,1]], 
+    "collision_avoidance":[[2,4], [1,2], [2,1]], 
+    "lane_keep":[[3,4], [3,2], [3,1]], 
+    "safety_concept":[[2,4], [3,2], [2,1]], 
+    "lane_keep_assistance_system":[[3,4], [4,2], [3,1]], 
+    "assistance_system":[[2,4], [3,2], [2,1]], 
+    "lane_keep_support":[[3,4], [2,2], [4,1]], 
+    "cooperative_cruise_control":[[3,4], [1,2], [3,1]]}}

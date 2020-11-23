@@ -1,0 +1,16 @@
+{"electrical": {
+    "starter":[[2,2], [4,2], [1,2]], 
+    "electromagnetic":[[2,2], [4,2], [1,2]], 
+    "starter_battery":[[2,2], [4,2], [1,2]], 
+    "module_electronics":[[2,2], [4,2], [2,2]], 
+    "powernet":[[2,2], [2,2], [1,2]], 
+    "alternator":[[1,2], [4,2], [1,2]], 
+    "electronics":[[3,2], [4,2], [2,2]], 
+    "power_supply":[[2,2], [4,2], [1,2]], 
+    "electronic_component":[[2,2], [4,2], [1,2]], 
+    "direct_current_converter":[[1,2], [4,2], [1,2]], 
+    "inverter":[[1,2], [4,2], [1,2]], 
+    "electrical_powernet":[[2,2], [4,2], [2,2]], 
+    "wiring_harness":[[1,2], [4,2], [1,2]], 
+    "energy_storage":[[2,2], [4,2], [2,2]], 
+    "polarity_reversal":[[1,2], [4,2], [1,2]]}}

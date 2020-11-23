@@ -1,0 +1,16 @@
+{"tie_rod": {
+    "pivot":[[1,2]], 
+    "track_rod":[[4,2]], 
+    "linkage":[[1,2]], 
+    "gear_rack":[[1,2]], 
+    "pitman_arm":[[1,2]], 
+    "wheel_hub":[[1,2]], 
+    "torsion_bar":[[2,2]], 
+    "steer_arm":[[3,2], [1,2]], 
+    "anti_roll_bar":[[2,2]], 
+    "spherical_joint":[[2,2]], 
+    "steer_pinion":[[2,2]], 
+    "pinion":[[1,2]], 
+    "arm":[[1,2]], 
+    "rack_axis":[[1,2]], 
+    "rack":[[1,2]]}}

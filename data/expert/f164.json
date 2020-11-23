@@ -1,0 +1,16 @@
+{"ignition_coil": {
+    "converter":[[3,4], [1,1]], 
+    "fuel_tank_electric":[[1,4], [1,1]], 
+    "regulator":[[2,4], [1,1]], 
+    "fuel_injector":[[1,4], [1,1]], 
+    "inductive_ignition_system":[[3,4], [3,1]], 
+    "ignition_distributor":[[3,4], [3,1]], 
+    "glow_plug":[[2,4], [2,1]], 
+    "plug":[[1,4], [1,1]], 
+    "fuel_filter":[[1,4], [1,1]], 
+    "injection_pump":[[1,4], [1,1]], 
+    "capacitor":[[2,4], [2,1]], 
+    "relay":[[2,4], [2,1]], 
+    "voltage_regulator":[[4,4], [2,1]], 
+    "fuel_tank":[[1,4], [1,1]], 
+    "contact_breaker":[[2,4], [2,1]]}}

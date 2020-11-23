@@ -1,0 +1,16 @@
+{"rotational_speed": {
+    "transferable_torque":[[2,1]], 
+    "displacement":[[1,1]], 
+    "inertia_moment":[[1,1]], 
+    "crankshaft":[[2,1]], 
+    "angular_velocity":[[2,1]], 
+    "accelerator_pedal_position":[[1,1]], 
+    "gear_dependent":[[2,1]], 
+    "kilowatt":[[1,1]], 
+    "idle_speed":[[2,1]], 
+    "transmission_ratio":[[2,1]], 
+    "throttle_position":[[1,1]], 
+    "pump_turbine":[[1,1]], 
+    "gear_ratio":[[2,1]], 
+    "turbine":[[1,1]], 
+    "clutch_torque":[[1,1]]}}

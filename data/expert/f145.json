@@ -1,0 +1,16 @@
+{"engine": {
+    "combustion_process":[[3,4], [2,3], [2,2]], 
+    "mixture_formation":[[2,4], [2,3], [2,2]], 
+    "ignition_angle":[[2,4], [2,3], [2,2]], 
+    "gasoline_engine":[[4,4], [4,3], [4,2], [4,2]], 
+    "diesel_engine":[[4,4], [4,3], [4,2], [4,2]], 
+    "cold_start":[[2,4], [2,3], [2,2]], 
+    "homogeneous_induction_mixture":[[2,4], [2,3], [2,2]], 
+    "combustion":[[3,4], [2,3], [2,2]], 
+    "internal_combustion_engine":[[4,4], [4,3], [3,2]], 
+    "combustion_engine":[[4,4], [4,3], [4,2]], 
+    "power_output":[[3,4], [2,3], [2,2]], 
+    "operating_mode":[[2,4], [2,3], [2,2]], 
+    "ignition_timing":[[2,4], [2,3], [2,2]], 
+    "full_load":[[1,4], [1,3], [2,2]], 
+    "turbocharger":[[2,4], [2,3], [2,2]]}}

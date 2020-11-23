@@ -1,0 +1,16 @@
+{"safety": {
+    "advanced_drive_assistance_system":[[2,4], [3,3], [2,2]], 
+    "integral_safety":[[4,4], [3,3], [3,2]], 
+    "functional_safety":[[4,4], [3,3], [3,2]], 
+    "importance":[[2,4], [2,3], [2,2]], 
+    "awareness":[[2,4], [2,3], [2,2]], 
+    "reliability":[[2,4], [2,3], [2,2]], 
+    "traffic_safety":[[4,4], [3,3], [3,2]], 
+    "autonomy":[[1,4], [2,3], [1,2]], 
+    "drive_assistance":[[2,4], [3,3], [2,2]], 
+    "active_safety":[[4,4], [3,3], [4,2]], 
+    "active_safety_system":[[3,4], [3,3], [3,2]], 
+    "legal_requirement":[[2,4], [2,3], [2,2]], 
+    "regulation":[[2,4], [2,3], [2,2]], 
+    "passive_safety":[[4,4], [3,3], [4,2]], 
+    "safety_comfort":[[3,4], [2,3], [2,2]]}}

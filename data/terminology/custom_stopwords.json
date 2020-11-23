@@ -1,0 +1,33 @@
+{
+    "stopwords": [
+        "al",
+        "abbreviation",
+        "abbreviations",
+        "appendix", 
+        "article", 
+        "author",
+        "authors",
+        "book",
+        "chap", 
+        "chapter",
+        "chapters",
+        "conclusion",
+        "data", 
+        "diagram",
+        "et", 
+        "example", 
+        "fig",
+        "figs",
+        "figure", 
+        "handbook",
+        "introduction",
+        "keyword",
+        "keywords",
+        "literature",
+        "reference",
+        "references",
+        "sect", 
+        "section", 
+        "table"
+    ]
+}

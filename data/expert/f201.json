@@ -1,0 +1,16 @@
+{"simulation": {
+    "bias_point":[[2,4], [2,4], [2,2]], 
+    "hybrid_powertrain_configuration_model":[[1,4], [2,4], [3,2], [2,2]], 
+    "real":[[1,4], [3,4], [3,2], [1,2]], 
+    "experiment":[[3,4], [4,4], [4,2], [3,2]], 
+    "validate":[[3,4], [2,4], [4,2], [2,2]], 
+    "high_fidelity":[[3,4], [1,4], [2,2], [1,2]], 
+    "classical_powertrain_configuration_model":[[1,4], [2,4], [4,2], [2,2]], 
+    "electric_powertrain_configuration_model":[[1,4], [2,4], [4,2], [2,2]], 
+    "simulator":[[4,4], [4,4], [4,2], [2,2]], 
+    "simulate":[[4,4], [4,4], [4,2], [2,2]], 
+    "simulated":[[4,4], [4,4], [4,2], [2,2]], 
+    "microscopic_traffic":[[1,4], [2,4], [2,2]], 
+    "experimental":[[3,4], [3,4], [3,2], [3,2]], 
+    "test_bench":[[4,4], [3,4], [4,2], [2,2]], 
+    "simulation_result":[[3,4], [4,4], [4,2], [2,2]]}}

@@ -1,0 +1,16 @@
+{"steer_column": {
+    "steer_gear":[[3,2], [2,2]], 
+    "cardan":[[1,2], [2,2]], 
+    "tie_rod":[[2,2]], 
+    "ball_screw":[[2,2]], 
+    "gear_rack":[[1,2], [2,2]], 
+    "steer_wheel":[[2,2], [2,2]], 
+    "steer_pinion":[[3,2], [2,2]], 
+    "steer_rack":[[3,2], [2,2]], 
+    "pinion":[[2,2]], 
+    "steer_shaft":[[4,2], [2,2]], 
+    "rack":[[1,2]], 
+    "steer_box":[[3,2], [2,2]], 
+    "steer_mechanism":[[2,2], [2,2]], 
+    "torsion_bar":[[2,2]], 
+    "steer_linkage":[[2,2]]}}

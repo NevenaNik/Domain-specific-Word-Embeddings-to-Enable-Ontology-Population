@@ -1,3 +1,15 @@
+# Import libraries
+import statistics
+from collections import Counter
+from sklearn.metrics import accuracy_score
+
+
+
+
+# FUNCTION: vote aggregation by...
+#                       ...(1) weighted average
+#                       ...(2) majority vote (weighted)
+#                       ...(3) majority vote (unweighted)
 def vote_aggreg(method, dictionary):
     
     votes = {}
@@ -7,50 +19,79 @@ def vote_aggreg(method, dictionary):
 
     if method == "weighted":
         for term in dictionary.keys():
-            vote = 0
-            count = 0
+            vote = []
             for item in dictionary[term]:
-                vote = vote + item[0] * (5-item[1])
-                count = count + (5- item[1])
-            vote = vote / count
-            votes[term] = vote
-    elif method == "majority_w":
+                vote.extend([item[0]] * (5-item[1]))
+            mean = statistics.mean(vote)
+            stdev = statistics.stdev(vote)
+            votes[term] = [mean, stdev]
+
+    elif method == "majorityWeighted":
         for term in dictionary.keys():
-            counts = {"1":0, "2":0, "3":0, "4":0}
+            vote = []
             for item in dictionary[term]:
-                if item[0] == 1:
-                    counts["1"] = counts["1"] + (5-item[1])
-                elif item[0] == 2:
-                    counts["2"] = counts["2"] + (5-item[1])
-                elif item[0] == 3:
-                    counts["3"] = counts["3"] + (5-item[1])
+                vote.extend([item[0]] * (5-item[1]))
+
+            count = Counter(vote)
+            mode = []
+            mode.append(count.most_common()[0][0])
+            i = 1
+            cond = (len(count)>i)
+            while(cond):
+                if (count.most_common()[0][1] == count.most_common()[i][1]):
+                    mode.append(count.most_common()[i][0])
+                    i += 1
+                    cond = (len(count)>i)
                 else:
-                    counts["4"] = counts["4"] + (5-item[1])
-            itemMaxValue = max(counts.items(), key=lambda x: x[1])
-            listOfKeys = list()
-            for key, value in counts.items()    :
-                if value == itemMaxValue[1]:
-                    listOfKeys.append(int(key))
-            vote = sum(listOfKeys) / len(listOfKeys)
-            votes[term] = vote            
+                    cond = False
+            mean = statistics.mean(mode)
+            stdev = statistics.stdev(vote)
+            votes[term] = [mean, stdev]            
     else:
         for term in dictionary.keys():
-            counts = {"1":0, "2":0, "3":0, "4":0}
+            vote = []
             for item in dictionary[term]:
-                if item[0] == 1:
-                    counts["1"] += 1
-                elif item[0] == 2:
-                    counts["2"] += 1
-                elif item[0] == 3:
-                    counts["3"] += 1
+                vote.extend([item[0]])
+
+            count = Counter(vote)
+            mode = []
+            mode.append(count.most_common()[0][0])
+            i = 1
+            cond = (len(count)>i)
+            while(cond):
+                if (count.most_common()[0][1] == count.most_common()[i][1]):
+                    mode.append(count.most_common()[i][0])
+                    i += 1
+                    cond = (len(count)>i)
                 else:
-                    counts["4"] += 1
-            itemMaxValue = max(counts.items(), key=lambda x: x[1])
-            listOfKeys = list()
-            for key, value in counts.items()    :
-                if value == itemMaxValue[1]:
-                    listOfKeys.append(int(key))
-            vote = sum(listOfKeys) / len(listOfKeys)
-            votes[term] = vote  
+                    cond = False
+            mean = statistics.mean(mode)
+            stdev = statistics.stdev(vote)
+            votes[term] = [mean, stdev]
 
     return votes
+
+
+# FUNCTION: Model accuracy (based on expert ratings)
+def accuracy(expert, model):
+    if (len(expert) != len(model)):
+        raise Exception("Count of expert and model ratings are not equal!")
+    else:
+        y_true = []
+        y_pred = []
+
+        for item in expert:
+            if item > 2.8:
+                y_true.append(1)
+            else:
+                y_true.append(0)
+
+        for item in model:
+            if item > 0.6:
+                y_pred.append(1)
+            else:
+                y_pred.append(0)
+
+        score = accuracy_score(y_true, y_pred)
+        return score
+

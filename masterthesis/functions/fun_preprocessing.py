@@ -3,7 +3,15 @@ import re
 import pandas as pd
 from collections import Counter
 
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+from nltk.tokenize import word_tokenize, sent_tokenize
+from nltk.corpus import wordnet
 
+
+### NORMALIZATION #############################################################
 
 ### FUNCTIONS APPLIED TO TEXT CORPUS ###
 
@@ -60,17 +68,6 @@ def replace_terms(text, dictionary):
     return text
 
 
-# FUNCTION: ...
-def ngrams(text, dictionary):
-
-    i = 0
-    while(i < len(dictionary.keys())):
-        item = list(dictionary.keys())[i]
-        text = re.sub(item, dictionary[item], text)
-        i += 1
-
-    return text
-
 
 ### FUNCTIONS APPLIED TO TOKENS (SENT & WORD) ###
 
@@ -86,7 +83,7 @@ def norm_notation(sent, dictionary):
    
     return words
 
-"""
+
 # FUNCTION: lowercase
 def to_lower(sent):
 
@@ -96,12 +93,7 @@ def to_lower(sent):
         words.append(word)
 
     return words
-"""
-# FUNCTION: lowercase
-def to_lower(text):
 
-    text = text.lower()
-    return text
 
 # FUNCTION: remove non-alphabetic characters
 def rm_nonalpha(sent):
@@ -136,7 +128,7 @@ def min_len(sent):
     return words
 
 
-# FUNCTION: ...
+# FUNCTION: replace rare words by dummy-word
 def replace_rare(sent, dictionary):
 
     exceptions = list(dictionary.keys())
@@ -159,21 +151,15 @@ def replace_rare(sent, dictionary):
 
     return sent
 
-##############################
+
+###############################################################################
 
 
-import nltk
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
-from nltk.tokenize import word_tokenize, sent_tokenize
-from nltk.corpus import wordnet
-
+# TOKENIZATION ################################################################
 
 # FUNCTION: split text into sentences 
 def text_into_sents(text):
     return sent_tokenize(text)
-
 
 
 # FUNCTION: split sentences into words
@@ -188,10 +174,12 @@ def sent_into_words(sents):
     return sentences
 
 
+###############################################################################
 
 
-### POS TAGGING ###
+# MISCELLANEOUS ###############################################################
 
+# FUNCTION: POS tagging
 def get_wordnet_pos(word):
         """Map POS tag to first character lemmatize() accepts"""
         tag = nltk.pos_tag([word])[0][1][0].upper()

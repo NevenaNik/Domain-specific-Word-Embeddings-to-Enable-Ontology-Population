@@ -1,9 +1,3 @@
-# TODO
-"""
---> add paramters to customize Word2vec model
-
-"""
-
 import argparse
 import logging
 
@@ -48,6 +42,22 @@ def get_options():
                         help="Set logging level (optional)",
                         choices=["INFO", "DEBUG", "ERROR"],
                         default="INFO")
+
+    parser.add_argument("-vs", "--vector_size",
+                        help="dimensionality of the word vectors",
+                        default=100, type=int)
+    parser.add_argument("-win", "--window_size",
+                        help="max distance between current and the predicted word within sentence",
+                        default=5, type=int)
+    parser.add_argument("-mc", "--min_count",
+                        help="ignores all words with a total freq lower than this",
+                        default=5, type=int)
+    parser.add_argument("--skipgram",
+                        help="training algorithm: skipgram (default: CBOW)",
+                        action="store_true")
+    parser.add_argument("--negSampl",
+                        help="Use negative sampling for model training (default: hierarchical softmax",
+                        action="store_true")
     args = parser.parse_args()
     return args
 
@@ -64,6 +74,10 @@ class Model(object):
         self.logger = logging.getLogger("word2vec")
         if kwargs.get("logging", None):
             self.logger.setLevel(kwargs.get("logging"))
+
+        self.fh = logging.FileHandler("train.log")
+        self.fh.setLevel(kwargs.get("logging"))
+        self.logger.addHandler(self.fh)
 
 
         # Get data
@@ -102,6 +116,38 @@ class Model(object):
         # Shuffling of sentences
         self.shuffle = kwargs.get("shuffle")
         self.logger.info(f"Shuffling: {self.shuffle}")
+
+
+        # Model param: vector size
+        self.vs = kwargs.get("vector_size", 100)
+        self.logger.info(f"Vector size: {self.vs}")
+
+        # Model param: window size
+        self.win = kwargs.get("window_size", 5)
+        self.logger.info(f"Window size: {self.win}")
+
+        # Model param: min count
+        self.mc = kwargs.get("min_count", 5)
+        self.logger.info(f"Min count: {self.mc}")
+
+        # Model param: training algorithm
+        self.train = kwargs.get("skipgram")
+        if self.train:
+            self.sg = 1
+            self.logger.info("Train algorithm: skipgram")
+        else:
+            self.sg = 0
+            self.logger.info("Train algorithm: CBOW")
+
+        # Model param: hierarchical softmax vs. negative sampling
+        self.sampl = kwargs.get("negSampl")
+        if self.sampl:
+            self.hs = 0
+            self.logger.info("used in training: negative sampling")
+        else:
+            self.hs = 1
+            self.logger.info("used in training: hierarchical softmax")
+
         
         # Set destination directory
         self.dest = kwargs.get("destination", path_trained)
@@ -132,13 +178,15 @@ class Model(object):
             sentences = list(trigram[sentences])
 
         # Model training
-        model = Word2Vec(sentences)
+        model = Word2Vec(sentences, size=self.vs, window=self.win, min_count=self.mc, sg=self.sg, hs=self.hs)
 
         # Save model
-        file_name = "word2vec_" + str(self.reduction) + "_rare" + str(self.rare) + "_ngrams" + str(self.ng) + "_shuffled" + str(self.shuffle) + ".bin"
+        #file_name = f"word2vec_{self.reduction}_rare{self.rare}_ngrams{self.ng}_shuffled{self.shuffle}.bin"
+        file_name = f"w2v_ngrams{self.ng}_vs{self.vs}_win{self.win}_mc{self.mc}_sg{self.sg}_hs{self.hs}.bin"
         model.save(self.dest + file_name)
 
         self.logger.info(f"Model training done. Model saved as: {file_name}")
+        self.logger.info("----------------------------------------------------------")
         
 
 

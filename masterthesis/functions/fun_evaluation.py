@@ -23,7 +23,10 @@ def vote_aggreg(method, dictionary):
             for item in dictionary[term]:
                 vote.extend([item[0]] * (5-item[1]))
             mean = statistics.mean(vote)
-            stdev = statistics.stdev(vote)
+            try:
+                stdev = statistics.stdev(vote)
+            except:
+                stdev = 0
             votes[term] = [mean, stdev]
 
     elif method == "majorityWeighted":
@@ -45,7 +48,10 @@ def vote_aggreg(method, dictionary):
                 else:
                     cond = False
             mean = statistics.mean(mode)
-            stdev = statistics.stdev(vote)
+            try:
+                stdev = statistics.stdev(vote)
+            except:
+                stdev = 0
             votes[term] = [mean, stdev]            
     else:
         for term in dictionary.keys():
@@ -66,7 +72,10 @@ def vote_aggreg(method, dictionary):
                 else:
                     cond = False
             mean = statistics.mean(mode)
-            stdev = statistics.stdev(vote)
+            try:
+                stdev = statistics.stdev(vote)
+            except:
+                stdev = 0
             votes[term] = [mean, stdev]
 
     return votes

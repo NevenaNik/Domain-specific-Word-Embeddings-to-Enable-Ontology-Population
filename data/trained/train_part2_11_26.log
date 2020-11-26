@@ -1,0 +1,2112 @@
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win2_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win5_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 50
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs50_win10_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win2_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win5_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs100_win10_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win2_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win5_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 300
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs300_win10_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 2
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win2_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 5
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win5_mc50_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc0_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc0_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 0
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc0_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 0
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc0_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc5_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc5_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc5_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc20_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc20_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 20
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc20_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 20
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc20_sg1_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc50_sg0_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc50_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 50
+Train algorithm: CBOW
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc50_sg0_hs0.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 50
+Train algorithm: skipgram
+used in training: negative sampling
+Model training done. Model saved as: w2v_ngramsTraining_vs500_win10_mc50_sg1_hs0.bin
+----------------------------------------------------------

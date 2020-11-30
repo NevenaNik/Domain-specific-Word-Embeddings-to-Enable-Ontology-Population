@@ -13,7 +13,7 @@ from itertools import repeat
 from scipy.stats import spearmanr
 
 from functions.fun_evaluation import vote_aggreg, accuracy
-from functions.config import *
+from functions.config import path_eval, path_expert, path_trained, path_evalIntrinsic
 
 
 def get_options():

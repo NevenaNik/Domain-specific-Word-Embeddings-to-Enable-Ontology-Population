@@ -27,9 +27,9 @@ def execute():
     shuffle = "True"
     ngrams = "training"
 
-    vs = [50, 100, 300, 500]
-    win = [2, 5, 10]
-    mc = [0, 5, 20, 50]
+    vs = [300, 350, 400, 450, 500]
+    win = [10]
+    mc = [5]
 
     pathTrain = "/home/hiwi/Dokumente/masterthesis/masterthesis/trainingLog.csv"
     trainLog = open(pathTrain, "a")
@@ -38,6 +38,7 @@ def execute():
     for size in vs:
         for item in win:
             for count in mc:
+                """
                 # Combination 1:
                 os.system(f'python training.py --rare --shuffle -vs {size} -win {item} -mc {count}')
                 newline1 = [str(i), reduction, rare, shuffle, ngrams, str(size), str(item), str(count), "CBOW", "softmax"]
@@ -45,9 +46,10 @@ def execute():
                 newline1 = newline1 + "\n"
                 trainLog.write(newline1)
 
-                model = f"w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg0_hs1.bin"
+                model = f"02w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg0_hs1.bin"
                 os.system(f'python evaluation.py --id {i} -m {model} -a majorityWeighted --devCheck')
                 i += 1
+                """
                 # Combination 2:
                 os.system(f'python training.py --rare --shuffle -vs {size} -win {item} -mc {count} --skipgram')
                 newline2 = [str(i), reduction, rare, shuffle, ngrams, str(size), str(item), str(count), "skipgram", "softmax"]
@@ -55,9 +57,10 @@ def execute():
                 newline2 = newline2 + "\n"
                 trainLog.write(newline2)
                 
-                model = f"w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg1_hs1.bin"
+                model = f"02w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg1_hs1.bin"
                 os.system(f'python evaluation.py --id {i} -m {model} -a majorityWeighted --devCheck')
                 i += 1
+                """
                 # Combination 3:
                 os.system(f'python training.py --rare --shuffle -vs {size} -win {item} -mc {count} --negSampl')
                 newline3 = [str(i), reduction, rare, shuffle, ngrams, str(size), str(item), str(count), "CBOW", "negSampl"]
@@ -65,9 +68,10 @@ def execute():
                 newline3 = newline3 + "\n"
                 trainLog.write(newline3)
                 
-                model = f"w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg0_hs0.bin"
+                model = f"02w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg0_hs0.bin"
                 os.system(f'python evaluation.py --id {i} -m {model} -a majorityWeighted --devCheck')
                 i += 1
+
                 # Combination 4:
                 os.system(f'python training.py --rare --shuffle -vs {size} -win {item} -mc {count} --skipgram --negSampl')
                 newline4 = [str(i), reduction, rare, shuffle, ngrams, str(size), str(item), str(count), "skipgram", "negSampl"]
@@ -75,10 +79,10 @@ def execute():
                 newline4 = newline4 + "\n"
                 trainLog.write(newline4)
                 
-                model = f"w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg1_hs0.bin"
+                model = f"02w2v_ngramsTraining_vs{size}_win{item}_mc{count}_sg1_hs0.bin"
                 os.system(f'python evaluation.py --id {i} -m {model} -a majorityWeighted --devCheck')
                 i += 1
-
+                """
     trainLog.close()
 
 

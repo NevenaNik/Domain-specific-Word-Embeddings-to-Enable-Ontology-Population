@@ -1,0 +1,6 @@
+id;reduction;rare;shuffle;ngrams;vectorSize;window;minCount;trainAlgorithm;methodSampl
+1;lemma;True;True;training;300;10;5;skipgram;softmax
+2;lemma;True;True;training;350;10;5;skipgram;softmax
+3;lemma;True;True;training;400;10;5;skipgram;softmax
+4;lemma;True;True;training;450;10;5;skipgram;softmax
+5;lemma;True;True;training;500;10;5;skipgram;softmax

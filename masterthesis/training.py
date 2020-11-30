@@ -11,8 +11,8 @@ import random
 from gensim.models import Phrases
 from gensim.models import Word2Vec
 
-from functions.fun_training import *
-from functions.config import *
+from functions.fun_training import ngrams
+from functions.config import path_preprocessed, path_trained, path_ngrams
 
 
 
@@ -182,7 +182,7 @@ class Model(object):
 
         # Save model
         #file_name = f"word2vec_{self.reduction}_rare{self.rare}_ngrams{self.ng}_shuffled{self.shuffle}.bin"
-        file_name = f"w2v_ngrams{self.ng}_vs{self.vs}_win{self.win}_mc{self.mc}_sg{self.sg}_hs{self.hs}.bin"
+        file_name = f"02w2v_ngrams{self.ng}_vs{self.vs}_win{self.win}_mc{self.mc}_sg{self.sg}_hs{self.hs}.bin"
         model.save(self.dest + file_name)
 
         self.logger.info(f"Model training done. Model saved as: {file_name}")

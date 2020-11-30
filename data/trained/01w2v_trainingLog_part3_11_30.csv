@@ -1,0 +1,10 @@
+id;reduction;rare;shuffle;ngrams;vectorSize;window;minCount;trainAlgorithm;methodSampl;percentage
+1;lemma;True;True;training;500;10;5;skipgram;softmax;0.2
+2;lemma;True;True;training;500;10;5;skipgram;softmax;0.3
+3;lemma;True;True;training;500;10;5;skipgram;softmax;0.4
+4;lemma;True;True;training;500;10;5;skipgram;softmax;0.5
+5;lemma;True;True;training;500;10;5;skipgram;softmax;0.6
+6;lemma;True;True;training;500;10;5;skipgram;softmax;0.7
+7;lemma;True;True;training;500;10;5;skipgram;softmax;0.8
+8;lemma;True;True;training;500;10;5;skipgram;softmax;0.9
+9;lemma;True;True;training;500;10;5;skipgram;softmax;1.0

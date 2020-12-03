@@ -1,0 +1,48 @@
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 100
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Percentage of training data used: 100%
+Model training done. Model saved as: 01sentence_w2v_shuffledTrue_ngramsTraining_default.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 100%
+Model training done. Model saved as: 01sentence_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: False
+Vector size: 100
+Window size: 5
+Min count: 5
+Train algorithm: CBOW
+used in training: hierarchical softmax
+Percentage of training data used: 100%
+Model training done. Model saved as: 01sentence_w2v_shuffledFalse_ngramsTraining_default.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: False
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 100%
+Model training done. Model saved as: 01sentence_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------

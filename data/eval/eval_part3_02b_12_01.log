@@ -1,0 +1,70 @@
+Evaluating model: 02size0.1_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.3576271186440678
+----------------------------------------
+Evaluating model: 02size0.2_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.5220338983050847
+----------------------------------------
+Evaluating model: 02size0.3_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.6338983050847458
+----------------------------------------
+Evaluating model: 02size0.4_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.6898305084745763
+----------------------------------------
+Evaluating model: 02size0.5_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.7084745762711865
+----------------------------------------
+Evaluating model: 02size0.6_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.7322033898305085
+----------------------------------------
+Evaluating model: 02size0.7_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.7491525423728813
+----------------------------------------
+Evaluating model: 02size0.8_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.7576271186440678
+----------------------------------------
+Evaluating model: 02size0.9_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.7728813559322034
+----------------------------------------
+Evaluating model: 02size1.0_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 590
+Evaluation score: 0.7745762711864407
+----------------------------------------

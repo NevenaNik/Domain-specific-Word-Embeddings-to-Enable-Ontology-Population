@@ -1,0 +1,182 @@
+Evaluating model: 03sentence1_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7637362637362637
+----------------------------------------
+Evaluating model: 03sentence1_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7554945054945055
+----------------------------------------
+Evaluating model: 03sentence5_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7898351648351648
+----------------------------------------
+Evaluating model: 03sentence5_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence10_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7925824175824175
+----------------------------------------
+Evaluating model: 03sentence10_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence50_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence50_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7939560439560439
+----------------------------------------
+Evaluating model: 03sentence100_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7925824175824175
+----------------------------------------
+Evaluating model: 03sentence100_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7898351648351648
+----------------------------------------
+Evaluating model: 03sentence250_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7925824175824175
+----------------------------------------
+Evaluating model: 03sentence250_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence500_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence500_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence600_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7898351648351648
+----------------------------------------
+Evaluating model: 03sentence600_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence700_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7898351648351648
+----------------------------------------
+Evaluating model: 03sentence700_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7898351648351648
+----------------------------------------
+Evaluating model: 03sentence1000_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7884615384615384
+----------------------------------------
+Evaluating model: 03sentence1000_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7898351648351648
+----------------------------------------
+Evaluating model: 03sentence1500_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7912087912087912
+----------------------------------------
+Evaluating model: 03sentence1500_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7925824175824175
+----------------------------------------
+Evaluating model: 03sentence2000_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7953296703296703
+----------------------------------------
+Evaluating model: 03sentence2000_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.7898351648351648
+----------------------------------------
+Evaluating model: 03sentenceComplete_w2v_shuffledTrue_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.4258241758241758
+----------------------------------------
+Evaluating model: 03sentenceComplete_w2v_shuffledFalse_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.4258241758241758
+----------------------------------------

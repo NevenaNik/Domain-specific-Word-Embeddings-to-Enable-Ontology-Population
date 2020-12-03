@@ -56,8 +56,12 @@ def get_options():
                         help="training algorithm: skipgram (default: CBOW)",
                         action="store_true")
     parser.add_argument("--negSampl",
-                        help="Use negative sampling for model training (default: hierarchical softmax",
+                        help="Use negative sampling for model training (default: hierarchical softmax)",
                         action="store_true")
+
+    parser.add_argument("-p", "--percentage",
+                        help="percentage of data to be used for training (default: 1 = 100 percent)",
+                        default=1, type=float)
     args = parser.parse_args()
     return args
 
@@ -149,6 +153,10 @@ class Model(object):
             self.logger.info("used in training: hierarchical softmax")
 
         
+        # Training data - percentage of data to be used
+        self.percentage = kwargs.get("percentage", 1)
+        self.logger.info(f"Percentage of training data used: {self.percentage * 100}%")
+        
         # Set destination directory
         self.dest = kwargs.get("destination", path_trained)
 
@@ -165,6 +173,11 @@ class Model(object):
         if self.shuffle:
             random.seed(42)
             random.shuffle(corpus)
+
+        # Sampling Training data (only consider xx% of all data)
+        random.seed(42)
+        size = int(round(self.percentage * len(corpus)))
+        corpus = random.sample(corpus, size)
         
         # Handling of n-grams
         if self.ngrams:
@@ -177,12 +190,24 @@ class Model(object):
             trigram = Phrases(sentences)
             sentences = list(trigram[sentences])
 
+        # Save training data corpus (for stats)
+        pathCorpus = "/home/hiwi/Dokumente/masterthesis/data/corpora/"
+        nameCorpus = "corpus_shuffleFalse_percent" + str(int(self.percentage*100)) + ".txt"
+        fileCorpus = open(pathCorpus+nameCorpus, "a")
+
+        for sent in sentences:
+            newLine = " ".join(sent)
+            newLine = newLine + "\n"
+            fileCorpus.write(newLine)
+        
+        fileCorpus.close()
+
         # Model training
         model = Word2Vec(sentences, size=self.vs, window=self.win, min_count=self.mc, sg=self.sg, hs=self.hs)
 
         # Save model
         #file_name = f"word2vec_{self.reduction}_rare{self.rare}_ngrams{self.ng}_shuffled{self.shuffle}.bin"
-        file_name = f"02w2v_ngrams{self.ng}_vs{self.vs}_win{self.win}_mc{self.mc}_sg{self.sg}_hs{self.hs}.bin"
+        file_name = f"02size{self.percentage}_w2v_ngrams{self.ng}_vs{self.vs}_win{self.win}_mc{self.mc}_sg{self.sg}_hs{self.hs}.bin"
         model.save(self.dest + file_name)
 
         self.logger.info(f"Model training done. Model saved as: {file_name}")

@@ -1,0 +1,11 @@
+id;aggregation;cosistencyCheck;scoreType;countPairs;evalScore
+1;majorityWeighted;True;accuracy score;590;0.3576271186440678
+2;majorityWeighted;True;accuracy score;590;0.5220338983050847
+3;majorityWeighted;True;accuracy score;590;0.6338983050847458
+4;majorityWeighted;True;accuracy score;590;0.6898305084745763
+5;majorityWeighted;True;accuracy score;590;0.7084745762711865
+6;majorityWeighted;True;accuracy score;590;0.7322033898305085
+7;majorityWeighted;True;accuracy score;590;0.7491525423728813
+8;majorityWeighted;True;accuracy score;590;0.7576271186440678
+9;majorityWeighted;True;accuracy score;590;0.7728813559322034
+10;majorityWeighted;True;accuracy score;590;0.7745762711864407

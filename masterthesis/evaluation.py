@@ -6,6 +6,7 @@ import sys
 import json
 import pickle
 import numpy as np
+import pandas as pd
 
 from gensim.models import Word2Vec
 from collections import Counter
@@ -134,7 +135,7 @@ class Intrinsic(object):
         # Results
         vote_expert = []
         vote_model = []
-
+        #"""
         for key in expert.keys():
             for term in expert[key].keys():
                 if self.devCheck:
@@ -157,6 +158,41 @@ class Intrinsic(object):
                     except:
                         #print(f"No similarity score for {key}/{term}.")
                         pass
+        """
+        # Temp ###
+        pathPairs = "/home/hiwi/Dokumente/masterthesis/data/terminology/eval_intrinsic_part3_2.csv"
+        evalPairs = pd.read_csv(pathPairs, sep=";", names=["key", "term"])
+
+        pairs = []
+        for index, row in evalPairs.iterrows():
+            pair = [row["key"], row["term"]]
+            pairs.append(pair)
+
+        for key in expert.keys():
+            for term in expert[key].keys():
+                if self.devCheck:
+                    if (expert[key][term][1] < 1.25) & ([str(key), str(term)] in pairs):
+                        try:
+                            score = model.wv.similarity(key, term)
+                            vote_model.append(score)
+                            vote_expert.append(expert[key][term][0])
+                        except:
+                            #print(f"No similarity score for {key}/{term}.")
+                            pass
+                    else:
+                        #print(f"Deviation of expert rating for {key}/{term} too large.")
+                        pass
+                else:
+                    try:
+                        score = model.wv.similarity(key, term)
+                        vote_model.append(score)
+                        vote_expert.append(expert[key][term][0])
+                    except:
+                        #print(f"No similarity score for {key}/{term}.")
+                        pass
+        
+        ##########
+        #"""
 
         if self.eval:
             score = spearmanr(vote_expert, vote_model)

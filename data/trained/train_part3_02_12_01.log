@@ -1,0 +1,120 @@
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 10.0%
+Model training done. Model saved as: 02size0.1_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 20.0%
+Model training done. Model saved as: 02size0.2_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 30.0%
+Model training done. Model saved as: 02size0.3_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 40.0%
+Model training done. Model saved as: 02size0.4_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 50.0%
+Model training done. Model saved as: 02size0.5_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 60.0%
+Model training done. Model saved as: 02size0.6_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 70.0%
+Model training done. Model saved as: 02size0.7_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 80.0%
+Model training done. Model saved as: 02size0.8_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 90.0%
+Model training done. Model saved as: 02size0.9_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------
+Reduction method in preprocessing: lemma
+Handling of rare words: True
+Handling of n-grams: in training
+Shuffling: True
+Vector size: 500
+Window size: 10
+Min count: 5
+Train algorithm: skipgram
+used in training: hierarchical softmax
+Percentage of training data used: 100.0%
+Model training done. Model saved as: 02size1.0_w2v_ngramsTraining_vs500_win10_mc5_sg1_hs1.bin
+----------------------------------------------------------

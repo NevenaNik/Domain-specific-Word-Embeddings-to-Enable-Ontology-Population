@@ -7,10 +7,10 @@ Our project is structured into three parts:
 * Model Training 
 * Model Evaluation
 
-Note:
-Model training is split into phases 1 to 5.
-For Phase 0 models trained in phase 2 are evaluated.
-For Phase 6 models trained in phase 3 are evaluated.
+Note:  
+Model training is split into phases 1 to 5.  
+For Phase 0 models trained in phase 2 are evaluated.  
+For Phase 6 models trained in phase 3 are evaluated.  
   
 
 ################################CODE####
@@ -20,13 +20,13 @@ For **preprocessing** use: `preprocessing.py`
   
 
 ### Model Training and Evaluation (Phase 0 to Phase 4)
-For **model training** use: `training.py`
-For **model evaluation approach1** use: `evaluation_approach1.py`
-To do **model training** and **evaluation (approach 1)** at once adjust: `run.py`
+For **model training** use: `training.py`  
+For **model evaluation approach1** use: `evaluation_approach1.py`  
+To do **model training** and **evaluation (approach 1)** at once adjust: `run.py`  
   
 
 ### Model Training and Evaluation (Phase 5)
-For **model training** use: `notebooks/training/modeltraining_phase5.py`
+For **model training** use: `notebooks/training/modeltraining_phase5.py`  
 For **model evaluation approach1** use: `evaluation_approach1.py`
   
 
@@ -38,10 +38,10 @@ For **model evaluation approach2** use: `evaluation_approach2.py`
 
 ### Terminology
 All preprocessing adjustments are stored in folder `terminology/`, included are:  
-    * custom stopwords
-    * abbreviations + long-forms
-    * considered n-grams
-    * normalization steps
+* custom stopwords
+* abbreviations + long-forms
+* considered n-grams
+* normalization steps
   
   
 ### Evaluation Data

@@ -58,7 +58,7 @@ def remove_parentheses(text):
     return text
 
 
-# FUNCTION: Replace abbreviations by their log form 
+# FUNCTION: Replace abbreviations by their long form 
 def replace_terms(text, dictionary):
    
     for item in dictionary.keys():

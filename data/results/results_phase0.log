@@ -1,0 +1,336 @@
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1560
+Evaluation score: 0.4198717948717949
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1516
+Evaluation score: 0.42150395778364114
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1560
+Evaluation score: 0.4519230769230769
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1516
+Evaluation score: 0.4551451187335092
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1560
+Evaluation score: 0.45576923076923076
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1482
+Evaluation score: 0.45951417004048584
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1869
+Evaluation score: 0.37720706260032105
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1814
+Evaluation score: 0.37596471885336274
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1869
+Evaluation score: 0.40823970037453183
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1814
+Evaluation score: 0.4079382579933848
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1869
+Evaluation score: 0.41091492776886035
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1774
+Evaluation score: 0.4109357384441939
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 751
+Evaluation score: 0.422103861517976
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.4230769230769231
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 751
+Evaluation score: 0.4474034620505992
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.4478021978021978
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 751
+Evaluation score: 0.44873501997336884
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 713
+Evaluation score: 0.45161290322580644
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1885
+Evaluation score: 0.23076923076923078
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1830
+Evaluation score: 0.23387978142076501
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1885
+Evaluation score: 0.2790450928381963
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1830
+Evaluation score: 0.2814207650273224
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1885
+Evaluation score: 0.2774535809018568
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1790
+Evaluation score: 0.28268156424581004
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1560
+Evaluation score: 0.39871794871794874
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1516
+Evaluation score: 0.39907651715039577
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1560
+Evaluation score: 0.4269230769230769
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1516
+Evaluation score: 0.4287598944591029
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1560
+Evaluation score: 0.4307692307692308
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsManual_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1482
+Evaluation score: 0.4298245614035088
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1885
+Evaluation score: 0.1989389920424403
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1830
+Evaluation score: 0.20382513661202187
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1885
+Evaluation score: 0.2557029177718833
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1830
+Evaluation score: 0.25901639344262295
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1885
+Evaluation score: 0.2530503978779841
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsTraining_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1790
+Evaluation score: 0.25865921787709495
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1869
+Evaluation score: 0.36918138041733545
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1814
+Evaluation score: 0.3715545755237045
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1869
+Evaluation score: 0.40663456393793473
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1814
+Evaluation score: 0.4079382579933848
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 1869
+Evaluation score: 0.4071696094168004
+----------------------------------------
+Evaluating model: word2vec_lemma_rareFalse_ngramsManual_shuffledTrue.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 1774
+Evaluation score: 0.4120631341600902
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 751
+Evaluation score: 0.3848202396804261
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: weighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.38324175824175827
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 751
+Evaluation score: 0.41011984021304926
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 728
+Evaluation score: 0.4107142857142857
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: False
+Model evaluation by: accuracy score
+Count of word pairs: 751
+Evaluation score: 0.41145139813581894
+----------------------------------------
+Evaluating model: word2vec_lemma_rareTrue_ngramsTraining_shuffledFalse.bin
+Expert rating aggregation: majorityUnweighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 713
+Evaluation score: 0.41514726507713884
+----------------------------------------

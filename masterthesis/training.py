@@ -12,7 +12,7 @@ from gensim.models import Phrases
 from gensim.models import Word2Vec
 
 from functions.fun_training import ngrams
-from functions.config import path_preprocessed, path_trained, path_ngrams
+from functions.config import path_preprocessed, path_models, path_ngrams
 
 
 
@@ -31,7 +31,7 @@ def get_options():
                         default=path_preprocessed)
     parser.add_argument("-d", "--destination",
                         help="Destination directory for trained model",
-                        default=path_trained)
+                        default=path_models)
     parser.add_argument("--ngramsMan",
                         help="Manual induction of n-grams (default: during trainig)",
                         action="store_true")
@@ -158,7 +158,7 @@ class Model(object):
         self.logger.info(f"Percentage of training data used: {self.percentage * 100}%")
         
         # Set destination directory
-        self.dest = kwargs.get("destination", path_trained)
+        self.dest = kwargs.get("destination", path_models)
 
 
 
@@ -191,8 +191,8 @@ class Model(object):
             sentences = list(trigram[sentences])
 
         # Save training data corpus (for stats)
-        pathCorpus = "/home/hiwi/Dokumente/masterthesis/data/corpora/"
-        nameCorpus = "corpus_shuffleFalse_percent" + str(int(self.percentage*100)) + ".txt"
+        pathCorpus = "../data/corpora/"
+        nameCorpus = "corpus_percent" + str(int(self.percentage*100)) + ".txt"
         fileCorpus = open(pathCorpus+nameCorpus, "a")
 
         for sent in sentences:
@@ -206,8 +206,7 @@ class Model(object):
         model = Word2Vec(sentences, size=self.vs, window=self.win, min_count=self.mc, sg=self.sg, hs=self.hs)
 
         # Save model
-        #file_name = f"word2vec_{self.reduction}_rare{self.rare}_ngrams{self.ng}_shuffled{self.shuffle}.bin"
-        file_name = f"02size{self.percentage}_w2v_ngrams{self.ng}_vs{self.vs}_win{self.win}_mc{self.mc}_sg{self.sg}_hs{self.hs}.bin"
+        file_name = f"w2v_{self.reduction}_rare{self.rare}_ngrams{self.ng}_shuffled{self.shuffle}_vs{self.vs}_win{self.win}_mc{self.mc}_sg{self.sg}_hs{self.hs}_size{self.percentage}.bin"
         model.save(self.dest + file_name)
 
         self.logger.info(f"Model training done. Model saved as: {file_name}")

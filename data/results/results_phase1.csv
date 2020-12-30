@@ -1,0 +1,4 @@
+id;aggregation;cosistencyCheck;scoreType;countPairs;evalScore
+1;majorityWeighted;True;accuracy score;75;0.6666666666666666
+2;majorityWeighted;True;accuracy score;75;0.7066666666666667
+3;majorityWeighted;True;accuracy score;75;0.5066666666666667

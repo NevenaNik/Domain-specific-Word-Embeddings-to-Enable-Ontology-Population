@@ -1,0 +1,9 @@
+id;reduction;rare;shuffle;ngrams
+1;lemma;True;True;manual
+2;lemma;False;False;manual
+3;lemma;True;True;training
+4;lemma;False;False;training
+5;lemma;True;False;manual
+6;lemma;False;True;training
+7;lemma;False;True;manual
+8;lemma;True;False;training

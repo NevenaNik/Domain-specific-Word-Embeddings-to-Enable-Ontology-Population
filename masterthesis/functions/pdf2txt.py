@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """A command line tool for extracting text and images from PDF and
-output it to plain text, html, xml or tags."""
+output it to plain text, html, xml or tags.
+
+THE CODE IS TAKEN FROM: https://github.com/pdfminer/pdfminer.six
+
+
+"""
 import argparse
 import logging
 import sys

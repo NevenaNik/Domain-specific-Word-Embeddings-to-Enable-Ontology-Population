@@ -1,0 +1,21 @@
+Evaluating model: word2vec_unigram_lemma.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 75
+Evaluation score: 0.6666666666666666
+----------------------------------------
+Evaluating model: word2vec_unigram_stem.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 75
+Evaluation score: 0.7066666666666667
+----------------------------------------
+Evaluating model: word2vec_unigram_none.bin
+Expert rating aggregation: majorityWeighted
+Expert rating consistensy check: True
+Model evaluation by: accuracy score
+Count of word pairs: 75
+Evaluation score: 0.5066666666666667
+----------------------------------------
